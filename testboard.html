@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script
+            src="http://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <script src="whiteboard.js"></script>
+</head>
+<body>
+
+<canvas id="whiteboard"></canvas>
+
+<script>
+    InitThis();
+
+    $(document).ready(function(){
+
+        $(document).keydown(function(e){
+            if (e.which == 13){
+                clearArea();
+            }
+
+        });
+    });
+</script>
+
+</body>
+</html>
