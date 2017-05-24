@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Klarsten</title>
+    <link rel="stylesheet" type="text/css" href="css/whiteboard.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css">
     <script
             src="http://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -12,22 +13,49 @@
     <script src="whiteboard.js"></script>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li id="logo">
+                <a href="index.html">&nbsp;<img src="img/logo.svg"></a>
+            </li>
+            <a href="testboard.html"><li style="float:right">
+                Whiteboard Test
+            </li></a>
+            <a href="login.html"><li style="float:right">
+                Registrieren
+            </li></a>
+        </ul>
+    </nav>
+    
+    <div class="one column offset-by-two">
+        <img class="arrow" onclick="previous()" src="img/left.svg"/>
+    </div>
+    <div id="board" class="six columns">
+        <canvas id="whiteboard">
+            
+        </canvas>
+    </div>
+    <div class="one column">
+        <img class="arrow" onclick="next()" src="img/right.svg"/>
+    </div>
+    
+    <footer>
+        <a href="impressum.html">Impressum</a>
+    </footer>
 
-<canvas id="whiteboard"></canvas>
-
-<script>
-    InitThis();
-
-    $(document).ready(function(){
-
-        $(document).keydown(function(e){
-            if (e.which == 13){
-                clearArea();
-            }
-
+    <script>
+        InitThis();
+        
+        $(document).ready(function(){
+            
+            $(document).keydown(function(e){
+                if (e.which == 13){
+                    clearArea();
+                }
+                
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>
