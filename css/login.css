@@ -1,0 +1,10 @@
+#loginform {
+    background-color: #f5f5f5;
+    margin-top: 2em;
+    padding: 2em;
+    border-radius: 2px;
+}
+
+#loginform input {
+    width: 100%;
+}

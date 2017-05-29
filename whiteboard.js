@@ -25,8 +25,8 @@ var ctx;
 function InitThis() {
     ctx = document.getElementById('whiteboard').getContext("2d");
 
-    ctx.canvas.style.width = '100%';
-    ctx.canvas.style.height = '100%';
+    ctx.canvas.style.width = '80%';
+    ctx.canvas.style.height = '70%';
     ctx.canvas.width = ctx.canvas.offsetWidth;
     ctx.canvas.height = ctx.canvas.offsetHeight;
 
