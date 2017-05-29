@@ -2,12 +2,33 @@
  * Created by Thorsten on 24.05.2017.
  */
 
+(function($) {
+
+    $.fn.whiteboard = function(options){
+
+        var opts = $.extend({}, $.fn.whiteboard.defaults, options);
+    }
+
+    $.fn.whiteboard.defaults = {
+
+        color: "blue",
+        lineWidth: 5,
+        lineJoin: "round"
+    }
+}(jQuery));
+
 var mousePressed = false;
 var lastX, lastY;
 var ctx;
 
+
 function InitThis() {
     ctx = document.getElementById('whiteboard').getContext("2d");
+
+    ctx.canvas.style.width = '100%';
+    ctx.canvas.style.height = '100%';
+    ctx.canvas.width = ctx.canvas.offsetWidth;
+    ctx.canvas.height = ctx.canvas.offsetHeight;
 
     $('#whiteboard').mousedown(function (e) {
         mousePressed = true;
@@ -26,9 +47,11 @@ function InitThis() {
     $('#whiteboard').mouseleave(function (e) {
         mousePressed = false;
     });
+
 }
 
 function Draw(x, y, isDown) {
+
     if (isDown) {
         ctx.beginPath();
         ctx.strokeStyle = "blue";

@@ -13,6 +13,8 @@
     <script src="whiteboard.js"></script>
 </head>
 <body>
+
+<header>
     <nav>
         <ul>
             <li id="logo">
@@ -26,18 +28,23 @@
             </li></a>
         </ul>
     </nav>
-    
-    <div class="one column offset-by-two">
-        <img class="arrow" onclick="previous()" src="img/left.svg"/>
-    </div>
-    <div id="board" class="six columns">
-        <canvas id="whiteboard">
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="one column offset-by-one">
+            <img class="arrow" onclick="previous()" src="img/left.svg"/>
+        </div>
+        <div id="board" class="eight columns">
+                <canvas id="whiteboard">
             
-        </canvas>
+                </canvas>
+        </div>
+        <div class="one column">
+           <img class="arrow" onclick="next()" src="img/right.svg"/>
+        </div>
     </div>
-    <div class="one column">
-        <img class="arrow" onclick="next()" src="img/right.svg"/>
-    </div>
+</div>
     
     <footer>
         <a href="impressum.html">Impressum</a>
