@@ -8,15 +8,22 @@
 
 #tools {
     position: absolute;
-    width: 2em;
-    height: 100%;
-    background-color: #d0d0d0;
+    width: 7em;
+    height: auto;
+    background-color: #f5f5f5;
     margin-top: 3em;
     padding: 1em;
+    padding-bottom: 1.4em;
+    z-index: 1;
+    left: -5em;
+    transition: left 0.1s;
 }
 
 #menu-button {
     cursor: pointer;
+    width: 2em;
+    float: right;
+    height: 2em;
 }
 
 #menu-button div {
@@ -40,4 +47,5 @@
     border-left: 0.5em solid #444;
     border-right: 0.5em solid #444;
     background-color: white;
+    transition: width 0.25s, left 0.25s;
 }
