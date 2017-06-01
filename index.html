@@ -47,10 +47,16 @@
     </footer>
 
     <script>
-        InitThis();
+        
         
         $(document).ready(function(){
             
+            $("#whiteboard").animate({
+                width: "80%",
+                left: "0%"
+            }, 250);
+
+            InitThis();
             $(document).keydown(function(e){
                 if (e.which == 13){
                     clearArea();

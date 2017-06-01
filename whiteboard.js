@@ -21,17 +21,11 @@ var mousePressed = false;
 var lastX, lastY;
 var ctx;
 
-
 function InitThis() {
     ctx = document.getElementById('whiteboard').getContext("2d");
 
-    ctx.canvas.style.width = '0%';
-    ctx.canvas.style.height = '70%';
-    ctx.canvas.style.left = '50%';
-    setTimeout(function(){
-        ctx.canvas.style.width = '80%';
-        ctx.canvas.style.left = '0%';
-    }, 0);
+    ctx.canvas.style.width = "80%";
+    ctx.canvas.style.left = "0%";
     ctx.canvas.width = ctx.canvas.offsetWidth;
     ctx.canvas.height = ctx.canvas.offsetHeight;
 
@@ -55,7 +49,6 @@ function InitThis() {
 }
 
 function Draw(x, y, isDown) {
-
     if (isDown) {
         ctx.beginPath();
         ctx.strokeStyle = "blue";
@@ -77,13 +70,9 @@ function clearArea() {
 
 function tools() {
     if (document.getElementById('tools').style.left == '0em') {
-        setTimeout(function() {
-            document.getElementById('tools').style.left = '-5em';
-        })
+        document.getElementById('tools').style.left = '-20em';
     }
     else {
-        setTimeout(function() {
-            document.getElementById('tools').style.left = '0em';
-        })
+        document.getElementById('tools').style.left = '0em';
     }
 }
