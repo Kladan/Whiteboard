@@ -4,10 +4,37 @@
 
 (function($) {
 
+    var mousePressed = false;
+    var lastX, lastY, context, opts;
+
     $.fn.whiteboard = function(options){
 
-        var opts = $.extend({}, $.fn.whiteboard.defaults, options);
+        opts = $.extend({}, $.fn.whiteboard.defaults, options);
+        context = document.getElementById("whiteboard").getContext("2d");
+        context.canvas.style.width = "80%";
+        context.canvas.width = context.canvas.offsetWidth;
+        context.canvas.height = context.canvas.offsetHeight;
+
+        $(this).mousedown(function(e){
+            mousePressed = true;
+            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+        });
+
+        $(this).mousemove(function(e) {
+            if (mousePressed) {
+                Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+            }
+        });
+
+        $(this).mouseup(function (e) {
+        mousePressed = false;
+        });
+
+        $(this).mouseleave(function (e) {
+           mousePressed = false;
+        });
     }
+
 
     $.fn.whiteboard.defaults = {
 
@@ -15,58 +42,30 @@
         lineWidth: 5,
         lineJoin: "round"
     }
+
+    function Draw(x, y, isDown) {
+
+        if (isDown) {
+            context.beginPath();
+            context.strokeStyle = opts.color;
+            context.lineWidth = opts.lineWidth;
+            context.lineJoin = opts.lineJoin;
+            context.moveTo(lastX, lastY);
+            context.lineTo(x, y);
+            context.closePath();
+            context.stroke();
+        }
+        lastX = x; lastY = y;
+    }
+
+    $.fn.whiteboard.clearArea = function() {
+        // Use the identity matrix while clearing the canvas
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+    }
 }(jQuery));
 
-var mousePressed = false;
-var lastX, lastY;
-var ctx;
 
-function InitThis() {
-    ctx = document.getElementById('whiteboard').getContext("2d");
-
-    ctx.canvas.style.width = "80%";
-    ctx.canvas.style.left = "0%";
-    ctx.canvas.width = ctx.canvas.offsetWidth;
-    ctx.canvas.height = ctx.canvas.offsetHeight;
-
-    $('#whiteboard').mousedown(function (e) {
-        mousePressed = true;
-        Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
-    });
-
-    $('#whiteboard').mousemove(function (e) {
-        if (mousePressed) {
-            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
-        }
-    });
-
-    $('#whiteboard').mouseup(function (e) {
-        mousePressed = false;
-    });
-    $('#whiteboard').mouseleave(function (e) {
-        mousePressed = false;
-    });
-}
-
-function Draw(x, y, isDown) {
-    if (isDown) {
-        ctx.beginPath();
-        ctx.strokeStyle = "blue";
-        ctx.lineWidth = 5;
-        ctx.lineJoin = "round";
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(x, y);
-        ctx.closePath();
-        ctx.stroke();
-    }
-    lastX = x; lastY = y;
-}
-
-function clearArea() {
-    // Use the identity matrix while clearing the canvas
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-}
 
 function tools() {
     if (document.getElementById('tools').style.left == '0em') {

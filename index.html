@@ -56,10 +56,15 @@
                 left: "0%"
             }, 250);
 
-            InitThis();
+            $("#whiteboard").whiteboard({
+                color: "green"
+
+            });
+
+          //  InitThis();
             $(document).keydown(function(e){
                 if (e.which == 13){
-                    clearArea();
+                    $.fn.whiteboard.clearArea();
                 }
                 
             });
