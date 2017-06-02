@@ -64,20 +64,9 @@
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     }
 
-    $.fn.whiteboard.changeBackground = function(){
-        $("#whiteboard").css("background-color", "white");
+    $.fn.whiteboard.changeBackground = function(color){
+        $("#whiteboard").css("background-color", color);
     }
 
 
 }(jQuery));
-
-
-
-function tools() {
-    if (document.getElementById('tools').style.left == '0em') {
-        document.getElementById('tools').style.left = '-20em';
-    }
-    else {
-        document.getElementById('tools').style.left = '0em';
-    }
-}

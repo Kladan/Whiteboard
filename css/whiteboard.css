@@ -8,29 +8,28 @@
 
 #tools {
     position: absolute;
-    width: 30em;
+    width: 80%;
     height: auto;
-    background-color: lightblue;
-    margin-top: -2.5em;
-    padding: 1em;
-    padding-bottom: 1.4em;
-    left: -20em;
+    background-color: #2180b8;
+    margin-left: 10%;
+    padding: 1em 0.25em;
+    margin-top: -2em;
     z-index: 0.5;
-    transition: left 0.25s;
 }
 
-#menu-button {
-    cursor: pointer;
-    width: 2em;
+.toolbtn {
     float: right;
-    height: 2em;
+    cursor: pointer;
+    margin-left: 0.5em;
+    color: black;
 }
 
-#menu-button div {
-    background-color: black;
-    height: 0.2em;
-    width: 100%;
-    margin-top: 0.4em;
+.toolbtn:hover {
+    color: white;
+}
+
+.range {
+
 }
 
 #board {
@@ -43,9 +42,9 @@
     left: 40%;
     margin-left: 10%;
     position: absolute;
-    border-top: 0.5em solid #333;
-    border-bottom: 0.5em solid #333;
-    border-left: 0.5em solid #444;
-    border-right: 0.5em solid #444;
+    border-top: 0.25em solid #333;
+    border-bottom: 0.25em solid #333;
+    border-left: 0.25em solid #444;
+    border-right: 0.25em solid #444;
     background-color: white;
 }

@@ -24,13 +24,14 @@
     </header>
     
     <div id="tools">
-        <span class="material-icons">brush</span>
-        <div id="menu-button" onclick="tools()">
-            <!--<div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>-->
-            <span class="material-icons">menu</span>
-        </div>
+        <span class="material-icons toolbtn">save</span>
+        <span class="material-icons toolbtn">brush</span>
+        <input class="toolbtn range" type="range" value="5" max="7" min="1" step="1" title="Stiftdicke">
+        <span class="material-icons toolbtn">edit</span>
+        <span class="material-icons toolbtn" onclick="bgboard()">format_paint</span>
+        <span class="material-icons toolbtn">favorite</span>
+        <span class="material-icons toolbtn">delete</span>
+        <span class="material-icons toolbtn" title="Dashboard">dashboard</span>
     </div>
 
     <div id="board">
@@ -58,9 +59,6 @@
 
             });
 
-            $.fn.whiteboard.changeBackground();
-
-          //  InitThis();
             $(document).keydown(function(e){
                 if (e.which == 13){
                     $.fn.whiteboard.clearArea();
@@ -68,6 +66,11 @@
                 
             });
         });
+
+        function bgboard() {
+            $.fn.whiteboard.changeBackground("black");
+        }
+
     </script>
 
 </body>
