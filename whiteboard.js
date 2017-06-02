@@ -65,7 +65,7 @@
     }
 
     $.fn.whiteboard.changeBackground = function(){
-        $("#whiteboard").css("background-color", "brown");
+        $("#whiteboard").css("background-color", "white");
     }
 
 
