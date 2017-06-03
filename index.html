@@ -26,14 +26,19 @@
     
     <div id="tools">
         <span class="material-icons toolbtn" onclick="bgboard()" title="Whiteboard / Tafel">format_paint</span>
-        <span class="material-icons toolbtn" title="Pinsel">brush</span>
-        <span class="material-icons toolbtn" title="Fineliner">edit</span>
-        <input class="toolbtn range" type="range" value="5" max="7" min="1" step="1" title="Stiftdicke">
-        <span class="material-icons toolbtn right" title="Speichern">save</span>
-        <span class="material-icons toolbtn right" title="Like">thumb_up</span>
-        <span class="material-icons toolbtn right" title="Als Favorit markieren">favorite</span>
-        <span class="material-icons toolbtn right" title="Alles löschen">delete</span>
-        <span class="material-icons toolbtn right" title="Dashboard">dashboard</span>
+        <span class="material-icons toolbtn" title="Pinsel" onclick="colors('brush'), setColor('black')">brush</span>
+        <span class="material-icons toolbtn" title="Fineliner" onclick="colors('edit'), setColor('black')">edit</span>
+        <span class="material-icons toolbtn colors" onclick="setColor('#EB401C')" title="Rot" style="color: #EB401C"></span>
+        <span class="material-icons toolbtn colors" onclick="setColor('#0AEC08')" title="Grün" style="color: #0AEC08"></span>
+        <span class="material-icons toolbtn colors" onclick="setColor('#1937D6')" title="Blau" style="color: #1937D6"></span>
+        <span class="material-icons toolbtn colors" onclick="setColor('#E4FC5B')" title="Gelb" style="color: #E4FC5B"></span>
+        <span class="material-icons toolbtn colors" onclick="setColor('white')" title="Weiß" style="color: white"></span>
+        <input class="toolbtn range colors" type="range" value="5" max="7" min="1" step="1" title="Stiftdicke" onchange="setLineWidth(this.value)">
+        <span class="material-icons toolbtn right" title="Speichern">cloud_upload</span>
+        <span class="material-icons toolbtn right" title="Alles löschen" onclick="$.fn.whiteboard.clearArea()">delete</span>
+        <span class="material-icons toolbtn right" title="Neu laden">refresh</span>
+        <span class="material-icons toolbtn right" title="Find ich gut">thumb_up</span>
+        <span class="material-icons toolbtn right" title="Rückgängig">undo</span>
     </div>
 
     <div id="board">
@@ -57,8 +62,7 @@
             }, 250);
 
             $("#whiteboard").whiteboard({
-                color: "green"
-
+                color: "black"
             });
 
             $(document).keydown(function(e){
@@ -81,6 +85,27 @@
             }
         }
 
+        var pens = false;
+        function colors(stift) {
+            if (pens) {
+                $('.colors').text('');
+                $('.colors').hide();
+                pens = false;
+            }
+            else {
+                $('.colors').show();
+                $('.colors').text(stift);
+                pens = true;
+            }
+        }
+
+        function setColor(color) {
+            // Setze color als Stiftfarbe
+        }
+
+        function setLineWidth(lnWidth) {
+            // Setze lnWidth als Linienstärke
+        }
     </script>
 
 </body>

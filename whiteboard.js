@@ -3,12 +3,10 @@
  */
 
 (function($) {
-
     var mousePressed = false;
     var lastX, lastY, context, opts;
 
     $.fn.whiteboard = function(options){
-
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
         context = document.getElementById("whiteboard").getContext("2d");
         context.canvas.style.width = "80%";
@@ -37,8 +35,7 @@
 
 
     $.fn.whiteboard.defaults = {
-
-        color: "blue",
+        color: "black",
         lineWidth: 5,
         lineJoin: "round"
     }
@@ -64,9 +61,7 @@
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     }
 
-    $.fn.whiteboard.changeBackground = function(color){
+    $.fn.whiteboard.changeBackground = function(color) {
         $("#whiteboard").css("background-color", color);
     }
-
-
 }(jQuery));

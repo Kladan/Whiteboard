@@ -16,3 +16,12 @@
 .profilSeite img {
 	width: 100%;
 }
+
+.dashboardSeite {
+	padding: 0;
+}
+
+.dashboardSeite .kachel {
+	margin: 0;
+	padding: 0.2em;
+}
