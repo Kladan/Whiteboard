@@ -85,17 +85,14 @@
             }
         }
 
-        var pens = false;
         function colors(stift) {
-            if (pens) {
+            if ($('.colors').first().text() == stift) {
                 $('.colors').text('');
                 $('.colors').hide();
-                pens = false;
             }
             else {
                 $('.colors').show();
                 $('.colors').text(stift);
-                pens = true;
             }
         }
 

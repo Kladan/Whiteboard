@@ -1,7 +1,3 @@
-/**
- * Created by Thorsten on 24.05.2017.
- */
-
 (function($) {
     var mousePressed = false;
     var lastX, lastY, context, opts;
