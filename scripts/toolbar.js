@@ -22,15 +22,8 @@
         }
 
 
-        $(".colors").on("click", function(){
-            alert(this.data["color"]);
-            $.fn.whiteboard.setColor(this.data["color"])
+        $(function(){
+            $(".colors").on("click", function() {
+                $.fn.whiteboard.setColor($(this).data("color"));
+            });
         });
-
-        function setColor(color) {
-
-        }
-
-        function setLineWidth(lnWidth) {
-
-        }
