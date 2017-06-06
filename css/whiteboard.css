@@ -9,8 +9,8 @@
 #tools {
     position: absolute;
     width: 80%;
-    height: auto;
-    background-color: #2180b8;
+    height: 2em;
+    background-color: #0180b8;
     margin-left: 10%;
     padding: 1em 0.25em;
     margin-top: -2em;
@@ -18,7 +18,6 @@
 }
 
 .toolbtn {
-    float: right;
     cursor: pointer;
     margin-left: 0.5em;
     color: black;
@@ -28,8 +27,17 @@
     color: white;
 }
 
-.range {
+.right {
+    float: right;
+}
 
+.range {
+    margin: 0;
+}
+
+.colors {
+    display: none;
+    top: 0;
 }
 
 #board {
@@ -47,4 +55,5 @@
     border-left: 0.25em solid #444;
     border-right: 0.25em solid #444;
     background-color: white;
+    cursor: crosshair;
 }
