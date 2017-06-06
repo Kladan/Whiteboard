@@ -14,7 +14,8 @@
             src="http://code.jquery.com/jquery-3.2.1.js"
             integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
             crossorigin="anonymous"></script>
-    <script src="whiteboard.js"></script>
+    <script src="scripts/whiteboard.js"></script>
+    <script src="scripts/toolbar.js"></script>
 </head>
 <body>
 
@@ -28,7 +29,7 @@
         <span class="material-icons toolbtn" onclick="bgboard()" title="Whiteboard / Tafel">format_paint</span>
         <span class="material-icons toolbtn" title="Pinsel" onclick="colors('brush'), setColor('black')">brush</span>
         <span class="material-icons toolbtn" title="Fineliner" onclick="colors('edit'), setColor('black')">edit</span>
-        <span class="material-icons toolbtn colors" onclick="setColor('#EB401C')" title="Rot" style="color: #EB401C"></span>
+        <span class="material-icons toolbtn colors" onclick="setColor('#EB401C')" title="Rot" style="color: #EB401C" data-color="#EB401C"></span>
         <span class="material-icons toolbtn colors" onclick="setColor('#0AEC08')" title="Grün" style="color: #0AEC08"></span>
         <span class="material-icons toolbtn colors" onclick="setColor('#1937D6')" title="Blau" style="color: #1937D6"></span>
         <span class="material-icons toolbtn colors" onclick="setColor('#E4FC5B')" title="Gelb" style="color: #E4FC5B"></span>
@@ -65,6 +66,7 @@
                 color: "black"
             });
 
+
             $(document).keydown(function(e){
                 if (e.which == 13){
                     $.fn.whiteboard.clearArea();
@@ -73,36 +75,6 @@
             });
         });
 
-        var tafel = false;
-        function bgboard() {
-            if (tafel) {
-                $.fn.whiteboard.changeBackground("white");
-                tafel = false;
-            }
-            else {
-                $.fn.whiteboard.changeBackground("#2f6f25");
-                tafel = true;
-            }
-        }
-
-        function colors(stift) {
-            if ($('.colors').first().text() == stift) {
-                $('.colors').text('');
-                $('.colors').hide();
-            }
-            else {
-                $('.colors').show();
-                $('.colors').text(stift);
-            }
-        }
-
-        function setColor(color) {
-            // Setze color als Stiftfarbe
-        }
-
-        function setLineWidth(lnWidth) {
-            // Setze lnWidth als Linienstärke
-        }
     </script>
 
 </body>

@@ -60,4 +60,9 @@
     $.fn.whiteboard.changeBackground = function(color) {
         $("#whiteboard").css("background-color", color);
     }
+
+    $.fn.whiteboard.setColor = function(color) {
+        opts.color = color;
+    }
+
 }(jQuery));
