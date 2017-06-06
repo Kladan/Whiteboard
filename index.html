@@ -66,6 +66,18 @@
                 color: "black"
             });
 
+            var keys = {};
+
+            $(document).keydown(function (e) {
+                keys[e.which] = true;
+                if (keys[17] && keys[90]) {
+                    // Einen Schritt rückgängig machen
+                }
+            });
+    
+            $(document).keyup(function (e) {
+                delete keys[e.which];
+            });
 
             $(document).keydown(function(e){
                 if (e.which == 13){

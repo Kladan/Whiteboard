@@ -11,7 +11,7 @@
 
         $(this).mousedown(function(e){
             mousePressed = true;
-            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);   // true als Funktion (Gerade zeichnen)
         });
 
         $(this).mousemove(function(e) {
