@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="13.656093mm"
+   height="10.71261mm"
+   viewBox="0 0 13.656093 10.71261"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="brushGreen.svg">
+  <title
+     id="title4627">brushGreen</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="28.250898"
+     inkscape:cy="20.451717"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>brushGreen</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-54.675756,-157.43748)">
+    <path
+       style="opacity:1;fill:#0aec08;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path3686"
+       d="m 57.053281,157.43748 c 1.245208,1.27314 2.572488,2.4607 3.89677,3.65022 1.520624,1.35217 3.041785,2.71159 4.695817,3.9012 0.857144,0.61648 1.100518,0.74926 1.955382,1.27966 0.243533,0.14359 0.487066,0.28717 0.730599,0.43075 0,0 -2.249427,1.45078 -2.249427,1.45078 v 0 c -0.233563,-0.15219 -0.467129,-0.30439 -0.700693,-0.45658 -2.331342,-1.58319 -4.514953,-3.36173 -6.599687,-5.25763 -1.367211,-1.17042 -2.742351,-2.33213 -4.106286,-3.50501 0,0 2.377525,-1.49339 2.377525,-1.49339 z"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

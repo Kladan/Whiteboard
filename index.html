@@ -26,9 +26,10 @@
     </header>
     
     <div id="tools">
-        <span class="material-icons toolbtn" onclick="bgboard()" title="Whiteboard / Tafel">format_paint</span>
-        <span class="material-icons toolbtn" title="Pinsel" onclick="colors('brush')">brush</span>
-        <span class="material-icons toolbtn" title="Fineliner" onclick="colors('edit')">edit</span>
+        <span class="material-icons toolbtn" onclick="bgboard()" title="Whiteboard / Tafel (Y)">format_paint</span>
+        <span class="material-icons toolbtn" title="Gerade zeichnen (X)">timeline</span>
+        <span class="material-icons toolbtn" title="Pinsel (C)" onclick="colors('brush')">brush</span>
+        <span class="material-icons toolbtn" title="Marker (V)" onclick="colors('edit')">edit</span>
         <span class="material-icons toolbtn colors" title="Rot" style="color: #EB401C" data-color="#EB401C"></span>
         <span class="material-icons toolbtn colors" title="Grün" style="color: #0AEC08" data-color="#0AEC08"></span>
         <span class="material-icons toolbtn colors" title="Blau" style="color: #1937D6" data-color="#1937D6"></span>
@@ -36,11 +37,11 @@
         <span class="material-icons toolbtn colors" title="Weiß" style="color: white" data-color="white"></span>
         <span class="material-icons toolbtn colors" title="Schwarz" style="color: black" data-color="black"></span>
         <input class="toolbtn range colors" type="range" value="5" max="7" min="1" step="1" title="Stiftdicke" onchange="setLineWidth(this.value)">
-        <span class="material-icons toolbtn right" title="Speichern">cloud_upload</span>
-        <span class="material-icons toolbtn right" title="Alles löschen" onclick="$.fn.whiteboard.clearArea()">delete</span>
+        <span class="material-icons toolbtn right" title="Speichern (Shift + S)">cloud_upload</span>
+        <span class="material-icons toolbtn right" title="Alles löschen (Shift + D)" onclick="$.fn.whiteboard.clearArea()">delete</span>
         <span class="material-icons toolbtn right" title="Neu laden">refresh</span>
         <span class="material-icons toolbtn right" title="Find ich gut">thumb_up</span>
-        <span class="material-icons toolbtn right" title="Rückgängig">undo</span>
+        <span class="material-icons toolbtn right" title="Rückgängig (Shift + Z)">undo</span>
     </div>
 
     <div id="board">
@@ -67,24 +68,37 @@
                 color: "black"
             });
 
+            // Shortcuts setzen
+
             var keys = {};
 
             $(document).keydown(function (e) {
                 keys[e.which] = true;
-                if (keys[17] && keys[90]) {
+                if (keys[16] && keys[90]) {
                     // Einen Schritt rückgängig machen
+                }
+                if (keys[16] && keys[83]) {
+                    // Speichern
+                }
+                if (keys[16] && keys[68]) {
+                    // Alles löschen
+                }
+                if (keys[89]) {
+                    // Tafel wechseln
+                }
+                if (keys[88]) {
+                    // Geraden zeichnen
+                }
+                if (keys[67]) {
+                    // Brush wählen
+                }
+                if (keys[86]) {
+                    // Marker wählen
                 }
             });
     
             $(document).keyup(function (e) {
                 delete keys[e.which];
-            });
-
-            $(document).keydown(function(e){
-                if (e.which == 13){
-                    $.fn.whiteboard.clearArea();
-                }
-                
             });
         });
 

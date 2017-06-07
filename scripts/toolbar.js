@@ -23,7 +23,7 @@
 
 
         $(function(){
-            $(".colors").on("click", function() {
+            $(".colors").click(function() {
                 $.fn.whiteboard.setColor($(this).data("color"));
             });
         });
