@@ -39,7 +39,7 @@
         <span class="material-icons toolbtn colors" title="Schwarz" style="color: black" data-color="black"></span>
         <input class="toolbtn range colors" type="range" value="5" max="7" min="1" step="1" title="Stiftdicke" onchange="setLineWidth(this.value)">
         <span class="material-icons toolbtn right" title="Speichern (Shift + S)">cloud_upload</span>
-        <span class="material-icons toolbtn right" title="Alles löschen (Shift + D)" onclick="$.fn.whiteboard.clearArea()">delete</span>
+        <span class="material-icons toolbtn right" title="Alles löschen (Shift + D)" onclick="$('#dialogDelete').show();">delete</span>
         <span class="material-icons toolbtn right" title="Neu laden">refresh</span>
         <span class="material-icons toolbtn right" title="Find ich gut">thumb_up</span>
         <span class="material-icons toolbtn right" title="Rückgängig (Shift + Z)">undo</span>
@@ -49,6 +49,11 @@
             <canvas id="whiteboard">
                 
             </canvas>
+            <div id="dialogDelete">
+                Kompletten Inhalt löschen?<br><br>
+                <button>Nein</button>
+                <button id="deleteYes">Ja</button>
+            </div>
     </div>
     
     <footer>

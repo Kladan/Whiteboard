@@ -31,6 +31,12 @@ $(function(){
     $(".colors").click(function() {
         $.fn.whiteboard.setColor($(this).data("color"));
     });
+    $("#dialogDelete button").click(function() {
+        $("#dialogDelete").hide();
+    });
+    $("#deleteYes").click(function() {
+        $.fn.whiteboard.clearArea();
+    })
 });
 
 // Shortcuts
@@ -46,9 +52,7 @@ $(document).keydown(function (e) {
         // Speichern
     }
     if (keys[16] && keys[68]) { // Shift + d
-        // Alles löschen
-        // mit Abfrage
-        $.fn.whiteboard.clearArea();
+        $('#dialogDelete').show();
     }
     if (keys[89]) { // y
         // Tafel wechseln
