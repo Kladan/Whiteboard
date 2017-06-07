@@ -3,14 +3,10 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-}
+}   /* Textauswahl beim Whiteboard deaktiviert */
 
 .container {
     color: white;
-}
-
-.arrow {
-    margin-top: 15em;
 }
 
 #tools {
@@ -22,7 +18,7 @@ body {
     padding: 1em 0.25em;
     margin-top: -2em;
     z-index: 0.5;
-}
+}   /* Toolbar */
 
 .toolbtn {
     cursor: pointer;

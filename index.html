@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Klarsten</title>
     <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+    <!-- CSS' aufgeteilt und je nach Nutzung eingebunden -->
     <link rel="stylesheet" type="text/css" href="css/whiteboard.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/skeleton.css">
+    <!-- s. Toolbar Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <script
@@ -18,7 +20,6 @@
     <script src="scripts/toolbar.js"></script>
 </head>
 <body>
-
     <header>
         <script type="text/javascript">
             $('header').load("header");
@@ -55,10 +56,10 @@
     </footer>
 
     <script>
-        
-        
         $(document).ready(function(){
             
+            // Dynamisches Aufklappen des Boards
+
             $("#whiteboard").animate({
                 width: "80%",
                 left: "0%"
@@ -67,42 +68,7 @@
             $("#whiteboard").whiteboard({
                 color: "black"
             });
-
-            // Shortcuts setzen
-
-            var keys = {};
-
-            $(document).keydown(function (e) {
-                keys[e.which] = true;
-                if (keys[16] && keys[90]) {
-                    // Einen Schritt rückgängig machen
-                }
-                if (keys[16] && keys[83]) {
-                    // Speichern
-                }
-                if (keys[16] && keys[68]) {
-                    // Alles löschen
-                }
-                if (keys[89]) {
-                    // Tafel wechseln
-                }
-                if (keys[88]) {
-                    // Geraden zeichnen
-                }
-                if (keys[67]) {
-                    // Brush wählen
-                }
-                if (keys[86]) {
-                    // Marker wählen
-                }
-            });
-    
-            $(document).keyup(function (e) {
-                delete keys[e.which];
-            });
         });
-
     </script>
-
 </body>
 </html>

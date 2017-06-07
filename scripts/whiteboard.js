@@ -9,6 +9,8 @@
         context.canvas.width = context.canvas.offsetWidth;
         context.canvas.height = context.canvas.offsetHeight;
 
+        // Zeichnen
+
         $(this).mousedown(function(e){
             mousePressed = true;
             Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);   // true als Funktion (Gerade zeichnen)
@@ -28,7 +30,6 @@
            mousePressed = false;
         });
     }
-
 
     $.fn.whiteboard.defaults = {
         color: "black",
@@ -56,6 +57,8 @@
         context.setTransform(1, 0, 0, 1, 0, 0);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     }
+
+    // Wechsel Whiteboard <-> Tafel
 
     $.fn.whiteboard.changeBackground = function(color) {
         $("#whiteboard").css("background-color", color);
