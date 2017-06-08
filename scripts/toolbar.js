@@ -24,6 +24,13 @@
 
         $(function(){
             $(".colors").on("click", function() {
-                $.fn.whiteboard.setColor($(this).data("color"));
+                var colorData = $(this).data("color");
+
+                if ($(this).text() == "brush") {
+                    $.fn.whiteboard.setBrushImage(colorData);
+                }
+                else {
+                    $.fn.whiteboard.setColor(colorData);
+                }
             });
         });

@@ -2,6 +2,9 @@
     var mousePressed = false;
     var lastX, lastY, context, opts;
 
+    var brushImageArray = [["black", "brushBlack"], ["White", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
+    ["#1937D6", "brushBlue"], ["E4FC5B", "brushYellow"]];
+
     $.fn.whiteboard = function(options){
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
         context = document.getElementById("whiteboard").getContext("2d");
@@ -16,7 +19,12 @@
 
         $(this).mousemove(function(e) {
             if (mousePressed) {
-                Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                if (useBrush) {
+                    BrushDraw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
+                else {
+                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
             }
         });
 
@@ -33,7 +41,9 @@
     $.fn.whiteboard.defaults = {
         color: "black",
         lineWidth: 5,
-        lineJoin: "round"
+        lineJoin: "round",
+        useBrush: false,
+        brushImage: new Image()
     }
 
     function Draw(x, y, isDown) {
@@ -51,6 +61,45 @@
         lastX = x; lastY = y;
     }
 
+    function BrushDraw(x, y, isDown) {
+
+        if (!isDown) return;
+
+        var currentPoint = {x: x, y: y};
+        var lastPoint = {x: lastX, y: lastY};
+
+        var dist = distanceBetween(lastPoint, currentPoint);
+        var angle = angleBetween(lastPoint, currentPoint);
+
+        for (var i = 0; i < dist; i++) {
+            x = lastPoint.x + (Math.sin(angle) * i) - 25;
+            y = lastPoint.Y + (Math.cos(angle) * i) - 25;
+            context.drawImage(brushImg, x, y);
+        }
+
+        lastX = currentPoint.x;
+        lastY = currentPoint.y;
+    }
+
+    /*Brush helper functionality*/
+
+    function distanceBetween(point1, point2) {
+        return Math.sqrt(Math.pow(point2.x - point1.x, 2) + 
+            Math.pow(point2.y - point1.y, 2));
+    }
+
+    function angleBetween(point1, point2) {
+        return Math.atan2(point2.x - point1.x, point2.y - point1.y);
+    }
+
+    function getBrushImage(color) {
+
+        $.each(brushImageArray, function(index, val){
+            if (val[0] == color)
+                return val[1];            
+        });
+    }
+
     $.fn.whiteboard.clearArea = function() {
         // Use the identity matrix while clearing the canvas
         context.setTransform(1, 0, 0, 1, 0, 0);
@@ -63,6 +112,13 @@
 
     $.fn.whiteboard.setColor = function(color) {
         opts.color = color;
+        useBrush = false;
+    }
+
+    $.fn.whiteboard.setBrushImage = function(color) {
+        var imageName = getBrushImage(color);
+        opts.brushImage.src = "/img/brush/" + imageName + ".svg";
+        useBrush = true;
     }
 
 }(jQuery));
