@@ -2,8 +2,8 @@
     var mousePressed = false;
     var lastX, lastY, context, opts;
 
-    var brushImageArray = [["black", "brushBlack"], ["White", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
-    ["#1937D6", "brushBlue"], ["E4FC5B", "brushYellow"]];
+    var brushImageArray = [["black", "brushBlack"], ["white", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
+    ["#1937D6", "brushBlue"], ["#E4FC5B", "brushYellow"]];
 
     $.fn.whiteboard = function(options){
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
@@ -16,12 +16,12 @@
 
         $(this).mousedown(function(e){
             mousePressed = true;
-            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);   // true als Funktion (Gerade zeichnen)
+            setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
         });
 
         $(this).mousemove(function(e) {
             if (mousePressed) {
-                if (useBrush) {
+                if (opts.useBrush) {
                     BrushDraw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
                 }
                 else {
@@ -47,6 +47,14 @@
         brushImage: new Image()
     }
 
+    //Setzt die letzte Position
+
+    function setLastPosition(x ,y){
+        lastX = x; lastY = y;
+    }
+
+    // Zeichnet mit dem "Stift"
+
     function Draw(x, y, isDown) {
 
         if (isDown) {
@@ -62,6 +70,8 @@
         lastX = x; lastY = y;
     }
 
+    //Zeichnet das ausgewählte Bild in das Canvas
+
     function BrushDraw(x, y, isDown) {
 
         if (!isDown) return;
@@ -74,35 +84,42 @@
 
         for (var i = 0; i < dist; i++) {
             x = lastPoint.x + (Math.sin(angle) * i) - 25;
-            y = lastPoint.Y + (Math.cos(angle) * i) - 25;
-            context.drawImage(brushImg, x, y);
+            y = lastPoint.y + (Math.cos(angle) * i) - 25;
+            context.drawImage(opts.brushImage, x, y);
         }
 
         lastX = currentPoint.x;
         lastY = currentPoint.y;
     }
 
-    /*Brush helper functionality*/
+    /*Brush Hilfefunktionen*/
 
+    //Satz des Pythagoras
     function distanceBetween(point1, point2) {
         return Math.sqrt(Math.pow(point2.x - point1.x, 2) + 
             Math.pow(point2.y - point1.y, 2));
     }
 
+    //Berechnet den Winkel
     function angleBetween(point1, point2) {
         return Math.atan2(point2.x - point1.x, point2.y - point1.y);
     }
 
+    //Gibt den Bildnamen zurück 
     function getBrushImage(color) {
-
+        var name = "";
         $.each(brushImageArray, function(index, val){
-            if (val[0] == color)
-                return val[1];            
+            if (val[0] == color) {
+                name = val[1];            
+            }
         });
+
+        return name;
     }
 
+
+    //Setzt die Canvas Fläche zurück
     $.fn.whiteboard.clearArea = function() {
-        // Use the identity matrix while clearing the canvas
         context.setTransform(1, 0, 0, 1, 0, 0);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     }
@@ -113,15 +130,41 @@
         $("#whiteboard").css("background-color", color);
     }
 
+    // Setzt die Stiftfarbe
+
     $.fn.whiteboard.setColor = function(color) {
         opts.color = color;
-        useBrush = false;
+        opts.useBrush = false;
     }
+
+    // Gibt die aktuelle Farbe zurück
+
+    $.fn.whiteboard.getCurrentColor = function() {
+        return opts.color;
+    }
+
+    //Setzt das Bild
 
     $.fn.whiteboard.setBrushImage = function(color) {
         var imageName = getBrushImage(color);
-        opts.brushImage.src = "/img/brush/" + imageName + ".svg";
-        useBrush = true;
+        opts.brushImage.src = "img/brush/" + imageName + ".svg";
+        opts.useBrush = true;
+    }
+
+
+    $.fn.whiteboard.getColorFromImage = function() {
+        var str = opts.brushImage.src;
+        var start = str.lastIndexOf("/") + 1;
+        var color = "";
+        str = str.split(".")[0].substr(start);
+
+        $.each(brushImageArray, function(index, val){
+            if (val[1] == str){
+                color = val[0];
+            }
+        })
+
+        return color;
     }
 
 }(jQuery));
