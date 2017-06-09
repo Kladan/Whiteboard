@@ -83,8 +83,8 @@
         var angle = angleBetween(lastPoint, currentPoint);
 
         for (var i = 0; i < dist; i++) {
-            x = lastPoint.x + (Math.sin(angle) * i) - 25;
-            y = lastPoint.y + (Math.cos(angle) * i) - 25;
+            x = lastPoint.x + (Math.sin(angle) * i) - 26;
+            y = lastPoint.y + (Math.cos(angle) * i) - 26;
             context.drawImage(opts.brushImage, x, y);
         }
 
@@ -151,6 +151,7 @@
         opts.useBrush = true;
     }
 
+    //Gibt die Farbe des "Brushes" zurück
 
     $.fn.whiteboard.getColorFromImage = function() {
         var str = opts.brushImage.src;
@@ -165,6 +166,10 @@
         })
 
         return color;
+    }
+
+    $.fn.whiteboard.setLineWidth = function(width) {
+        opts.lineWidth = width;
     }
 
 }(jQuery));
