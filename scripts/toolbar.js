@@ -55,6 +55,9 @@ $(function(){
     $("#deleteYes").click(function() {
         $.fn.whiteboard.clearArea();
     })
+    $("#lineWidthRange").on("input change", function(){
+        $.fn.whiteboard.setLineWidth($(this).val());
+    });
 });
 
 // Shortcuts
