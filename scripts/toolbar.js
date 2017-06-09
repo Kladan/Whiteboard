@@ -25,6 +25,15 @@ function colors(stift) {
     }
 }
 
+// Ausgewählten Stift farblich markieren
+
+function markiere(before, after, newColor) {
+    $('#' + before).css("background-color","");
+    $('#' + before).css("border-color","black");
+    $('#' + after).css("background-color","rgba(255,255,255,0.25)");
+    $('#' + after).css("border-color",newColor);
+}
+
 // Farbe wählen
 
 $(function(){
@@ -33,9 +42,11 @@ $(function(){
 
         if ($(this).text() == "brush") {
             $.fn.whiteboard.setBrushImage(colorData);
+            markiere('marker', 'pinsel', colorData);
         }
         else {
             $.fn.whiteboard.setColor(colorData);
+            markiere('pinsel', 'marker', colorData);
         }
     });
     $("#dialogDelete button").click(function() {
@@ -69,13 +80,14 @@ $(document).keydown(function (e) {
         // Geraden zeichnen
     }
     if (keys[67]) { // c
-        // Brush wählen
         var color = $.fn.whiteboard.getCurrentColor();
         $.fn.whiteboard.setBrushImage(color);
+        markiere('marker', 'pinsel', color);
     }
     if (keys[86]) { // v
         var color = $.fn.whiteboard.getColorFromImage();
         $.fn.whiteboard.setColor(color);
+        markiere('pinsel', 'marker', color);
     }
 });
     
