@@ -35,14 +35,14 @@ body {
 }
 
 #tools #pinsel, #tools #marker {
-    border: solid black 1px;
+    border: solid rgba(0,0,0,0) 1px;
 }
 
 .range {
     margin: 0;
 }
 
-.colors {
+.colors, #lineWidthRange {
     display: none;
     top: 0;
 }

@@ -18,8 +18,15 @@ function colors(stift) {
     if ($('.colors').first().text() == stift) {
         $('.colors').text('');
         $('.colors').hide();
+        $('#lineWidthRange').hide();
     }
     else {
+        if (stift == "edit") {
+            $('#lineWidthRange').show();
+        }
+        else {
+            $('#lineWidthRange').hide();
+        }
         $('.colors').show();
         $('.colors').text(stift);
     }
@@ -29,8 +36,8 @@ function colors(stift) {
 
 function markiere(before, after, newColor) {
     $('#' + before).css("background-color","");
-    $('#' + before).css("border-color","black");
-    $('#' + after).css("background-color","rgba(255,255,255,0.25)");
+    $('#' + before).css("border-color","rgba(0,0,0,0)");
+    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
     $('#' + after).css("border-color",newColor);
 }
 
@@ -54,6 +61,9 @@ $(function(){
     });
     $("#deleteYes").click(function() {
         $.fn.whiteboard.clearArea();
+    })
+    $("#straight").click(function() {
+        toggleStraight();
     })
     $("#lineWidthRange").on("input change", function(){
         $.fn.whiteboard.setLineWidth($(this).val());

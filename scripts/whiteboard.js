@@ -120,8 +120,8 @@
         var angle = angleBetween(lastPoint, currentPoint);
 
         for (var i = 0; i < dist; i++) {
-            x = lastPoint.x + (Math.sin(angle) * i) - 26;
-            y = lastPoint.y + (Math.cos(angle) * i) - 26;
+            x = lastPoint.x + (Math.sin(angle) * i) - 12;
+            y = lastPoint.y + (Math.cos(angle) * i) - 12;
             context.drawImage(opts.brushImage, x, y);
         }
 

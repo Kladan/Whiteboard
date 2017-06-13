@@ -9,17 +9,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="13.656093mm"
-   height="10.71261mm"
-   viewBox="0 0 13.656093 10.71261"
+   width="5.8348923mm"
+   height="5.1124101mm"
+   viewBox="0 0 5.8348923 5.1124101"
    version="1.1"
-   id="svg8"
+   id="svg4490"
    inkscape:version="0.92.1 r15371"
    sodipodi:docname="brushRed.svg">
-  <title
-     id="title4627">brushRed</title>
   <defs
-     id="defs2" />
+     id="defs4484" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -27,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9195959"
-     inkscape:cx="28.250898"
-     inkscape:cy="20.451717"
+     inkscape:zoom="15.839192"
+     inkscape:cx="9.7530138"
+     inkscape:cy="11.287218"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,14 +37,14 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata5">
+     id="metadata4487">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>brushRed</dc:title>
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,11 +52,11 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-54.675756,-157.43748)">
+     transform="translate(-2.2929524,-288.9292)">
     <path
        style="opacity:1;fill:#eb401c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path3686"
-       d="m 57.053281,157.43748 c 1.245208,1.27314 2.572488,2.4607 3.89677,3.65022 1.520624,1.35217 3.041785,2.71159 4.695817,3.9012 0.857144,0.61648 1.100518,0.74926 1.955382,1.27966 0.243533,0.14359 0.487066,0.28717 0.730599,0.43075 0,0 -2.249427,1.45078 -2.249427,1.45078 v 0 c -0.233563,-0.15219 -0.467129,-0.30439 -0.700693,-0.45658 -2.331342,-1.58319 -4.514953,-3.36173 -6.599687,-5.25763 -1.367211,-1.17042 -2.742351,-2.33213 -4.106286,-3.50501 0,0 2.377525,-1.49339 2.377525,-1.49339 z"
+       id="path5055"
+       d="m 3.9821268,288.9292 c 0.3042766,0.27489 0.592003,0.56692 0.8899464,0.84872 0.4191997,0.43724 0.8442092,0.86871 1.2620259,1.30737 0.4234897,0.45091 0.8382106,0.90552 1.3060439,1.31105 0.2348085,0.19973 0.4570259,0.41306 0.6877016,0.61773 0,0 -1.6580718,1.02754 -1.6580718,1.02754 v 0 c -0.2251604,-0.20756 -0.4427683,-0.42317 -0.6735675,-0.62451 -0.4602125,-0.41917 -0.8678674,-0.88715 -1.3037394,-1.33104 -0.4174802,-0.43628 -0.8420481,-0.86468 -1.2687932,-1.2918 -0.3017718,-0.28607 -0.6091153,-0.56622 -0.9307203,-0.82994 0,0 1.6891744,-1.03512 1.6891744,-1.03512 z"
        inkscape:connector-curvature="0" />
   </g>
 </svg>
