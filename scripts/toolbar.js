@@ -58,6 +58,9 @@ $(function(){
     $("#lineWidthRange").on("input change", function(){
         $.fn.whiteboard.setLineWidth($(this).val());
     });
+    $("#undo").click(function(){
+        $.fn.whiteboard.undo();
+    });
 });
 
 // Shortcuts
@@ -68,6 +71,7 @@ $(document).keydown(function (e) {
     keys[e.which] = true;
     if (keys[16] && keys[90]) { // Shift + z
         // Einen Schritt rückgängig machen
+        $.fn.whiteboard.undo();
     }
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern

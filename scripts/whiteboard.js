@@ -5,6 +5,17 @@
     var brushImageArray = [["black", "brushBlack"], ["white", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
     ["#1937D6", "brushBlue"], ["#E4FC5B", "brushYellow"]];
 
+    var boardActionArray = new Array();
+    var pointsObj = {
+        mouseX: 0.0,
+        mouseY: 0.0,
+        size: 5,
+        color: "black",
+        brushImg: new Image(),
+        mode: "draw",
+        action: ""
+    };
+
     $.fn.whiteboard = function(options){
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
         context = document.getElementById("whiteboard").getContext("2d");
@@ -17,6 +28,15 @@
         $(this).mousedown(function(e){
             mousePressed = true;
             setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
+
+            boardActionArray.push({
+                mouseX: lastX,
+                mouseY: lastY,
+                size: opts.lineWidth,
+                color: opts.color,
+                mode: "draw",
+                action: "begin"
+            });
         });
 
         $(this).mousemove(function(e) {
@@ -26,12 +46,29 @@
                 }
                 else {
                     Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                    boardActionArray.push({
+                        mouseX: lastX,
+                        mouseY: lastY,
+                        size: opts.lineWidth,
+                        color: opts.color,
+                        mode: "draw"
+                    });
                 }
             }
         });
 
         $(this).mouseup(function (e) {
-        mousePressed = false;
+            mousePressed = false;
+            setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
+            
+            boardActionArray.push({
+                mouseX: lastX,
+                mouseY: lastY,
+                size: opts.lineWidth,
+                color: opts.color,
+                mode: "draw",
+                action: "end"
+            });
         });
 
         $(this).mouseleave(function (e) {
@@ -117,6 +154,41 @@
         return name;
     }
 
+    //Setzt das Whiteboard zurück +
+    //zeichnet den Inhalt des boardActionArrays in das Whiteboard
+    function redraw() {
+
+        $.fn.whiteboard.clearArea();
+
+        var pointX, pointY;
+
+        $.each(boardActionArray, function(index, val){
+
+            if (val.mode === "draw") {
+                //zeichne strich
+                context.lineWidth = val.size;
+                context.strokeStyle = val.color;
+                context.lineJoin = opts.lineJoin;
+                if (val.action === "begin"){
+                    pointX = val.mouseX;
+                    pointY = val.mouseY;
+                }
+                context.beginPath();
+                context.moveTo(pointX, pointY);
+                context.lineTo(val.mouseX, val.mouseY);
+                pointX = val.mouseX;
+                pointY = val.mouseY;
+                context.closePath();
+                context.stroke();
+            }
+            else {
+                //zeichne brush image
+            }
+        });
+
+        context.stroke();
+    }
+
 
     //Setzt die Canvas Fläche zurück
     $.fn.whiteboard.clearArea = function() {
@@ -170,6 +242,24 @@
 
     $.fn.whiteboard.setLineWidth = function(width) {
         opts.lineWidth = width;
+    }
+
+
+    //Löscht eine im einen Schritt gezeichnete Linie
+    //und ruft die "redraw" Methode auf.
+    $.fn.whiteboard.undo = function() {
+
+        for (var i = boardActionArray.length - 1; i > 0; i--) {
+
+            if (boardActionArray[i].action === "begin") {
+                boardActionArray.pop();
+                break;
+            }
+
+            boardActionArray.pop();
+        }
+
+        redraw();
     }
 
 }(jQuery));
