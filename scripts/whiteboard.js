@@ -185,8 +185,6 @@
                 //zeichne brush image
             }
         });
-
-        context.stroke();
     }
 
 
