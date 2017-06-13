@@ -20,6 +20,10 @@ body {
     z-index: 0.5;
 }   /* Toolbar */
 
+#save {
+    margin-right: 0.5em;
+}
+
 .toolbtn {
     cursor: pointer;
     margin-left: 0.5em;
