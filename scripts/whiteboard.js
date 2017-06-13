@@ -5,7 +5,7 @@
     var brushImageArray = [["black", "brushBlack"], ["white", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
     ["#1937D6", "brushBlue"], ["#E4FC5B", "brushYellow"]];
 
-    var boardActionArray = new Array();
+    var boardActionArray = [];
     var pointsObj = {
         mouseX: 0.0,
         mouseY: 0.0,
@@ -194,6 +194,7 @@
     $.fn.whiteboard.clearArea = function() {
         context.setTransform(1, 0, 0, 1, 0, 0);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+        boardActionArray = [];
     }
 
     // Wechsel Whiteboard <-> Tafel
