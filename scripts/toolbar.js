@@ -85,6 +85,13 @@ $(document).keydown(function (e) {
     }
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern
+         var context = document.getElementById("whiteboard").getContext("2d");
+         var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
+         console.log(imageData);
+        // setTimeout(function(){
+        //     context.putImageData(imageData, 0, 0);
+        // },5000);
+
     }
     if (keys[16] && keys[68]) { // Shift + d
         $('#dialogDelete').show();
