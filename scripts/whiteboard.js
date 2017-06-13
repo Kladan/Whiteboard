@@ -189,10 +189,13 @@
 
 
     //Setzt die Canvas Fläche zurück
-    $.fn.whiteboard.clearArea = function() {
+    $.fn.whiteboard.clearArea = function(clearUndo = false) {
         context.setTransform(1, 0, 0, 1, 0, 0);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        boardActionArray = [];
+
+        if (clearUndo) {
+            boardActionArray = [];
+        }
     }
 
     // Wechsel Whiteboard <-> Tafel

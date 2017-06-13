@@ -60,7 +60,7 @@ $(function(){
         $("#dialogDelete").hide();
     });
     $("#deleteYes").click(function() {
-        $.fn.whiteboard.clearArea();
+        $.fn.whiteboard.clearArea(true);
     })
     $("#straight").click(function() {
         toggleStraight();
