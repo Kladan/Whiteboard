@@ -1,36 +1,99 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Sketchbook</title>
-        <link rel="stylesheet" href="css/login.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/skeleton.css">
+<head>
+    <title>Sketchbook</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script
-            src="http://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <header>
-            <script type="text/javascript">
-                $('header').load("header");
-            </script>
-        </header>
-        
-        <div class="container">
-            <div class="row dashboardSeite">
-                <img src="img/kachel.svg" class="six columns kachel"/>
-                <img src="img/kachel.svg" class="six columns kachel"/>
-                <img src="img/kachel.svg" class="six columns kachel"/>
-                <img src="img/kachel.svg" class="six columns kachel"/>
-                <img src="img/kachel.svg" class="six columns kachel"/>
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous">        
+    </script>
+    <script type="text/javascript" src="js/dashboard.js"></script>
+</head>
+<body>
+    <header>
+        <script type="text/javascript">
+            $('header').load("header");
+        </script>
+    </header>
+    
+    <div class="container">
+        <div class="row">
+            <h1>My Sketchbook</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row dash">
+            <div class="four columns kachel" id="newBoard"><span class="material-icons">add</span></div>
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
+            </div>
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
+            </div>
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
+            </div>
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <a href="impressum">Impressum</a>
-        </footer>
-    </body>
+    <div class="container">
+        <div class="row">
+            <h1>Shared</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row dash">
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
+            </div>
+            <div class="four columns kachel">
+                <ul>
+                    <li id="more"><span class="material-icons" title="Mehr">more_vert</span></li>
+                    <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
+                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                </ul>
+                <img src="img/kachel.svg"/>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="impressum">Impressum</a>
+    </footer>
+</body>
 </html>

@@ -1,0 +1,57 @@
+.dash {
+	padding: 0;
+}
+
+.dash .kachel {
+	margin: 0;
+	padding: 0.25em;
+	text-align: center;
+	height: 11.25em;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	margin-bottom: 1em;
+	position: relative;
+}
+
+.dash #newBoard {
+	background-color: rgba(255,255,255,0.1);
+	line-height: 16em;
+}
+
+.dash #newBoard:hover {
+	background-color: rgba(255,255,255,0.15);
+	color: white;
+}
+
+.dash #newBoard span {
+	font-size: 6em;
+}
+
+.dash .kachel img {
+	width: 100%;
+}
+
+.kachel ul {
+	list-style-type: none;
+	position: absolute;
+	height: 1em;
+	width: 100%;
+	padding: 0.25em;
+	right: 0;
+}
+
+.kachel ul li {
+	height: 1em;
+	display: inline-block;
+	float: right;
+	color: #555;
+}
+
+.kachel ul li:hover {
+	color: black;
+}
+
+.kachel .more {
+	display: none;
+}
