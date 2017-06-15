@@ -29,30 +29,23 @@
             mousePressed = true;
             setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
 
-            boardActionArray.push({
-                mouseX: lastX,
-                mouseY: lastY,
-                size: opts.lineWidth,
-                color: opts.color,
-                mode: "draw",
-                action: "begin"
-            });
+            if (opts.useBrush){
+                boardActionArray.push({mouseX: lastX, mouseY: lastY, brushImg: opts.brushImage, mode: "brush", action: "begin"});
+            }
+            else {
+                boardActionArray.push({mouseX: lastX, mouseY: lastY, size: opts.lineWidth, color: opts.color, mode: "draw", action: "begin"});
+            }
         });
 
         $(this).mousemove(function(e) {
             if (mousePressed) {
                 if (opts.useBrush) {
                     BrushDraw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                    boardActionArray.push({mouseX: lastX, mouseY: lastY, brushImg: opts.brushImage, mode: "brush"});
                 }
                 else {
                     Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
-                    boardActionArray.push({
-                        mouseX: lastX,
-                        mouseY: lastY,
-                        size: opts.lineWidth,
-                        color: opts.color,
-                        mode: "draw"
-                    });
+                    boardActionArray.push({mouseX: lastX, mouseY: lastY, size: opts.lineWidth, color: opts.color, mode: "draw"});
                 }
             }
         });
@@ -61,14 +54,12 @@
             mousePressed = false;
             setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
             
-            boardActionArray.push({
-                mouseX: lastX,
-                mouseY: lastY,
-                size: opts.lineWidth,
-                color: opts.color,
-                mode: "draw",
-                action: "end"
-            });
+            if (opts.useBrush){
+                boardActionArray.push({mouseX: lastX, mouseY: lastY, brushImg: opts.brushImage, mode: "brush", action: "end"});
+            }
+            else {
+                boardActionArray.push({mouseX: lastX, mouseY: lastY, size: opts.lineWidth, color: opts.color, mode: "draw", action: "end"});
+            }
         });
 
         $(this).mouseleave(function (e) {
@@ -165,7 +156,7 @@
         $.each(boardActionArray, function(index, val){
 
             if (val.mode === "draw") {
-                //zeichne strich
+                //zeichne mit pinsel
                 context.lineWidth = val.size;
                 context.strokeStyle = val.color;
                 context.lineJoin = opts.lineJoin;
@@ -182,7 +173,22 @@
                 context.stroke();
             }
             else {
-                //zeichne brush image
+                //zeichne mit brush image
+                if (val.action === "begin"){
+                    pointX = val.mouseX;
+                    pointY = val.mouseY;
+                }
+                var distance = distanceBetween({x: pointX, y: pointY}, {x: val.mouseX, y: val.mouseY});
+                var angle = angleBetween({x: pointX, y: pointY}, {x: val.mouseX, y: val.mouseY});
+
+                for (var i = 0; i < distance; i++) {
+                    x = pointX + (Math.sin(angle) * i) - 12;
+                    y = pointY + (Math.cos(angle) * i) - 12;
+                    context.drawImage(val.brushImg, x, y);
+                }
+
+                pointX = val.mouseX;
+                pointY = val.mouseY;       
             }
         });
     }
