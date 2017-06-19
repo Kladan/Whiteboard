@@ -1,8 +1,9 @@
 $(function(){
 	var morehidden = true;
-	$("#more").click(function() {
+	$(".points").click(function() {
 		if (morehidden) {
-			$(".more").show();
+			$(this).parent().children().show();
+			//$(".more").show();
 			morehidden = false;
 		}
 		else {
