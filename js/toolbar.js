@@ -41,6 +41,12 @@ function markiere(before, after, newColor) {
     $('#' + after).css("border-color",newColor);
 }
 
+$.fn.whiteboard.save = function() {
+    var context = document.getElementById("whiteboard").getContext("2d");
+    var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
+    console.log(imageData);
+}
+
 // Farbe wählen
 
 $(function(){
@@ -71,6 +77,9 @@ $(function(){
     $("#undo").click(function(){
         $.fn.whiteboard.undo();
     });
+    $("#save").click(function(){
+        $.fn.whiteboard.save();
+    });
 });
 
 // Shortcuts
@@ -85,9 +94,7 @@ $(document).keydown(function (e) {
     }
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern
-         var context = document.getElementById("whiteboard").getContext("2d");
-         var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
-         console.log(imageData);
+        $.fn.whiteboard.save();
         // setTimeout(function(){
         //     context.putImageData(imageData, 0, 0);
         // },5000);

@@ -20,8 +20,9 @@
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
         context = document.getElementById("whiteboard").getContext("2d");
         context.canvas.style.width = "80%";
+        context.canvas.style.height = context.canvas.style.width * 16 / 9;
         context.canvas.width = context.canvas.offsetWidth;
-        context.canvas.height = context.canvas.offsetHeight;
+        context.canvas.height = context.canvas.offsetHeight + 8;
 
         // Zeichnen
 
@@ -227,7 +228,7 @@
 
     $.fn.whiteboard.setBrushImage = function(color) {
         var imageName = getBrushImage(color);
-        opts.brushImage.src = "img/brush/" + imageName + ".svg";
+        opts.brushImage.src = "../img/brush/" + imageName + ".svg";
         opts.useBrush = true;
     }
 
