@@ -228,6 +228,7 @@
 
     $.fn.whiteboard.setBrushImage = function(color) {
         var imageName = getBrushImage(color);
+        opts.brushImage = new Image();
         opts.brushImage.src = "../img/brush/" + imageName + ".svg";
         opts.useBrush = true;
     }
