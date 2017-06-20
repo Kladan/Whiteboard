@@ -16,7 +16,7 @@ connection.query("CREATE TABLE IF NOT EXISTS sketchbookdb.user ( `userId` int NO
 
 connection.query("CREATE TABLE IF NOT EXISTS sketchbookdb.whiteboard ( `boardId` int NOT NULL AUTO_INCREMENT, " +
 	"`created_date` date NOT NULL, `last_change` date NOT NULL, `created_by` int NOT NULL, " +
-	"`drawing_data` mediumblob NOT NULL, `bg_white` bit NOT NULL DEFAULT 1, " +
+	"`drawing_data` mediumblob NOT NULL, `bg_white` bit NOT NULL, " +
 	"`title` varchar(25) COLLATE utf8_unicode_ci, \nPRIMARY KEY (boardId), " +
 	"\nFOREIGN KEY (`created_by`) REFERENCES sketchbookdb.user(`userId`) );", function(error, results, fields){
 	if (error) throw error;
