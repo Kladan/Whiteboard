@@ -1,3 +1,24 @@
+header {
+    z-index: 0;
+}
+
+#boardtitle {
+    z-index: 1;
+    position: absolute;
+    top: 0.8em;
+    left: 10%;
+    width: 30%;
+    line-height: 2em;
+    padding-left: 1em;
+    border: none;
+    border-bottom: solid rgba(0,0,0,0.05) 2px;
+    background-color: rgba(0,0,0,0);
+}
+
+#boardtitle:hover {
+    border-color: rgba(0,0,0,0.1);
+}
+
 .container {
     color: white;
 }
