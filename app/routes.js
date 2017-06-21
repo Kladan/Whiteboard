@@ -4,7 +4,7 @@ module.exports = function(app, passport, path) {
 		res.sendFile("/index.html");
 	});
 
-	app.get('/board', function(req, res) {
+	app.get('/board', isAuthenticated, function(req, res) {
 		res.sendFile(path + "/views/index.html");
 	});
 
@@ -17,3 +17,12 @@ module.exports = function(app, passport, path) {
 		failureRedirect: "/registration"
 	}));
 };
+
+function isAuthenticated(req, res, next) {
+
+	if (req.isAuthenticated()) {
+		res.next();
+	}
+
+	res.redirect("/login")
+}

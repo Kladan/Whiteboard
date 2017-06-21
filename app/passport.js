@@ -1,6 +1,6 @@
 
 var PassportLocal = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 var mysql = require('mysql');
 var dbConfig = require('../db_config/database');
 
@@ -31,9 +31,9 @@ module.exports = function(passport) {
 		passReqToCallback : true //die komplette request wird zum Callback geschoben
 		},
 
-		//email feld
 		function (req, username, password, done) {
-			connection.query("select * from user where username = '" + username + "' or email = '" + req.body.email + "'", function(err, rows) {
+			//"select * from user where username = " + [username] + " or email = " + [req.body.email] + ";"
+			connection.query("select * from user where username = ? or email = ?;", [username, req.body.email], function(err, rows) {
 				if (err) {
 					return done(err);
 				}
@@ -43,26 +43,28 @@ module.exports = function(passport) {
 				}
 				else {
 
-					var hashedPwd = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-					var regUser = {
+					var signupUser = {
 						username: username,
-						email: reg.body.email,
-						password: hashedPwd
+						email: req.body.email,
+						password: ""
 					};
-					connection.query("insert into user (username, email, password) values ('" + regUser.username + "', '" + regUser.email + "' ," + regUser.password + "')", function(err, rows){
-						if (err)
-							return done(err);
 
-						regUser.id = rows.insertId;
+					bcrypt.hash(password, 8, function(err, hash) { //.hash(password, salt, callback)
 
-					 	return done(null, regUser);
+						var query = "insert into user (username, email, password) values (?,?,?);";
+
+						connection.query(query, [signupUser.username, signupUser.email, hash], function(err, rows){
+
+								if (err) {
+									return done(err);
+								}
+								signupUser.password = hash;
+								signupUser.id = rows.insertId;
+
+								return done(null, signupUser);
+						});
 					});
-					// bcrypt.hash(password, 8, function(err, hash){ //.hash(password, salt, callback)
-					// 	connection.query("insert into user values (" + username, "test@test.de", hash + ")", function(err, rows){
-					// 	console.log(rows);
-					// 	return done(null, rows.id);
-					// 	});
-					// });
+
 				} 
 			});
 		})
@@ -74,7 +76,7 @@ module.exports = function(passport) {
 		passReqToCallback: true
 	},
 	function (req, username, password, done) {
-		connection.query("select * from user where username = ? email = ?", [username], [username], function(err, rows) {
+		connection.query("select * from user where username = ? email = ?", [username, username], function(err, rows) {
 			if (err) {
 				return done(err);
 			}
