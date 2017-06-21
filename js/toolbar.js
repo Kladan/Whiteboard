@@ -42,9 +42,10 @@ function markiere(before, after, newColor) {
 }
 
 $.fn.whiteboard.save = function() {
-    var context = document.getElementById("whiteboard").getContext("2d");
-    var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
-    console.log(imageData);
+    var canvas = document.getElementById("whiteboard"); //getContext("2d");
+    //var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
+    var img = canvas.toDataURL();
+    console.log(img);
 }
 
 // Farbe wählen
