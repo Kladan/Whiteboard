@@ -15,11 +15,11 @@
     <body>
         <header>
             <script type="text/javascript">
-                $('header').load("header");
+                $('header').load("views/header.html");
             </script>
         </header>
         
-        <form id="loginform" class="offset-by-four four columns" action="" method="post">
+        <form id="loginform" class="offset-by-four four columns" action="/registration" method="post">
             <label>Username</label>
             <input title="Username" name="username" required checked autofocus autocomplete="additional-name" maxlength="20" type="email" placeholder="John Doe"/>
             <label>E-Mail</label>

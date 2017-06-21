@@ -13,11 +13,11 @@ module.exports = function(passport) {
 	//Session Funktionen für Serialisierung in einem Cookie und Deserialisierung aus einem Cookie
 
 	passport.serializeUser(function(user, done) {
-	  done(null, user.id);
+		done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done) {
-		connection.query('select * from user where id = ? ', [id], function(err, user) {
+		connection.query('select * from user where userId = ? ', [id], function(err, user) {
 			done(err, user);
 		});
 	});
@@ -27,31 +27,42 @@ module.exports = function(passport) {
 
 	passport.use('registration', new PassportLocal({
 		usernameField: 'username',
-		emailField: 'email',
 		passwordField: 'password',
 		passReqToCallback : true //die komplette request wird zum Callback geschoben
 		},
 
-		function (req, username, email, password, done) {
-
-			connection.query('select * from user where username = ? or email = ?', [username], [email], function(err, rows) {
+		//email feld
+		function (req, username, password, done) {
+			connection.query("select * from user where username = '" + username + "' or email = '" + req.body.email + "'", function(err, rows) {
 				if (err) {
 					return done(err);
 				}
 				if (rows.length) {
-					console.log(results); //Filterung nach Username und Email
+					console.log(rows); //Filterung nach Username und Email
 					return done(null, false, {message: 'Username existiert bereits.'});
 				}
 				else {
 
-					//var hashedPwd = bcrypt.hashSync(password, bcrypt.genSaltSync());
+					var hashedPwd = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+					var regUser = {
+						username: username,
+						email: reg.body.email,
+						password: hashedPwd
+					};
+					connection.query("insert into user (username, email, password) values ('" + regUser.username + "', '" + regUser.email + "' ," + regUser.password + "')", function(err, rows){
+						if (err)
+							return done(err);
 
-					bcrypt.hash(password, 8, function(err, hash){ //.hash(password, salt, callback)
-						connection.query("insert into user values (" + username, email, hash + ")", function(err, rows){
-						console.log(rows);
-						return done(null, rows.id);
-						});
+						regUser.id = rows.insertId;
+
+					 	return done(null, regUser);
 					});
+					// bcrypt.hash(password, 8, function(err, hash){ //.hash(password, salt, callback)
+					// 	connection.query("insert into user values (" + username, "test@test.de", hash + ")", function(err, rows){
+					// 	console.log(rows);
+					// 	return done(null, rows.id);
+					// 	});
+					// });
 				} 
 			});
 		})

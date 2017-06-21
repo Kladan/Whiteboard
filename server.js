@@ -34,7 +34,7 @@ app.use("/css", express.static(__dirname + '/css'));
 app.use("/js", express.static(__dirname + '/js'));
 app.use("/img", express.static(__dirname + '/img'));
 
-require('./app/routes')(app, passport); //routes laden mit konfiguriertem passport
+require('./app/routes')(app, passport, __dirname); //routes laden mit konfiguriertem passport
 
 app.listen(port);
 console.log("Anwendung läuft auf Port: " + port);
