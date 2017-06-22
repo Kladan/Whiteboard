@@ -12,6 +12,14 @@ module.exports = function(app, passport, path) {
 		res.sendFile(path + "/views/registration.html");
 	});
 
+	app.get('/login', function(req, res) {
+		res.sendFile(path + "/views/login.html");
+	});
+
+	app.get('/dashboard', function(req, res) {
+		res.sendFile(path + "/views/dashboard.html");
+	});
+
 	app.post('/registration', passport.authenticate('registration', {
 		successRedirect: "/board",
 		failureRedirect: "/registration"

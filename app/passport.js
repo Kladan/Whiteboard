@@ -39,7 +39,7 @@ module.exports = function(passport) {
 				}
 				if (rows.length) {
 					console.log(rows); //Filterung nach Username und Email
-					return done(null, false, {message: 'Username existiert bereits.'});
+					return done(null, false, {message: 'Dieser Username existiert bereits.'});
 				}
 				else {
 
@@ -81,14 +81,14 @@ module.exports = function(passport) {
 				return done(err);
 			}
 			if (!rows.length){
-				return done(null, false, {message: 'User nicht vorhanden'});
+				return done(null, false, {message: 'Dieser User ist nicht vorhanden.'});
 			}
 			else {
 
 				bcrypt.compare(password, rows[0].password, function(err, res){
 
 					if (!res) {
-						return done(null, false, {message: "Eingegebenes Passwort ist falsch"});
+						return done(null, false, {message: "Das eingegebene Passwort ist falsch."});
 					}
 
 					return done(null, rows[0]);

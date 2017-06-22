@@ -21,13 +21,13 @@
         
         <form id="loginform" class="offset-by-four four columns" action="/registration" method="post">
             <label>Username</label>
-            <input title="Username" name="username" required checked autofocus autocomplete="additional-name" maxlength="20" type="email" placeholder="John Doe"/>
+            <input title="Username" name="username" required checked autofocus autocomplete="additional-name" maxlength="20" type="text" placeholder="John Doe"/>
             <label>E-Mail</label>
-            <input title="E-Mail" name="email" required checked autofocus autocomplete="additional-name" maxlength="20" type="email" placeholder="mail@example.com"/>
+            <input title="E-Mail" name="email" required checked autofocus autocomplete="additional-name" maxlength="40" type="email" placeholder="mail@example.com"/>
             <label>Password</label>
-            <input title="Password" name="password" required checked type="password" placeholder="1234 is a good idea"/>
+            <input title="Password" name="password" required checked maxlength="20" type="password" placeholder="1234 is a good idea"/>
             <label>Password wiederholen</label>
-            <input title="Password wiederholen" required checked type="password" placeholder="1234 is a good idea"/>
+            <input title="Password wiederholen" required checked maxlength="20" type="password" placeholder="1234 is a good idea"/>
             <input type="submit" value="Registrieren"/>
         </form>
         
