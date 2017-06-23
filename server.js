@@ -36,5 +36,10 @@ app.use("/img", express.static(__dirname + '/img'));
 
 require('./app/routes')(app, passport, __dirname); //routes laden mit konfiguriertem passport
 
+app.use(function (req, res, next) {
+    res.status(404);
+    res.redirect('/notfound');
+});
+
 app.listen(port);
 console.log("Anwendung läuft auf Port: " + port);

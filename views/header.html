@@ -1,27 +1,44 @@
         <nav>
             <ul>
                 <li id="logo">
-                    <a href="index">&nbsp;<img src="../img/logo.svg"></a>
+                    <a href="/">&nbsp;<img src="../img/logo.svg"></a>
                 </li>
-                <a href="login">
+                <a href="/login" class="loggedOut">
                     <li style="float:right">
                         Login
                     </li>
                 </a>
-                <a href="registration">
+                <a href="/registration" class="loggedOut">
                     <li style="float:right">
                         Registrieren
                     </li>
                 </a>
-                <a href="profil">
-                    <li style="float:right" onclick="profile()" id="profile" title="Profil">
+                <a href="/logout" class="loggedIn">
+                    <li style="float:right" title="Logout">
+                        <span>Logout</span>
+                    </li>
+                </a>
+                <a href="/profil" class="loggedIn">
+                    <li style="float:right" id="profile" title="Profil">
                         <span class="material-icons">person_outline</span>
                     </li>
                 </a>
-                <a href="dashboard">
+                <a href="/dashboard" class="loggedIn">
                     <li style="float:right" title="Dashboard">
                         <span class="material-icons">dashboard</span>
                     </li>
                 </a>
             </ul>
         </nav>
+        <script type="text/javascript">
+            $.get("/loggedIn", function(data) {
+                if (data) {
+                    $(".loggedIn").show();
+                    $(".loggedOut").hide();
+                }
+                else {
+                    $(".loggedIn").hide();
+                    $(".loggedOut").show();
+                }
+            });
+        </script>

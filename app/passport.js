@@ -16,8 +16,8 @@ module.exports = function(passport) {
 		done(null, user.id);
 	});
 
-	passport.deserializeUser(function(id, done) {
-		connection.query('select * from user where userId = ? ', [id], function(err, user) {
+	passport.deserializeUser(function(user, done) {
+		connection.query('select * from user where userId = ? ', [user.userId], function(err, user) {
 			done(err, user);
 		});
 	});
@@ -74,7 +74,7 @@ module.exports = function(passport) {
 		passReqToCallback: true
 	},
 	function (req, username, password, done) {
-		connection.query("select * from user where username = ? email = ?", [username, username], function(err, rows) {
+		connection.query("select * from user where username = ? or email = ?", [username, username], function(err, rows) {
 			if (err) {
 				return done(err);
 			}
@@ -87,8 +87,13 @@ module.exports = function(passport) {
 					if (!res) {
 						return done(null, false); //Passwort ist falsch
 					}
-
-					return done(null, rows[0]);
+					var user = {
+						id: rows[0].userId,
+						username: rows[0].username,
+						email: rows[0].email,
+						password: rows[0].password
+					}
+					return done(null, user);
 				});
 			}
 		});
