@@ -44,8 +44,18 @@ function markiere(before, after, newColor) {
 $.fn.whiteboard.save = function() {
     var canvas = document.getElementById("whiteboard"); //getContext("2d");
     //var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
-    var img = canvas.toDataURL();
-    console.log(img);
+    var context = canvas.getContext("2d");
+    var data = canvas.toDataURL();
+    var img = new Image();
+    img.src = data;
+
+    $.fn.whiteboard.clearArea();
+
+    img.onload = function() {
+        context.drawImage(this, 0, 0)
+    };
+
+    delete img;
 }
 
 // Farbe wählen
