@@ -19,6 +19,8 @@
             </script>
         </header>
         
+        <div class="alert offset-by-three six columns"></div>
+
         <form id="loginform" class="offset-by-four four columns" action="" method="post">
             <label>Username / E-Mail</label>
             <input title="Username" required checked autofocus autocomplete="additional-name" maxlength="20" type="email" placeholder="mail@example.com"/>
@@ -30,5 +32,12 @@
         <footer>
             <a href="impressum">Impressum</a>
         </footer>
+
+        <script>
+            $.get('/errormessages', function(data) {
+                if (data !== "")
+                    $(".alert").html("<strong>" + data + "</strong>").show();
+            });
+        </script>
     </body>
 </html>

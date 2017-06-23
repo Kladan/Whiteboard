@@ -32,14 +32,12 @@ module.exports = function(passport) {
 		},
 
 		function (req, username, password, done) {
-			//"select * from user where username = " + [username] + " or email = " + [req.body.email] + ";"
 			connection.query("select * from user where username = ? or email = ?;", [username, req.body.email], function(err, rows) {
 				if (err) {
 					return done(err);
 				}
 				if (rows.length) {
-					console.log(rows); //Filterung nach Username und Email
-					return done(null, false, {message: 'Username existiert bereits.'});
+					return done(null, false); //Username / E-Mail existiert bereits
 				}
 				else {
 
@@ -81,14 +79,13 @@ module.exports = function(passport) {
 				return done(err);
 			}
 			if (!rows.length){
-				return done(null, false, {message: 'User nicht vorhanden'});
+				return done(null, false); //User nicht vorhanden
 			}
 			else {
-
 				bcrypt.compare(password, rows[0].password, function(err, res){
 
 					if (!res) {
-						return done(null, false, {message: "Eingegebenes Passwort ist falsch"});
+						return done(null, false); //Passwort ist falsch
 					}
 
 					return done(null, rows[0]);

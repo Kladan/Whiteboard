@@ -18,6 +18,8 @@
                 $('header').load("views/header.html");
             </script>
         </header>
+
+        <div class="alert offset-by-three six columns"></div>
         
         <form id="loginform" class="offset-by-four four columns" action="/registration" method="post">
             <label>Username</label>
@@ -34,5 +36,12 @@
         <footer>
             <a href="impressum">Impressum</a>
         </footer>
+
+        <script>
+            $.get('/errormessages', function(data) {
+                if (data !== "")
+                    $(".alert").html("<strong>" + data + "</strong>").show();
+            });
+        </script>
     </body>
 </html>

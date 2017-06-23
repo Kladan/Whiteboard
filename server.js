@@ -23,12 +23,12 @@ app.use(session({
 	secret: 'sketchbooksecret',
 	resave: true,
 	saveUninitialized: true
- } )); // session secret
+ } ));
 
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
-app.use(express.static(__dirname + '/views'));
+//app.use(express.static(__dirname + '/views'));
 app.use("/views", express.static(__dirname + '/views'));
 app.use("/css", express.static(__dirname + '/css'));
 app.use("/js", express.static(__dirname + '/js'));
