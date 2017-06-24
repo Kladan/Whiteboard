@@ -10,6 +10,11 @@ var app = express();
 
 require('./app/passport')(passport); //passport konfigurieren
 
+app.use("/views", express.static(__dirname + '/views'));
+app.use("/css", express.static(__dirname + '/css'));
+app.use("/js", express.static(__dirname + '/js'));
+app.use("/img", express.static(__dirname + '/img'));
+
 app.use(cookieParser())  //cookies lesen (authentication)
 
 app.use(bodyParser.urlencoded({
@@ -26,13 +31,8 @@ app.use(session({
  } ));
 
 app.use(passport.initialize());
-app.use(passport.session()); //persistent login session
+app.use(passport.session()); //persistente login session
 
-//app.use(express.static(__dirname + '/views'));
-app.use("/views", express.static(__dirname + '/views'));
-app.use("/css", express.static(__dirname + '/css'));
-app.use("/js", express.static(__dirname + '/js'));
-app.use("/img", express.static(__dirname + '/img'));
 
 require('./app/routes')(app, passport, __dirname); //routes laden mit konfiguriertem passport
 

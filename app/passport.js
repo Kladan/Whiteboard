@@ -17,8 +17,8 @@ module.exports = function(passport) {
 	});
 
 	passport.deserializeUser(function(user, done) {
-		connection.query('select * from user where userId = ? ', [user.userId], function(err, user) {
-			done(err, user);
+		connection.query('select * from user where userId = ? ', [user], function(err, user) {
+			done(err, user[0]);
 		});
 	});
 
@@ -99,17 +99,4 @@ module.exports = function(passport) {
 		});
 	}
 	));
-
-//	Nein.
-//
-//	passport.use('getUserData', new PassportLocal({
-//		usernameField: 'username',
-//		mailField: 'email'
-//	},
-//	function(req, username, email, done) {
-//		connection.query("select from user where username = ?", [username], function(err, rows) {
-//			return done(username);
-//		})
-//	}
-//	));
 };

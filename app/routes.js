@@ -72,13 +72,11 @@
 		})(req, res, next);
 	});
 
-//	Nein.
-//
-//	app.get("/userdata", function(req, res) {
-//		passport.authenticate('getUserData', function(err, res) {
-//			
-//		})
-//	});
+	app.get('/userdata', isAuthenticated, function(req, res) {
+
+		var user = req.user.username; //req.user gibt den aktuellen User zurück
+		res.json(user);
+	});
 
 	app.get("/loggedIn", function(req, res) {
 		res.json(req.isAuthenticated());
