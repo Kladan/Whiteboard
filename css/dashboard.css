@@ -10,16 +10,24 @@
 	display: inline-block;
 	vertical-align: middle;
 	cursor: pointer;
-	margin-bottom: 1em;
+	margin-bottom: 4em;
 	position: relative;
+}
+
+.dash .kachel input {
+	font-weight: bold;
+	border-radius: 0;
+	border-color: transparent;
+	background-color: transparent;
+	color: white;
 }
 
 .dash #newBoard {
 	background-color: rgba(255,255,255,0.1);
-	line-height: 16em;
+	line-height: 17em;
 }
 
-.dash #newBoard:hover {
+.dash #newBoard:hover, .kachel:hover {
 	background-color: rgba(255,255,255,0.15);
 	color: white;
 }

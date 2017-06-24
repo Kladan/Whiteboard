@@ -22,13 +22,14 @@
         <div class="container">
             <div class="row profilSeite">
                 <div class="four columns">
-                    <img src="img/person.svg"/>
+                    <img id="userImg" src="img/person.svg"/>
                 </div>
                 <div class="eight columns">
-                    <br><br>
-                    <h4>Nutzername</h4>
+                    <h5>Nutzername</h5>
+                    <input type="text" id="username" readonly/>
                     <hr>
-                    <h4>Whiteboards</h4>
+                    <h5>E-Mail</h5>
+                    <input type="text" id="mail" readonly/>
                     <hr>
                 </div>
             </div>
@@ -38,4 +39,10 @@
             <a href="impressum">Impressum</a>
         </footer>
     </body>
+
+    <script type="text/javascript">
+//        $.get("/userdata", function(user) {
+//            
+//        });
+    </script>
 </html>

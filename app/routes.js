@@ -72,6 +72,14 @@
 		})(req, res, next);
 	});
 
+//	Nein.
+//
+//	app.get("/userdata", function(req, res) {
+//		passport.authenticate('getUserData', function(err, res) {
+//			
+//		})
+//	});
+
 	app.get("/loggedIn", function(req, res) {
 		res.json(req.isAuthenticated());
 	});

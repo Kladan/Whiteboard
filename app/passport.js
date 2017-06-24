@@ -99,4 +99,17 @@ module.exports = function(passport) {
 		});
 	}
 	));
+
+//	Nein.
+//
+//	passport.use('getUserData', new PassportLocal({
+//		usernameField: 'username',
+//		mailField: 'email'
+//	},
+//	function(req, username, email, done) {
+//		connection.query("select from user where username = ?", [username], function(err, rows) {
+//			return done(username);
+//		})
+//	}
+//	));
 };

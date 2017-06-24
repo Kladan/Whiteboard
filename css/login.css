@@ -13,6 +13,13 @@
 	color: white;
 }
 
-.profilSeite img {
+.profilSeite #userImg {
 	width: 100%;
+	border: solid black 1px;
+}
+
+.profilSeite div input {
+	background-color: transparent;
+	border-radius: 0;
+	border-color: black;
 }
