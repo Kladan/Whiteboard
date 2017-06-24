@@ -41,10 +41,10 @@ function markiere(before, after, newColor) {
     $('#' + after).css("border-color",newColor);
 }
 
-$.fn.whiteboard.save = function() {
+function save() {
     var canvas = document.getElementById("whiteboard"); //getContext("2d");
     //var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
-    var context = canvas.getContext("2d");
+    /*var context = canvas.getContext("2d");
     var data = canvas.toDataURL();
     var img = new Image();
     img.src = data;
@@ -55,7 +55,15 @@ $.fn.whiteboard.save = function() {
         context.drawImage(this, 0, 0)
     };
 
-    delete img;
+    delete img;*/
+
+    var sketch = {
+        title: $("#boardtitle").val(),
+        //imageUrl: canvas.toDataURL(),
+        bg: board //0 - Weiß, 1 - Grün
+    };
+
+    $.post('/saveBoard', {sketch});
 }
 
 // Farbe wählen
@@ -89,7 +97,7 @@ $(function(){
         $.fn.whiteboard.undo();
     });
     $("#save").click(function(){
-        $.fn.whiteboard.save();
+        save();
     });
 });
 
@@ -105,7 +113,7 @@ $(document).keydown(function (e) {
     }
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern
-        $.fn.whiteboard.save();
+        save();
         // setTimeout(function(){
         //     context.putImageData(imageData, 0, 0);
         // },5000);

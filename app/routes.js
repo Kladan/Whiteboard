@@ -1,4 +1,8 @@
+	
+	var Board = require('./board');
+
 	module.exports = function(app, passport, path) {
+
 	app.get('/', isAuthenticated, function(req, res) {
 		res.sendFile(path + "/views/dashboard.html");
 	});
@@ -86,6 +90,16 @@
 		var error = errorMsg;
 		errorMsg = "";
 		res.json(error);
+	});
+	
+
+	//Whiteboard API
+	app.post('/saveBoard', isAuthenticated, function(req, res) {
+
+		var sketch = req.body.sketch;
+		sketch.userId = req.user.userId,
+		
+		//Board.Service.save(sketch);
 	});
 };
 
