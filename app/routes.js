@@ -67,7 +67,7 @@
 
 				if (err) { return next(err); }
 
-				return res.redirect("/board");
+				return res.redirect("/dashboard");
 			});
 		})(req, res, next);
 	});

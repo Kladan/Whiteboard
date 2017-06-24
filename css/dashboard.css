@@ -12,6 +12,7 @@
 	cursor: pointer;
 	margin-bottom: 4em;
 	position: relative;
+	color: black;
 }
 
 .dash .kachel input {
@@ -24,7 +25,7 @@
 
 .dash #newBoard {
 	background-color: rgba(255,255,255,0.1);
-	line-height: 17em;
+	line-height: 16em;
 }
 
 .dash #newBoard:hover, .kachel:hover {
