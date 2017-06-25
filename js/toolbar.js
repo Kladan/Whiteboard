@@ -59,11 +59,17 @@ function save() {
 
     var sketch = {
         title: $("#boardtitle").val(),
-        //imageUrl: canvas.toDataURL(),
-        bg: board //0 - Weiß, 1 - Grün
+        imageUrl: canvas.toDataURL(),
+        bg: board === true ? 0 : 1//0 - Weiß, 1 - Grün
     };
 
-    $.post('/saveBoard', {sketch});
+    $.post('/saveBoard', {sketch}).done(function(result){
+        
+        //Nachricht anzeigen, dass Board gespeichert wurde
+
+    }).fail(function(result){
+        console.log(result);
+    });
 }
 
 // Farbe wählen

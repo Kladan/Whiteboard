@@ -97,9 +97,11 @@
 	app.post('/saveBoard', isAuthenticated, function(req, res) {
 
 		var sketch = req.body.sketch;
-		sketch.userId = req.user.userId,
+		sketch.userId = req.user.userId;
 		
-		//Board.Service.save(sketch);
+		var result = Board.Service.save(sketch);
+
+		res.json({result: result});
 	});
 };
 

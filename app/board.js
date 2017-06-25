@@ -20,16 +20,19 @@ Board.prototype.Service = {
 //Bild in Db speichern
 save: function(sketch) {
 
-	var insertSketch = "INSERT INTO Whiteboard (created_date, last_change, created_by, drawing_data, title, bg_white) VALUES (?,?,?,?,?,?);";
+	var insertSketch = "INSERT INTO Whiteboard (created_date, last_change, created_by, drawing_data, title, bg_white) VALUES (";
 
 	if (sketch.title === "") {
-		sktech.title = "Mein Whiteboard";
+		sketch.title = "Mein Whiteboard";
 	}
 
-	connection.query(insertSketch, [new Date(), new Date(), sketch.userId, sketch.imageUrl, sketch.title, sketch.bg], function(err, rows) {
+	insertSketch += mysql.escape(new Date()) + "," + mysql.escape(new Date()) + "," + sketch.userId + "," + mysql.escape(sketch.imageUrl) + 
+	"," + mysql.escape(sketch.title) + "," + parseInt(sketch.bg) + ");";
+
+	connection.query(insertSketch, function(err, rows) {
 		if (err) throw err;
 
-		return rows[0].insertId;
+		return rows.insertId;
 	});
 },
 
@@ -46,4 +49,4 @@ getById: function(id) {
 };
 
 
-module.exports = Board;
+module.exports = new Board();
