@@ -77,7 +77,6 @@
 	});
 
 	app.get('/userdata', isAuthenticated, function(req, res) {
-
 		var user = req.user.username; //req.user gibt den aktuellen User zurück
 		res.json(user);
 	});

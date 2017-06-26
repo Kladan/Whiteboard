@@ -41,8 +41,15 @@
     </body>
 
     <script type="text/javascript">
-//        $.get("/userdata", function(user) {
-//            
+//        $.get("/userdata", function() {
+//            connection.query("select * from user where username = ?", [USERNAME], function(err, rows) {
+//                var user = {
+//                    username: rows[0].username,
+//                    email: rows[0].email
+//                };
+//                $("#username").val(user.username);
+//                $("#mail").val(user.email);
+//            };
 //        });
     </script>
 </html>
