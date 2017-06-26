@@ -18,7 +18,8 @@ app.use("/img", express.static(__dirname + '/img'));
 app.use(cookieParser())  //cookies lesen (authentication)
 
 app.use(bodyParser.urlencoded({
-	extended: true
+	extended: true,
+	limit: '16mb'
 }));
 app.use(bodyParser.json());
 

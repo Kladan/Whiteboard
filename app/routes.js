@@ -77,7 +77,7 @@
 	});
 
 	app.get('/userdata', isAuthenticated, function(req, res) {
-		var user = req.user.username; //req.user gibt den aktuellen User zurück
+		var user = req.user; //req.user gibt den aktuellen User zurück
 		res.json(user);
 	});
 
@@ -98,7 +98,7 @@
 		var sketch = req.body.sketch;
 		sketch.userId = req.user.userId;
 		
-		var result = Board.Service.save(sketch);
+		var result = Board.Service.create(sketch);
 
 		res.json({result: result});
 	});

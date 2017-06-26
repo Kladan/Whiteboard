@@ -17,8 +17,8 @@ function Board() {
 
 Board.prototype.Service = {
 
-//Bild in Db speichern
-save: function(sketch) {
+//Bild in Db erstellen
+create: function(sketch) {
 
 	var insertSketch = "INSERT INTO Whiteboard (created_date, last_change, created_by, drawing_data, title, bg_white) VALUES (";
 
