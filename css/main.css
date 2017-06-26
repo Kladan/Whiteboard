@@ -96,3 +96,17 @@ footer a:hover {
     box-sizing: border-box;
     display: none;
 }
+
+.successAlert {
+    color: white;
+    background-color: #29d123;
+    border-color: #17ff0f;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0.5em;
+    width: 7.5%;
+    display: none;
+}

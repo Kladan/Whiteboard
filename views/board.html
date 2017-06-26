@@ -22,7 +22,7 @@
 <body>
     <header>
         <script type="text/javascript">
-            $('header').load("views/header.html");
+            $('header').load("header");
         </script>
     </header>
     <input type="title" placeholder="Titel" maxlength="25" id="boardtitle"/>
@@ -45,6 +45,8 @@
         <!--<span class="material-icons toolbtn right" title="Find ich gut">thumb_up</span>-->
         <span id="undo" class="material-icons toolbtn right" title="Rückgängig (Shift + Z)">undo</span>
     </div>
+
+    <div class="successAlert">Board wurde gespeichert!</div>
 
     <div id="board">
             <canvas id="whiteboard"></canvas>

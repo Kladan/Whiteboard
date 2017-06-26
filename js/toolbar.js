@@ -66,6 +66,9 @@ function save() {
     $.post('/saveBoard', {sketch}).done(function(result){
         
         //Nachricht anzeigen, dass Board gespeichert wurde
+        $(".successAlert").fadeIn().animate({
+            top: "-=50"
+        }, 3000).fadeOut();
 
     }).fail(function(result){
         console.log(result);
