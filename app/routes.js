@@ -107,7 +107,7 @@
 		var id = req.user.userId;
 		Board.Service.getAll(id, function(err, results) {
 			if (err) throw err;
-
+			//console.log(results);
 			res.json(results);
 		});
 	});

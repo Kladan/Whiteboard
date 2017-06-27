@@ -36,7 +36,7 @@ create: function(sketch) {
 
 //Alle Whiteboards abfragen und als json zurückgeben
 getAll: function(userId, callback) {
-	var getBoards = "SELECT * FROM whiteboard WHERE created_by = " + userId + ";";
+	var getBoards = "SELECT boardId, title, bg_white, CONVERT(drawing_data USING utf8) AS imgData FROM whiteboard WHERE created_by = " + userId + " ORDER BY `last_change` DESC ;";
 
 	connection.query(getBoards, function(err, rows) {
 		if (err) throw err;

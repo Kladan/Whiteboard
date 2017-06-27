@@ -154,7 +154,10 @@
 
         var pointX, pointY;
 
-        $.each(boardActionArray, function(index, val){
+        for (var i = 0; i < boardActionArray.length; i++) {
+            var item = boardActionArray[i];
+        }
+/*        $.each(boardActionArray, function(index, val){
 
             if (val.mode === "draw") {
                 //zeichne mit pinsel
@@ -191,7 +194,7 @@
                 pointX = val.mouseX;
                 pointY = val.mouseY;       
             }
-        });
+        });*/
     }
 
 
