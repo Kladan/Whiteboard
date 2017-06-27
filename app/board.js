@@ -45,12 +45,13 @@ getAll: function(userId, callback) {
 },
 
 //Ein Board durch Id zurückgeben
-getById: function(boardId) {
-	var getBoardById = "SELECT * FROM whiteboard WHERE boardId = " + boardId + ";";
+getById: function(userId, boardId, callback) {
+	var getBoardById = "SELECT * FROM whiteboard WHERE boardId = " + boardId + " AND created_by = " + userId + ";";
 
 	connection.query(getBoardById, function(err, rows) {
 		if (err) throw err;
-		return rows;
+		
+		callback(err, rows);
 	});
 }
 

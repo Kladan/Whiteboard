@@ -62,7 +62,32 @@
     </footer>
 
     <script>
+
+        function getBoard(boardId) {
+
+            $.get('/getBoardById', {boardId: boardId}).done(function(result){
+                //Title anzeigen
+                //Board anzeigen
+                //Hintergrund setzen
+                $("#boardtitle").val(result.title);
+
+                var context = document.getElementById("#board").getContext("2d");
+                context.putImageData(result.imageData, 0, 0);
+            });
+        }
         $(document).ready(function(){
+
+            //Url hat id query
+            //server abfrage
+            //bild laden + anzeigen
+
+            var url = window.location.href;
+            var patt = new RegExp(/(\?id=)([\d]+)/);
+            var res = patt.exec(url);
+            if (res != null){
+                getBoard(res[2]);
+            }
+
             // Dynamisches Aufklappen des Boards
 
             $("#whiteboard").animate({

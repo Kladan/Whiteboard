@@ -111,6 +111,17 @@
 			res.json(results);
 		});
 	});
+
+	app.get('/getBoardById', function(req, res){
+
+		var userId = req.user.userId;
+		Board.Service.getById(userId, req.body.boardId, function(err, result){
+			res.json({
+				title: result.title,
+				imageData: result.drawing_data
+			});
+		});
+	});
 };
 
 function isAuthenticated(req, res, next) {
