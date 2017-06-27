@@ -98,9 +98,9 @@
 		var sketch = req.body.sketch;
 		sketch.userId = req.user.userId;
 		
-		var result = Board.Service.create(sketch);
-
-		res.json({result: result});
+		Board.Service.create(sketch, function(err, result) {
+			res.json({result: result.insertId});
+		});
 	});
 
 	app.get('/getAllBoards', function(req, res) {
@@ -109,6 +109,17 @@
 			if (err) throw err;
 			//console.log(results);
 			res.json(results);
+		});
+	});
+
+	app.get('/getBoardById', function(req, res){
+
+		var userId = req.user.userId;
+		Board.Service.getById(userId, req.body.boardId, function(err, result){
+			res.json({
+				title: result.title,
+				imageData: result.drawing_data
+			});
 		});
 	});
 };
