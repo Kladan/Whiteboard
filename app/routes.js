@@ -102,6 +102,15 @@
 
 		res.json({result: result});
 	});
+
+	app.get('/getAllBoards', function(req, res) {
+		var id = req.user.userId;
+		Board.Service.getAll(id, function(err, results) {
+			if (err) throw err;
+
+			res.json(results);
+		});
+	});
 };
 
 function isAuthenticated(req, res, next) {

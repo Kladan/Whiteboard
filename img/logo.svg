@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="27.506126"
-     inkscape:cy="34.577488"
+     inkscape:zoom="3.959798"
+     inkscape:cx="42.560359"
+     inkscape:cy="36.471602"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="svg8"
      showgrid="false"
      showguides="true"
      inkscape:measure-start="32.1429,60.7143"
@@ -108,6 +108,19 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Strich 2">
+    <rect
+       style="display:inline;opacity:1;fill:#016098;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.1053649;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect62-1"
+       width="11.637823"
+       height="2.1368213"
+       x="14.205235"
+       y="2.2445278"
+       transform="matrix(0.74240676,0.66994939,-0.8647244,0.50224669,0,0)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="B">
     <g
@@ -133,6 +146,14 @@
        x="-97.89399"
        y="232.81113"
        transform="matrix(0.68699031,-0.72666659,0.30056214,0.95376222,0,-276.99999)" />
+    <rect
+       style="display:inline;opacity:1;fill:#016098;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.13017263;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect62-6"
+       width="16.913454"
+       height="2.2441664"
+       x="-17.127165"
+       y="2.9924455"
+       transform="matrix(0.00108749,-0.99999941,0.90618389,0.42288385,0,0)" />
   </g>
   <g
      inkscape:groupmode="layer"

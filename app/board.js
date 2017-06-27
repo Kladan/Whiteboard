@@ -1,4 +1,3 @@
-
 //Module laden
 //require mysql, database config
 //mysql connection erstellen
@@ -9,7 +8,6 @@ var dbConfig = require('../db_config/database');
 var connection;
 
 function Board() {
-
 	connection = mysql.createConnection(dbConfig.connection);
 	connection.query('USE ' + dbConfig.database);
 }
@@ -37,16 +35,25 @@ create: function(sketch) {
 },
 
 //Alle Whiteboards abfragen und als json zurückgeben
-getAll: function() {
+getAll: function(userId, callback) {
+	var getBoards = "SELECT * FROM whiteboard WHERE created_by = " + userId + ";";
 
+	connection.query(getBoards, function(err, rows) {
+		if (err) throw err;
+		callback(err, rows);
+	});
 },
 
-//Mit Id zurückgeben
-getById: function(id) {
+//Ein Board durch Id zurückgeben
+getById: function(boardId) {
+	var getBoardById = "SELECT * FROM whiteboard WHERE boardId = " + boardId + ";";
 
+	connection.query(getBoardById, function(err, rows) {
+		if (err) throw err;
+		return rows;
+	});
 }
 
 };
-
 
 module.exports = new Board();
