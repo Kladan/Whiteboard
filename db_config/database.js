@@ -3,8 +3,7 @@ module.exports = {
 	'connection': {
     	'host': 'localhost',
     	'user': 'root',
-    	'password': '',
-    	'stringifyObjects': 'true'
+    	'password': ''
     },
 	'database': 'sketchbookDB',
     'userTable': 'user',
