@@ -16,7 +16,7 @@ function Board() {
 Board.prototype.Service = {
 
 //Bild in Db erstellen
-create: function(sketch) {
+create: function(sketch, callback) {
 
 	var insertSketch = "INSERT INTO Whiteboard (created_date, last_change, created_by, drawing_data, title, bg_white) VALUES (";
 
@@ -30,7 +30,7 @@ create: function(sketch) {
 	connection.query(insertSketch, function(err, rows) {
 		if (err) throw err;
 
-		return rows.insertId;
+		callback(err, rows);
 	});
 },
 

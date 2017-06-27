@@ -98,9 +98,9 @@
 		var sketch = req.body.sketch;
 		sketch.userId = req.user.userId;
 		
-		var result = Board.Service.create(sketch);
-
-		res.json({result: result});
+		Board.Service.create(sketch, function(err, result) {
+			res.json({result: result.insertId});
+		});
 	});
 
 	app.get('/getAllBoards', function(req, res) {
