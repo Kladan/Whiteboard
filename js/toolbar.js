@@ -1,20 +1,20 @@
 // Wechsel Whiteboard <-> Tafel
 
-var board = false;
+var bgGreen = false;
 function bgboard() {
-    if (board) {
+    if (bgGreen) {
         $.fn.whiteboard.changeBackground("white");
-        board = false;
+        bgGreen = false;
     }
     else {
         $.fn.whiteboard.changeBackground("#2f6f25");
-        board = true;
+        bgGreen = true;
     }
 }
 
-// Farbauswahl des jeweiligen Stifts anzeigen
+// Farbauswahlelemente des jeweiligen Stifts einblenden
 
-function colors(stift) {
+function colorPic(stift) {
     if ($('.colors').first().text() == stift) {
         $('.colors').text('');
         $('.colors').hide();
@@ -34,12 +34,12 @@ function colors(stift) {
 
 // Ausgewählten Stift farblich markieren
 
-function markiere(before, after, newColor) {
-    $('#' + before).css("background-color","");
-    $('#' + before).css("border-color","rgba(0,0,0,0)");
-    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
-    $('#' + after).css("border-color",newColor);
-}
+//function markiere(before, after, newColor) {
+//    $('#' + before).css("background-color","");
+//    $('#' + before).css("border-color","rgba(0,0,0,0)");
+//    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
+//    $('#' + after).css("border-color",newColor);
+//}
 
 function save() {
     var canvas = document.getElementById("whiteboard"); //getContext("2d");
@@ -78,16 +78,37 @@ function save() {
 // Farbe wählen
 
 $(function(){
+    $('#marker').css('border-color','black');
+    $('#pinsel').click(function() {
+        colorPic('brush');
+        var color = $.fn.whiteboard.getCurrentColor();
+        $.fn.whiteboard.setBrushImage(color);
+        $('#marker').css('border-color','transparent');
+        $('#pinsel').css('border-color',color);
+    });
+    $('#marker').click(function() {
+        colorPic('edit');
+        var color = $.fn.whiteboard.getColorFromImage();
+        $.fn.whiteboard.setColor(color);
+        $('#pinsel').css('border-color','transparent');
+        $('#marker').css('border-color',color);
+    });
     $(".colors").click(function() {
         var colorData = $(this).data("color");
 
         if ($(this).text() == "brush") {
             $.fn.whiteboard.setBrushImage(colorData);
-            markiere('marker', 'pinsel', colorData);
+            $('.colors').css('background-color', 'transparent');
+            $(this).css('background-color', 'rgba(255,255,255,0.2)');
+            $('#marker').css('border-color','transparent');
+            $('#pinsel').css('border-color',colorData);
         }
         else {
             $.fn.whiteboard.setColor(colorData);
-            markiere('pinsel', 'marker', colorData);
+            $('.colors').css('background-color', 'transparent');
+            $(this).css('background-color', 'rgba(255,255,255,0.2)');
+            $('#pinsel').css('border-color','transparent');
+            $('#marker').css('border-color',colorData);
         }
     });
     $("#dialogDelete button").click(function() {
@@ -123,12 +144,9 @@ $(document).keydown(function (e) {
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern
         save();
-        // setTimeout(function(){
-        //     context.putImageData(imageData, 0, 0);
-        // },5000);
-
     }
     if (keys[16] && keys[68]) { // Shift + d
+        //Inhalt löschen
         $('#dialogDelete').show();
     }
     if (keys[89]) { // y
@@ -141,12 +159,14 @@ $(document).keydown(function (e) {
     if (keys[67]) { // c
         var color = $.fn.whiteboard.getCurrentColor();
         $.fn.whiteboard.setBrushImage(color);
-        markiere('marker', 'pinsel', color);
+        $('#marker').css('border-color','transparent');
+        $('#pinsel').css('border-color',color);
     }
     if (keys[86]) { // v
         var color = $.fn.whiteboard.getColorFromImage();
         $.fn.whiteboard.setColor(color);
-        markiere('pinsel', 'marker', color);
+        $('#pinsel').css('border-color','transparent');
+        $('#marker').css('border-color',color);
     }
 });
     
