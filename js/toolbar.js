@@ -36,6 +36,18 @@ function colorPic(stift) {
     }
 }
 
+<<<<<<< HEAD
+// Ausgewählten Stift farblich markieren
+
+function markiere(before, after, newColor) {
+    $('#' + before).css("background-color","");
+    $('#' + before).css("border-color","rgba(0,0,0,0)");
+    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
+    $('#' + after).css("border-color",newColor);
+}
+
+function alertMessage(messageClass, message) {
+=======
 function save() {
     var canvas = document.getElementById("whiteboard"); //getContext("2d");
     //var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
@@ -43,14 +55,26 @@ function save() {
     var data = canvas.toDataURL();
     var img = new Image();
     img.src = data;
+>>>>>>> cb4a92d398f2303b057cb23c2e6b9e1d0e1680f6
 
-    $.fn.whiteboard.clearArea();
+    if (messageClass === "success"){
+        $("#alertMsg").removeClass("failureAlert");
+        $("#alertMsg").addClass("successAlert");
+    }
+    else if (messageClass === "failure") {
+        $("#alertMsg").removeClass("successAlert");
+        $("#alertMsg").addClass("failureAlert");
+    }
 
-    img.onload = function() {
-        context.drawImage(this, 0, 0)
-    };
+    $("#alertMsg").html(message);
 
-    delete img;*/
+    $("#alertMsg").fadeIn().animate({
+            top: "-=50"
+        }, 2000).fadeOut();
+}
+
+function save() {
+    var canvas = document.getElementById("whiteboard");
 
     var sketch = {
         title: $("#boardtitle").val(),
@@ -61,9 +85,7 @@ function save() {
     $.post('/saveBoard', {sketch}).done(function(result){
         
         //Nachricht anzeigen, dass Board gespeichert wurde
-        $(".successAlert").fadeIn().animate({
-            top: "-=50"
-        }, 3000).fadeOut();
+        alertMessage("success", "Board wurde gespeichert!");
 
     }).fail(function(result){
         console.log(result);

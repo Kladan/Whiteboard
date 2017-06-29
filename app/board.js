@@ -40,6 +40,7 @@ getAll: function(userId, callback) {
 
 	connection.query(getBoards, function(err, rows) {
 		if (err) throw err;
+
 		callback(err, rows);
 	});
 },
@@ -50,8 +51,6 @@ getById: function(userId, boardId, callback) {
 	boardId + " AND created_by = " + userId + ";";
 
 	connection.query(boardByIdQuery, function(err, rows) {
-		if (err) throw err;
-		
 		callback(err, rows);
 	});
 }
