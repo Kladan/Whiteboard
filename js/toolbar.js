@@ -12,6 +12,11 @@ function bgboard() {
     }
 }
 
+function setBgBoard(value) {
+    board = value;
+    bgboard(); 
+}
+
 // Farbauswahl des jeweiligen Stifts anzeigen
 
 function colors(stift) {
