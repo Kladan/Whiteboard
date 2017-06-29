@@ -46,9 +46,10 @@ getAll: function(userId, callback) {
 
 //Ein Board durch Id zurückgeben
 getById: function(userId, boardId, callback) {
-	var getBoardById = "SELECT * FROM whiteboard WHERE boardId = " + boardId + " AND created_by = " + userId + ";";
+	var boardByIdQuery = "SELECT title, CONVERT(drawing_data USING utf8) AS imageUrl, bg_white FROM whiteboard WHERE boardId = " + 
+	boardId + " AND created_by = " + userId + ";";
 
-	connection.query(getBoardById, function(err, rows) {
+	connection.query(boardByIdQuery, function(err, rows) {
 		if (err) throw err;
 		
 		callback(err, rows);

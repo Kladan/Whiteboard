@@ -1,5 +1,4 @@
 // Wechsel Whiteboard <-> Tafel
-
 var bgGreen = false;
 function bgboard() {
     if (bgGreen) {
@@ -13,7 +12,12 @@ function bgboard() {
 }
 
 // Farbauswahlelemente des jeweiligen Stifts einblenden
+function setBgBoard(value) {
+    board = value;
+    bgboard(); 
+}
 
+// Farbauswahl des jeweiligen Stifts anzeigen
 function colorPic(stift) {
     if ($('.colors').first().text() == stift) {
         $('.colors').text('');
@@ -31,15 +35,6 @@ function colorPic(stift) {
         $('.colors').text(stift);
     }
 }
-
-// Ausgewählten Stift farblich markieren
-
-//function markiere(before, after, newColor) {
-//    $('#' + before).css("background-color","");
-//    $('#' + before).css("border-color","rgba(0,0,0,0)");
-//    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
-//    $('#' + after).css("border-color",newColor);
-//}
 
 function save() {
     var canvas = document.getElementById("whiteboard"); //getContext("2d");

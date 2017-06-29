@@ -65,14 +65,18 @@
 
         function getBoard(boardId) {
 
-            $.get('/getBoardById', {boardId: boardId}).done(function(result){
-                //Title anzeigen
-                //Board anzeigen
-                //Hintergrund setzen
+            $.get('/getBoardById/', {boardId: boardId}).done(function(result){
                 $("#boardtitle").val(result.title);
+                setBgBoard(result.bg_white);
 
-                var context = document.getElementById("#board").getContext("2d");
-                context.putImageData(result.imageData, 0, 0);
+                var context = document.getElementById("whiteboard").getContext("2d");
+                var tmpImg = new Image();
+                tmpImg.src = result.imageUrl;
+                tmpImg.onload = function() {
+                    context.drawImage(this, 0, 0);
+                };
+
+                delete tmpImg;
             });
         }
         $(document).ready(function(){

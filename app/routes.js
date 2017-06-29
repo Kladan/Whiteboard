@@ -115,10 +115,13 @@
 	app.get('/getBoardById', function(req, res){
 
 		var userId = req.user.userId;
-		Board.Service.getById(userId, req.body.boardId, function(err, result){
+		var boardId = parseInt(req.query.boardId);
+		
+		Board.Service.getById(userId, boardId, function(err, result){
 			res.json({
-				title: result.title,
-				imageData: result.drawing_data
+				title: result[0].title,
+				imageUrl: result[0].imageUrl,
+				bg_white: result[0].bg_white
 			});
 		});
 	});
