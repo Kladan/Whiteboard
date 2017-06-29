@@ -118,11 +118,21 @@
 		var boardId = parseInt(req.query.boardId);
 		
 		Board.Service.getById(userId, boardId, function(err, result){
-			res.json({
-				title: result[0].title,
-				imageUrl: result[0].imageUrl,
-				bg_white: result[0].bg_white
-			});
+			
+			if (err != null) {
+				res.status(500).json({error: "An error occured!"});
+			}
+
+			if (result.length == 0) {
+				res.status(404).json({message: "Board not found!"});
+			}
+			else {
+				res.json({
+					title: result[0].title,
+					imageUrl: result[0].imageUrl,
+					bg_white: result[0].bg_white
+				});
+			}
 		});
 	});
 };

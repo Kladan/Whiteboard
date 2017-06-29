@@ -46,21 +46,26 @@ function markiere(before, after, newColor) {
     $('#' + after).css("border-color",newColor);
 }
 
+function alertMessage(messageClass, message) {
+
+    if (messageClass === "success"){
+        $("#alertMsg").removeClass("failureAlert");
+        $("#alertMsg").addClass("successAlert");
+    }
+    else if (messageClass === "failure") {
+        $("#alertMsg").removeClass("successAlert");
+        $("#alertMsg").addClass("failureAlert");
+    }
+
+    $("#alertMsg").html(message);
+
+    $("#alertMsg").fadeIn().animate({
+            top: "-=50"
+        }, 2000).fadeOut();
+}
+
 function save() {
-    var canvas = document.getElementById("whiteboard"); //getContext("2d");
-    //var imageData = context.getImageData(0,0,$("#whiteboard").width(), $("#whiteboard").height());
-    /*var context = canvas.getContext("2d");
-    var data = canvas.toDataURL();
-    var img = new Image();
-    img.src = data;
-
-    $.fn.whiteboard.clearArea();
-
-    img.onload = function() {
-        context.drawImage(this, 0, 0)
-    };
-
-    delete img;*/
+    var canvas = document.getElementById("whiteboard");
 
     var sketch = {
         title: $("#boardtitle").val(),
@@ -71,9 +76,7 @@ function save() {
     $.post('/saveBoard', {sketch}).done(function(result){
         
         //Nachricht anzeigen, dass Board gespeichert wurde
-        $(".successAlert").fadeIn().animate({
-            top: "-=50"
-        }, 3000).fadeOut();
+        alertMessage("success", "Board wurde gespeichert!");
 
     }).fail(function(result){
         console.log(result);

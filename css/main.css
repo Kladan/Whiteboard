@@ -131,3 +131,17 @@ footer a:hover {
     width: 7.5%;
     display: none;
 }
+
+.failureAlert {
+    color: white;
+    background-color: #d80000;
+    border-color: #ed4b4b;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0.5em;
+    width: 7.5%;
+    display: none;
+}
