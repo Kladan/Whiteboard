@@ -1,5 +1,6 @@
 	
 	var Board = require('./board');
+	var User = require('./user');
 
 	module.exports = function(app, passport, path) {
 
@@ -146,6 +147,21 @@
 			}
 			else {
 				res.json({success: true});
+			}
+		});
+	});
+
+	app.post('/usersearch', isAuthenticated, function(req, res) {
+
+		var currentUser = req.user.userId;
+		var username = req.body.searchString;
+		User.Service.getUser(currentUser, username, function(err, result) {
+			if (err != null) {
+				console.log(err);
+				res.status(500).json({error: "An error occured!"});
+			}
+			else {
+				res.json(result);
 			}
 		});
 	});

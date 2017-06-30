@@ -33,7 +33,6 @@
             
             <script type="text/javascript">
                 $.get("/getAllBoards").done(function(result) {
-                    console.log(result);
                     $('#mySk').append(' (' + result.length + ')');
                     for (var i = 0; i < result.length; i++) {
                         kachel = '<div class="four columns kachel">';
@@ -68,7 +67,7 @@
                 <ul>
                     <li class="points"><span class="material-icons" title="Mehr">more_vert</span></li>
                     <li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>
-                    <li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li>
+                    <li class="more"><span class="material-icons shareIcon" title="Mit Person teilen">person_add</span></li>
                 </ul>
                 <img src="img/kachel.svg"/>
                 <input type="text" name="boardtitle" maxlength="25" />
@@ -85,8 +84,60 @@
         </div>
     </div>
 
+    <div id="usersearchModal">
+        <div id="modalContent">
+            <h4>Username eingeben und mit Enter bestätigen</h4>
+            <input id="usersearchBox" type="text" />
+        </div>
+    </div>
+
     <footer>
         <a href="impressum">Impressum</a>
     </footer>
+
+    <script>
+        $(document).ready(function() {
+            $(".shareIcon").click(function(){
+                $("#usersearchModal").show();
+            });
+
+            $("#usersearchBox").keypress(function(e) {
+                var regex = new RegExp("^[a-zA-Z0-9]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    return true;
+                }
+                e.preventDefault();
+                return false;
+            });
+
+            $("#usersearchBox").on('input', function(){
+
+                var searchStr = $(this).val();
+                $("#modalContent div").remove();
+                $.post("/usersearch", {searchString: searchStr}).done(function(result) {
+                    
+                    $.each(result, function(i, v){
+                        var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
+                        $("#modalContent").append(tmp);
+                    });
+                });
+            });
+
+            $("body").on("click", "div[name='user']", function(){
+                var selectedUser = $(this).find("input").val();
+                $("#usersearchModal").hide();
+
+                var shareInfo = {
+                    userId: selectedUser,
+                    boardId: null
+                }
+                
+                $.post('/share', {shareDetails: shareInfo}).done(function(success){
+                    //Nachricht das geshared wurde.
+                });
+            });
+        });
+    </script>
 </body>
 </html>
