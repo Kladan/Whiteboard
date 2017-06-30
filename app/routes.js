@@ -135,6 +135,20 @@
 			}
 		});
 	});
+
+	app.post('/share', function(req, res){
+
+		var data = req.body.shareDetails;
+		Board.Service.share(data, function(err, result) {
+
+			if (err != null){
+				res.status(500).json({error: "An error occured!"});
+			}
+			else {
+				res.json({success: true});
+			}
+		});
+	});
 };
 
 function isAuthenticated(req, res, next) {

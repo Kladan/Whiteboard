@@ -53,6 +53,14 @@ getById: function(userId, boardId, callback) {
 	connection.query(boardByIdQuery, function(err, rows) {
 		callback(err, rows);
 	});
+},
+
+share: function(details, callback) {
+
+	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES (?,?);";
+	connection.query(insertQuery, [details.userId, details.boardId], function(err, rows){
+		callback(err, rows);
+	});
 }
 
 };
