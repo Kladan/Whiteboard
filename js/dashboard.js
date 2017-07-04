@@ -1,18 +1,17 @@
 $(function(){
 	var morehidden = true;
-	$(".points").click(function() {
+	$("body").on("click", ".points", function() {
 		if (morehidden) {
 			$(this).parent().children().show();
 			morehidden = false;
-			console.log("Eingeblendet");
 		}
 		else {
 			$(".more").hide();
 			morehidden = true;
-			console.log("Ausgeblendet");
 		}
-        
-    });
+  });
+
+  var usersToShare = [];
 
    $(".shareIcon").click(function(){
         $("#usersearchModal").show();
@@ -41,16 +40,20 @@ $(function(){
             });
         });
     });
+
    $("body").on("click", "div[name='user']", function(){
-   		var selectedUser = $(this).find("input").val();
-        $("#usersearchModal").hide();
-        var shareInfo = {
-            userId: selectedUser,
-            boardId: null
-        }              
-        $.post('/share', {shareDetails: shareInfo}).done(function(success){
-                    //Nachricht das geshared wurde.
-        });
+   		var selectedUser = $(this);
+        var li = "<li>" + selectedUser.text() + "</li>";
+        $('#usersearchModal ul').append(li);
+        usersToShare.push({id: selectedUser.find("input").val(), name: selectedUser.text()});
+        selectedUser.remove();
+        //var shareInfo = {
+        //    userId: selectedUser,
+        //    boardId: null
+        //}              
+        //$.post('/share', {shareDetails: shareInfo}).done(function(success){
+        //            //Nachricht das geshared wurde.
+        //});
     });
 });
 
