@@ -1,6 +1,10 @@
 $(function(){
 	var morehidden = true;
 	$("body").on("click", ".points", function() {
+<<<<<<< HEAD
+=======
+		console.log($(this));
+>>>>>>> Thorsten
 		if (morehidden) {
 			$(this).parent().children().show();
 			morehidden = false;
@@ -13,8 +17,12 @@ $(function(){
 
   var usersToShare = [];
 
+    var selectedBoard;
+
    $(".shareIcon").click(function(){
         $("#usersearchModal").show();
+        var boardId = $(this).parent().closest("div").data("id");
+        selectedBoard = boardId;
    });
 
    $(".closeModalIcon").click(function() {
@@ -33,12 +41,14 @@ $(function(){
    $("#usersearchBox").on('input', function(){
         var searchStr = $(this).val();
         $("#modalContent div").remove();
-        $.post("/usersearch", {searchString: searchStr}).done(function(result) {
+        if (!searchStr == "") {
+        	$.post("/usersearch", {searchString: searchStr}).done(function(result) {
             $.each(result, function(i, v){
                 var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
                     $("#modalContent").append(tmp);
             });
         });
+        }
     });
 
    $("body").on("click", "div[name='user']", function(){

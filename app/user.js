@@ -12,7 +12,7 @@ User.prototype.Service = {
 
 	getUser: function(userId, username, callback) {
 
-		var userQuery = "SELECT userId, username FROM user WHERE userId != " + userId + " AND username like \"%" + username + "%\";";
+		var userQuery = "SELECT userId, username FROM user WHERE userId != " + userId + " AND username like \"" + username + "%\";";
 		connection.query(userQuery, function(err, rows) {
 			callback(err, rows);
 		})
