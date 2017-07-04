@@ -148,7 +148,8 @@ $(function(){
 var keys = {};
 
 $(document).keydown(function (e) {
-    keys[e.which] = true;
+    if (!$("#boardtitle").is(":focus")) {
+        keys[e.which] = true;
     if (keys[16] && keys[90]) { // Shift + z
         // Einen Schritt rückgängig machen
         $.fn.whiteboard.undo();
@@ -185,6 +186,7 @@ $(document).keydown(function (e) {
         $('#pinsel').css('border-color','transparent');
         $('#marker').css('border-color',color);
 
+    }
     }
 });
     
