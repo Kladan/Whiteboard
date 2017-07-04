@@ -35,7 +35,7 @@
                 $.get("/getAllBoards").done(function(result) {
                     $('#mySk').append(' (' + result.length + ')');
                     for (var i = 0; i < result.length; i++) {
-                        kachel = '<div class="four columns kachel">';
+                        kachel = '<div class="four columns kachel" data-id="' + result[i].boardId + '">';
                         kachel += '<ul><li class="points"><span class="material-icons" title="Mehr">more_vert</span></li>';
                         kachel += '<li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>';
                         kachel += '<li class="more"><span class="material-icons" title="Mit Person teilen">person_add</span></li></ul>';
@@ -88,6 +88,7 @@
         <div id="modalContent">
             <h4>Username eingeben und mit Enter bestätigen</h4>
             <input id="usersearchBox" type="text" />
+            <input type="submit" value="Teilen" /><br>
         </div>
     </div>
 
@@ -116,7 +117,6 @@
                 var searchStr = $(this).val();
                 $("#modalContent div").remove();
                 $.post("/usersearch", {searchString: searchStr}).done(function(result) {
-                    
                     $.each(result, function(i, v){
                         var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
                         $("#modalContent").append(tmp);

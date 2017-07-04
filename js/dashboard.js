@@ -3,12 +3,13 @@ $(function(){
 	$(".points").click(function() {
 		if (morehidden) {
 			$(this).parent().children().show();
-			//$(".more").show();
 			morehidden = false;
+			console.log("Eingeblendet");
 		}
 		else {
 			$(".more").hide();
 			morehidden = true;
+			console.log("Ausgeblendet");
 		}
         
     });

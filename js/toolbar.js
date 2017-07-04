@@ -71,7 +71,7 @@ function save() {
     var sketch = {
         title: $("#boardtitle").val(),
         imageUrl: canvas.toDataURL(),
-        bg: board === true ? 0 : 1//0 - Weiß, 1 - Grün
+        bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
     };
 
     $.post('/saveBoard', {sketch}).done(function(result){
