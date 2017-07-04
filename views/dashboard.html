@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Sketchbook</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/skeleton.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script
         src="http://code.jquery.com/jquery-3.2.1.js"
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -85,6 +85,7 @@
     </div>
 
     <div id="usersearchModal">
+        <span class="material-icons closeModalIcon">close</span>
         <div id="modalContent">
             <h4>Username eingeben und mit Enter bestätigen</h4>
             <input id="usersearchBox" type="text" />
@@ -96,48 +97,5 @@
         <a href="impressum">Impressum</a>
     </footer>
 
-    <script>
-        $(document).ready(function() {
-            $(".shareIcon").click(function(){
-                $("#usersearchModal").show();
-            });
-
-            $("#usersearchBox").keypress(function(e) {
-                var regex = new RegExp("^[a-zA-Z0-9]+$");
-                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-                if (regex.test(str)) {
-                    return true;
-                }
-                e.preventDefault();
-                return false;
-            });
-
-            $("#usersearchBox").on('input', function(){
-
-                var searchStr = $(this).val();
-                $("#modalContent div").remove();
-                $.post("/usersearch", {searchString: searchStr}).done(function(result) {
-                    $.each(result, function(i, v){
-                        var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
-                        $("#modalContent").append(tmp);
-                    });
-                });
-            });
-
-            $("body").on("click", "div[name='user']", function(){
-                var selectedUser = $(this).find("input").val();
-                $("#usersearchModal").hide();
-
-                var shareInfo = {
-                    userId: selectedUser,
-                    boardId: null
-                }
-                
-                $.post('/share', {shareDetails: shareInfo}).done(function(success){
-                    //Nachricht das geshared wurde.
-                });
-            });
-        });
-    </script>
 </body>
 </html>
