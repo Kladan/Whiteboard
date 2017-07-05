@@ -67,21 +67,50 @@ function alertMessage(messageClass, message) {
 
 function save() {
     var canvas = document.getElementById("whiteboard");
+    var queryString = parseUrl();
+    var sketch;
 
-    var sketch = {
-        title: $("#boardtitle").val(),
-        imageUrl: canvas.toDataURL(),
-        bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
-    };
+    //Update
+    if (queryString != null) {
+        sketch = {
+            id: queryString[2],
+            imageUrl: canvas.toDataURL(),
+            bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
+        };
 
-    $.post('/saveBoard', {sketch}).done(function(result){
+        $.post('/updateBoard', {sketch}).done(function(result) {
+            alertMessage("sucess", "Board wurde aktualisiert!");
+        });
+    }
+    else {
+
+        sketch = {
+            title: $("#boardtitle").val(),
+            imageUrl: canvas.toDataURL(),
+            bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
+        };
+        $.post('/saveBoard', {sketch}).done(function(result){
         
         //Nachricht anzeigen, dass Board gespeichert wurde
         alertMessage("success", "Board wurde gespeichert!");
 
-    }).fail(function(result){
-        console.log(result);
-    });
+        var url = window.location.href;
+        url += "?id=" + result.id;
+        window.location.href = url;
+
+        }).fail(function(result){
+            console.log(result);
+        });
+    }
+}
+
+
+function parseUrl() {
+    var url = window.location.href;
+    var patt = new RegExp(/(\?id=)([\d]+)/);
+    var result = patt.exec(url);
+
+    return result;
 }
 
 // Farbe wählen

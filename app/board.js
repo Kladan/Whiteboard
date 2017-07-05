@@ -55,6 +55,30 @@ getById: function(userId, boardId, callback) {
 	});
 },
 
+update: function(boardData, callback) {
+
+	var updateQuery = "UPDATE whiteboard SET drawing_data = " + mysql.escape(boardData.imageUrl) + ", last_change = " + mysql.escape(new Date()) + 
+	", bg_white = " + parseInt(boardData.bg);
+
+	if (boardData.hasOwnProperty('title')){
+		updateQuery += ", title = " + mysql.escape(boardData.title);
+	}
+
+	updateQuery += " WHERE boardId = " + boardData.id;
+
+	connection.query(updateQuery, function(err, rows) {
+		callback(err, rows);
+	});
+},
+
+delete: function(sketch, callback) {
+
+	var sharedDelQuery = "DELETE FROM shared WHERE boardId = " + sketch;
+	var boardDelQuery = "DELETE FROM whiteboard WHERE boardId = " + sketch;
+
+	//subquery?????
+},
+
 share: function(details, callback) {
 
 	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES (?,?);";

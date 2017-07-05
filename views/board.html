@@ -87,9 +87,8 @@
             //server abfrage
             //bild laden + anzeigen
 
-            var url = window.location.href;
-            var patt = new RegExp(/(\?id=)([\d]+)/);
-            var res = patt.exec(url);
+            var res = parseUrl();
+            
             if (res != null){
                 getBoard(res[2]);
             }

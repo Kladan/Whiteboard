@@ -100,7 +100,16 @@
 		sketch.userId = req.user.userId;
 		
 		Board.Service.create(sketch, function(err, result) {
-			res.json({result: result.insertId});
+			res.json({id: result.insertId});
+		});
+	});
+
+	app.post('/updateBoard', isAuthenticated, function(req, res) {
+
+		var sketch = req.body.sketch;
+
+		Board.Service.update(sketch, function(err, result) {
+			res.json({success: true});
 		});
 	});
 
@@ -108,7 +117,6 @@
 		var id = req.user.userId;
 		Board.Service.getAll(id, function(err, results) {
 			if (err) throw err;
-			//console.log(results);
 			res.json(results);
 		});
 	});
