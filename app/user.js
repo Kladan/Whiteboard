@@ -10,9 +10,11 @@ function User() {
 
 User.prototype.Service = {
 
-	getUser: function(userId, username, callback) {
+	getUser: function(userId, username, boardId, callback) {
 
-		var userQuery = "SELECT userId, username FROM user WHERE userId != " + userId + " AND username like \"" + username + "%\" LIMIT 5;";
+		var userQuery = "SELECT userId, username FROM user WHERE userId != " + userId + " AND userId NOT IN (SELECT userId FROM shared " +
+				"WHERE boardId = " + parseInt(boardId) +") AND username like \"" + username + "%\" LIMIT 5;";
+
 		connection.query(userQuery, function(err, rows) {
 			callback(err, rows);
 		})

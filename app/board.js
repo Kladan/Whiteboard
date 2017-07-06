@@ -81,8 +81,15 @@ delete: function(sketch, callback) {
 
 share: function(details, callback) {
 
-	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES (?,?);";
-	connection.query(insertQuery, [details.userId, details.boardId], function(err, rows){
+	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES ",
+		userIds = details.users;
+
+	for (var user in userIds) {
+		insertQuery += "(" + parseInt(userIds[user]) + "," + parseInt(details.boardId) + "),"
+	}
+	insertQuery = insertQuery.replace(/,$/, ';');
+
+	connection.query(insertQuery, function(err, rows){
 		callback(err, rows);
 	});
 }

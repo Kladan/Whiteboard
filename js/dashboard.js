@@ -38,7 +38,7 @@ $(function(){
         var searchStr = $(this).val();
         $("#modalContent div").remove();
         if (!searchStr == "") {
-        	$.post("/usersearch", {searchString: searchStr}).done(function(result) {
+        	$.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
             $.each(result, function(i, v){
                 var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
                     $("#modalContent").append(tmp);
@@ -53,17 +53,20 @@ $(function(){
         $('#usersearchModal ul').append(li);
         usersToShare.push(selectedUser.find("input").val());
         selectedUser.remove();
-        //var shareInfo = {
-        //    userId: selectedUser,
-        //    boardId: null
-        //}              
-        //$.post('/share', {shareDetails: shareInfo}).done(function(success){
-        //            //Nachricht das geshared wurde.
-        //});
     });
 
    $("#btnShare").click(function() {
-      $.post('/share', )
+      var data = {
+        users: usersToShare,
+        boardId: selectedBoard
+      };
+
+      $.post('/share', {shareDetails: data}).done(function(result){
+        $("#usersearchModal").hide();
+        $("#modalContent div").remove();
+        $("#usersearchModal ul li").remove();
+        $("#usersearchBox").val('');
+      });
    });
 });
 

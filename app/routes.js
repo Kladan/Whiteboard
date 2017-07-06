@@ -149,7 +149,6 @@
 
 		var data = req.body.shareDetails;
 		Board.Service.share(data, function(err, result) {
-
 			if (err != null){
 				res.status(500).json({error: "An error occured!"});
 			}
@@ -163,7 +162,8 @@
 
 		var currentUser = req.user.userId;
 		var username = req.body.searchString;
-		User.Service.getUser(currentUser, username, function(err, result) {
+		var boardId = req.body.boardId;
+		User.Service.getUser(currentUser, username, boardId, function(err, result) {
 			if (err != null) {
 				console.log(err);
 				res.status(500).json({error: "An error occured!"});
