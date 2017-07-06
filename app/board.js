@@ -47,10 +47,20 @@ getAll: function(userId, callback) {
 
 //Ein Board durch Id zurückgeben
 getById: function(userId, boardId, callback) {
-	var boardByIdQuery = "SELECT title, CONVERT(drawing_data USING utf8) AS imageUrl, bg_white FROM whiteboard WHERE boardId = " + 
-	boardId + " AND created_by = " + userId + ";";
+	var boardByIdQuery = "SELECT title, CONVERT(drawing_data USING utf8) AS imageUrl, bg_white FROM whiteboard w " + 
+			"INNER JOIN shared s ON w.boardId = s.boardId WHERE w.boardId = " + boardId + " AND (created_by = " + userId + 
+			" OR s.userId = " + userId + ");";
 
 	connection.query(boardByIdQuery, function(err, rows) {
+		callback(err, rows);
+	});
+},
+
+getShared: function(userId, callback) {
+	var sharedQuery = "SELECT boardId, title, bg_white, CONVERT(drawing_data USING utf8) AS imgData FROM whiteboard " + 
+			"WHERE boardId = (SELECT boardId FROM shared WHERE userId = " + userId + ") ORDER BY `last_change` DESC;";
+
+	connection.query(sharedQuery, function(err, rows) {
 		callback(err, rows);
 	});
 },
@@ -76,7 +86,7 @@ delete: function(sketch, callback) {
 	var sharedDelQuery = "DELETE FROM shared WHERE boardId = " + sketch;
 	var boardDelQuery = "DELETE FROM whiteboard WHERE boardId = " + sketch;
 
-	//subquery?????
+	"DELETE whiteboard, shared FROM whiteboard LEFT JOIN shared ON whiteboard.boardId = shared.boardId WHERE whiteboard.boardId = 3;"
 },
 
 share: function(details, callback) {

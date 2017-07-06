@@ -113,7 +113,7 @@
 		});
 	});
 
-	app.get('/getAllBoards', function(req, res) {
+	app.get('/getAllBoards', isAuthenticated, function(req, res) {
 		var id = req.user.userId;
 		Board.Service.getAll(id, function(err, results) {
 			if (err) throw err;
@@ -121,7 +121,14 @@
 		});
 	});
 
-	app.get('/getBoardById', function(req, res){
+	app.get('/getSharedBoards', isAuthenticated, function(req, res) {
+		var id = req.user.userId;
+		Board.Service.getShared(id, function(err, results) {
+			res.json(results);
+		});
+	});
+
+	app.get('/getBoardById', isAuthenticated, function(req, res){
 
 		var userId = req.user.userId;
 		var boardId = parseInt(req.query.boardId);
