@@ -1,10 +1,6 @@
 $(function(){
 	var morehidden = true;
 	$("body").on("click", ".points", function() {
-<<<<<<< HEAD
-=======
-		console.log($(this));
->>>>>>> Thorsten
 		if (morehidden) {
 			$(this).parent().children().show();
 			morehidden = false;
@@ -17,9 +13,9 @@ $(function(){
 
   var usersToShare = [];
 
-    var selectedBoard;
+  var selectedBoard;
 
-   $(".shareIcon").click(function(){
+   $("body").on("click", ".shareIcon", function(){
         $("#usersearchModal").show();
         var boardId = $(this).parent().closest("div").data("id");
         selectedBoard = boardId;
@@ -55,7 +51,7 @@ $(function(){
    		var selectedUser = $(this);
         var li = "<li>" + selectedUser.text() + "</li>";
         $('#usersearchModal ul').append(li);
-        usersToShare.push({id: selectedUser.find("input").val(), name: selectedUser.text()});
+        usersToShare.push(selectedUser.find("input").val());
         selectedUser.remove();
         //var shareInfo = {
         //    userId: selectedUser,
@@ -65,5 +61,9 @@ $(function(){
         //            //Nachricht das geshared wurde.
         //});
     });
+
+   $("#btnShare").click(function() {
+      $.post('/share', )
+   });
 });
 
