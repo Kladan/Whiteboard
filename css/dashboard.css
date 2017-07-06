@@ -1,4 +1,3 @@
-
 .dash {
 	padding: 0;
 }
@@ -91,7 +90,12 @@
 	width: 40%;
 	margin: auto;
 	margin-top: 1em;
-	padding: 1em;
+	padding: 0.5em;
+	display: none;
+}
+
+#usersearchModal ul li {
+	margin: 0;
 }
 
 #usersearchBox {

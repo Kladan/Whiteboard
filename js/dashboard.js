@@ -49,10 +49,11 @@ $(function(){
 
    $("body").on("click", "div[name='user']", function(){
    		var selectedUser = $(this);
-        var li = "<li>" + selectedUser.text() + "</li>";
-        $('#usersearchModal ul').append(li);
-        usersToShare.push(selectedUser.find("input").val());
-        selectedUser.remove();
+      var li = "<li>" + selectedUser.text() + "</li>";
+      $('#usersearchModal ul').show();
+      $('#usersearchModal ul').append(li);
+      usersToShare.push(selectedUser.find("input").val());
+      selectedUser.remove();
     });
 
    $("#btnShare").click(function() {
