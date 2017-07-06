@@ -31,6 +31,18 @@
                     <h5>E-Mail</h5>
                     <input type="text" id="mail" readonly/>
                     <hr>
+                    <h5>Boards</h5>
+                    Meine Boards: <span id="myBoardsCount"></span><br>
+                    Mir geteilte Boards: <span id="sharedBoardsCount"></span>
+                    <script type="text/javascript">
+                        $.get("/getAllBoards").done(function(myBoards) {
+                            $('#myBoardsCount').text(myBoards.length);
+                        });
+                        $.get("/getSharedBoards").done(function(shBoards) {
+                            $('#sharedBoardsCount').text(shBoards.length);
+                        });
+                    </script>
+                    <hr>
                 </div>
             </div>
         </div>

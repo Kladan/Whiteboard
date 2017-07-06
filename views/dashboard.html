@@ -55,9 +55,6 @@
                     $('#sharedSk').append(' (' + result.length + ')');
                     for (var i = 0; i < result.length; i++) {
                         kachel = '<div class="four columns kachel" data-id="' + result[i].boardId + '">';
-                        kachel += '<ul><li class="points"><span class="material-icons" title="Mehr">more_vert</span></li>';
-                        kachel += '<li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>';
-                        kachel += '<li class="more"><span class="material-icons shareIcon" title="Mit Person teilen">person_add</span></li></ul>';
                         kachel += '<a href="/board?id=' + result[i].boardId + '"><img src="' + result[i].imgData + '" style="background-color: ';
                         if (result[i].bg_white == 0) {
                             kachel += '#2f6f25" /></a>';
