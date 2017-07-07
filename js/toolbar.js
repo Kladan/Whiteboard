@@ -87,7 +87,7 @@ function save() {
 
         var url = window.location.href;
         url += "?id=" + result.id;
-        window.location.href = url;
+        window.history.pushState(null ,null, url);
 
         }).fail(function(result){
             console.log(result);

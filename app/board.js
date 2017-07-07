@@ -83,10 +83,11 @@ update: function(boardData, callback) {
 
 delete: function(sketch, callback) {
 
-	var sharedDelQuery = "DELETE FROM shared WHERE boardId = " + sketch;
-	var boardDelQuery = "DELETE FROM whiteboard WHERE boardId = " + sketch;
+	var deleteQuery = "DELETE FROM shared WHERE boardId = ?; DELETE FROM whiteboard WHERE boardId = ?;";
 
-	"DELETE whiteboard, shared FROM whiteboard LEFT JOIN shared ON whiteboard.boardId = shared.boardId WHERE whiteboard.boardId = 3;"
+	connection.query(deleteQuery, [sketch, sketch], function(err, rows) {
+		callback(err, rows);
+	});
 },
 
 share: function(details, callback) {

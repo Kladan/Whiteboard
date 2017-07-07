@@ -113,6 +113,19 @@
 		});
 	});
 
+	app.post('/deleteBoard', isAuthenticated, function(req, res){
+
+		var board = req.body.boardId;
+		Board.Service.delete(board, function(err, results) {
+			if (err != null) {
+				res.status(500).json({error: "Ein Fehler ist aufgetreten!"});
+			}
+			else {
+				res.json({success: true});
+			}
+		});
+	})
+
 	app.get('/getAllBoards', isAuthenticated, function(req, res) {
 		var id = req.user.userId;
 		Board.Service.getAll(id, function(err, results) {
@@ -140,7 +153,7 @@
 			}
 
 			if (result.length == 0) {
-				res.status(404).json({message: "Board not found!"});
+				res.status(404).json({message: "Board nicht gefunden!"});
 			}
 			else {
 				res.json({

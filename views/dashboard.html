@@ -37,7 +37,7 @@
                     for (var i = 0; i < result.length; i++) {
                         kachel = '<div class="four columns kachel" data-id="' + result[i].boardId + '">';
                         kachel += '<ul><li class="points"><span class="material-icons" title="Mehr">more_vert</span></li>';
-                        kachel += '<li class="more"><span class="material-icons" title="Board l&ouml;schen">delete_forever</span></li>';
+                        kachel += '<li class="more"><span class="material-icons deleteIcon" title="Board l&ouml;schen">delete_forever</span></li>';
                         kachel += '<li class="more"><span class="material-icons shareIcon" title="Mit Person teilen">person_add</span></li>';
                         kachel += '<li class="more"><span class="material-icons infoIcon" title="Info">info_outline</span></li></ul>';
                         kachel += '<a href="/board?id=' + result[i].boardId + '"><img src="' + result[i].imgData + '" style="background-color: ';
@@ -103,8 +103,12 @@
             Letzte Änderung:<input type="text" id="last" readonly /><br>
             Erstellt am:<input type="text" id="createDate" readonly />
         </div>
-        <div class="infoContent" id="sharedTo">
-        </div>
+        <div class="infoContent" id="sharedTo"></div>
+    </div>
+    <div id="dialogDelete">
+        Sketch löschen?<br><br>
+        <button>Nein</button>
+        <button id="deleteYes">Ja</button>
     </div>
 
     <footer>

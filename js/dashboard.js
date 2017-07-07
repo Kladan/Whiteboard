@@ -15,11 +15,14 @@ $(function(){
 
   var selectedBoard;
 
-   $("body").on("click", ".shareIcon", function(){
-        $("#usersearchModal").show();
-        var boardId = $(this).parent().closest("div").data("id");
-        selectedBoard = boardId;
-   });
+  function getBoardId(self) {
+    return $(self).parent().closest("div").data("id");
+  }
+
+  $("body").on("click", ".shareIcon", function(){
+    $("#usersearchModal").show();
+    selectedBoard = getBoardId(this);
+  });
 
    $(".closeModalIcon").click(function() {
    		$("#usersearchModal").hide();
@@ -68,6 +71,27 @@ $(function(){
         $("#usersearchModal ul li").remove();
         $("#usersearchBox").val('');
       });
+   });
+
+   var board;
+
+   $("#dialogDelete button").click(function() {
+      $("#dialogDelete").hide();
+    });
+
+   $("#deleteYes").click(function() {
+      $.post('/deleteBoard', {boardId: selectedBoard}).done(function(success){
+        $(board).remove();
+        var sketches = $("#mySk").text();
+        var number = sketches.match(/\d/);
+        $("#mySk").text(sketches.replace(/\d/, --number));
+      });
+   });
+
+   $("body").on("click", ".deleteIcon", function() {
+      selectedBoard = getBoardId(this);
+      board = $(this).parent().closest("div");
+      $("#dialogDelete").show();
    });
 
    var moreShown = false;
