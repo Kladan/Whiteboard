@@ -2,6 +2,26 @@
 	padding: 0;
 }
 
+#myBoards {
+	height: 30em;
+	overflow: hidden;
+	transition: height 0.5s;
+}
+
+#showMore {
+	width: auto;
+	text-align: center;
+	background-color: rgba(255,255,255,0.1);
+	margin-top: 0.5em;
+	margin-bottom: 2em;
+	cursor: pointer;
+	display: none;
+}
+
+#showMore:hover {
+	background-color: rgba(255,255,255,0.25);
+}
+
 .dash .kachel {
 	margin: 0;
 	padding: 0.25em;
@@ -118,7 +138,6 @@
 }
 
 .modalTextField:hover {
-	/*background-color: #7098ef;*/
 	background-color: rgba(255,255,255,0.9);
 }
 
@@ -128,4 +147,33 @@
 	float: right;
 	margin: 25px;
 	cursor: pointer;
+}
+
+#infoModal {
+	width: 30%;
+	top: 8em;
+	left: 35%;
+	background-color: white;
+	position: absolute;
+	padding: 1em;
+	border-radius: 4px;
+	border: solid #ddd 2px;
+	display: none;
+}
+
+#infoModal #close {
+	float: right;
+	cursor: pointer;
+}
+
+.infoContent {
+	display: inline-block;
+	width: 100%;
+	bottom: 0;
+	height: 100%;
+}
+
+.infoContent input {
+	width: 100%;
+	border: none;
 }

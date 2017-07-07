@@ -152,6 +152,13 @@
 		});
 	});
 
+	app.get('/info', isAuthenticated, function(req, res) {
+		var boardId = parseInt(req.query.boardId);
+		Board.Service.info(boardId, function(err, result) {
+			res.json({my: result[0][0], sh: result[1]});
+		});
+	});
+
 	app.post('/share', function(req, res){
 
 		var data = req.body.shareDetails;
