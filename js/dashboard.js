@@ -112,13 +112,15 @@ $(function(){
     $('#title').val('');
     $('#last').val('');
     $('#createDate').val('');
-    $('#sharedTo').html('Dieses Board wurde folgenden Usern geteilt.<br>');
     $('#infoModal').show();
     var boardId = $(this).parent().closest("div").data("id");
     $.get('/info', {boardId: boardId}).done(function(result) {
       $('#title').val(result.my.title);
       $('#last').val(new Date(result.my.last_change));
       $('#createDate').val(new Date(result.my.created_date));
+      if (result.sh.length >= 1) {
+        $('#sharedTo').html('Dieses Board wurde folgenden Usern geteilt.<br>');
+      }
       for (var i = 0; i < result.sh.length; i++) {
         $('#sharedTo').append(result.sh[i].username + '<br>');
       }

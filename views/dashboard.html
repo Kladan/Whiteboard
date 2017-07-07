@@ -49,6 +49,9 @@
                         }
                         kachel += '<input type="text" name="boardtitle" maxlength="25" value="' + result[i].title + '"/></div>';
                         $('#myBoards').append(kachel);
+                        if (result.length > 5) {
+                            $('#showMore').show();
+                        }
                     }
                 });
 
