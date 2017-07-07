@@ -37,16 +37,6 @@ function colorPic(stift) {
     }
 }
 
-// Ausgewählten Stift farblich markieren
-
-//function markiere(before, after, newColor) {
-//    $('#' + before).css("background-color","");
-//    $('#' + before).css("border-color","rgba(0,0,0,0)");
-//    $('#' + after).css("background-color","rgba(255,255,255,0.2)");
-//    $('#' + after).css("border-color",newColor);
-//}
-
-
 function alertMessage(messageClass, message) {
 
     if (messageClass === "success"){
@@ -74,6 +64,7 @@ function save() {
     if (queryString != null) {
         sketch = {
             id: queryString[2],
+            title: $("#boardtitle").val(),
             imageUrl: canvas.toDataURL(),
             bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
         };

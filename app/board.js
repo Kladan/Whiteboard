@@ -48,7 +48,7 @@ getAll: function(userId, callback) {
 //Ein Board durch Id zurückgeben
 getById: function(userId, boardId, callback) {
 	var boardByIdQuery = "SELECT title, CONVERT(drawing_data USING utf8) AS imageUrl, bg_white FROM whiteboard w " + 
-			"INNER JOIN shared s ON w.boardId = s.boardId WHERE w.boardId = " + boardId + " AND (created_by = " + userId + 
+			"LEFT JOIN shared s ON w.boardId = s.boardId WHERE w.boardId = " + boardId + " AND (w.created_by = " + userId + 
 			" OR s.userId = " + userId + ");";
 
 	connection.query(boardByIdQuery, function(err, rows) {
@@ -58,7 +58,7 @@ getById: function(userId, boardId, callback) {
 
 getShared: function(userId, callback) {
 	var sharedQuery = "SELECT boardId, title, bg_white, CONVERT(drawing_data USING utf8) AS imgData FROM whiteboard " + 
-			"WHERE boardId = (SELECT boardId FROM shared WHERE userId = " + userId + ") ORDER BY `last_change` DESC;";
+			"WHERE boardId IN (SELECT boardId FROM shared WHERE userId = " + userId + ") ORDER BY `last_change` DESC;";
 
 	connection.query(sharedQuery, function(err, rows) {
 		callback(err, rows);
