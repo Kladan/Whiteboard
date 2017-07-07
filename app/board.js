@@ -103,6 +103,15 @@ share: function(details, callback) {
 	connection.query(insertQuery, function(err, rows){
 		callback(err, rows);
 	});
+},
+
+info: function(boardId, callback) {
+	var infoQuery = "SELECT title, created_date, last_change FROM whiteboard WHERE boardId = " + boardId + ";" + 
+	"SELECT username FROM shared sh INNER JOIN user u ON sh.userId = u.userId WHERE boardId = " + boardId + ";";
+
+	connection.query(infoQuery, function(err, rows) {
+		callback(err, rows);
+	});
 }
 
 };

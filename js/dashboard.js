@@ -93,5 +93,39 @@ $(function(){
       board = $(this).parent().closest("div");
       $("#dialogDelete").show();
    });
-});
 
+   var moreShown = false;
+   $('#showMore').click(function() {
+    if (moreShown == false) {
+      $('#myBoards').css('height', 'auto');
+      $('#showMore span').text('arrow_drop_up');
+      moreShown = true;
+    }
+    else {
+      $('#myBoards').css('height', '30em');
+      $('#showMore span').text('arrow_drop_down');
+      moreShown = false;
+    }
+   });
+
+   $('body').on('click', '.infoIcon', function() {
+    $('#title').val('');
+    $('#last').val('');
+    $('#createDate').val('');
+    $('#sharedTo').html('Dieses Board wurde folgenden Usern geteilt.<br>');
+    $('#infoModal').show();
+    var boardId = $(this).parent().closest("div").data("id");
+    $.get('/info', {boardId: boardId}).done(function(result) {
+      $('#title').val(result.my.title);
+      $('#last').val(new Date(result.my.last_change));
+      $('#createDate').val(new Date(result.my.created_date));
+      for (var i = 0; i < result.sh.length; i++) {
+        $('#sharedTo').append(result.sh[i].username + '<br>');
+      }
+    });
+   });
+
+   $('#close').click(function() {
+    $('#infoModal').hide();
+   })
+});
