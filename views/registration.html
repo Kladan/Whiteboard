@@ -42,6 +42,21 @@
                 if (data !== "")
                     $(".alert").html("<strong>" + data + "</strong>").show();
             });
+
+            function validate() {
+                var pwFields = $("input[type='password");
+            }
+
+            $("form").submit(function(e) {
+
+                if ($(pwFields[0]).val() === $(pwFields[1]).val()) {
+                    $("form").submit();
+                }
+                else {
+                    e.preventDefault();
+                    //Fehler anzeigen
+                }
+            })
         </script>
     </body>
 </html>
