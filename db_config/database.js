@@ -4,6 +4,7 @@ module.exports = {
     	'host': 'localhost',
     	'user': 'root',
     	'password': ''
+    	'multipleStatements': true
     },
 	'database': 'sketchbookDB',
     'userTable': 'user',

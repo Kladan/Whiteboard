@@ -82,26 +82,3 @@ header {
     background-color: white;
     cursor: crosshair;
 }
-
-#dialogDelete {
-    position: absolute;
-    width: 100%;
-    top: 16em;
-    color: white;
-    background-color: rgba(0,0,0,0.75);
-    text-align: center;
-    padding-top: 3em;
-    padding-bottom: 3em;
-    display: none;
-}
-
-#dialogDelete button {
-    border-radius: 0;
-    border-color: white;
-    color: white;
-}
-
-#dialogDelete button:hover {
-    border-color: white;
-    background-color: rgba(255,165,0,0.25);
-}
