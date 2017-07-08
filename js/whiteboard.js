@@ -6,15 +6,6 @@
     ["#1937D6", "brushBlue"], ["#E4FC5B", "brushYellow"]];
 
     var boardActionArray = [];
-    var pointsObj = {
-        mouseX: 0.0,
-        mouseY: 0.0,
-        size: 5,
-        color: "black",
-        brushImg: new Image(),
-        mode: "draw",
-        action: ""
-    };
 
     $.fn.whiteboard = function(options){
         opts = $.extend({}, $.fn.whiteboard.defaults, options);
@@ -28,6 +19,14 @@
 
         $(this).mousedown(function(e){
             mousePressed = true;
+            /*if (opts.drawStraight){
+                if (opts.useBrush) {
+                   BrushDraw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
+                else {
+                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+                }
+            }*/
             setLastPosition(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
 
             if (opts.useBrush){
@@ -73,6 +72,7 @@
         lineWidth: 5,
         lineJoin: "round",
         useBrush: false,
+        drawStraight: false,
         brushImage: new Image()
     }
 
@@ -190,48 +190,6 @@
                 pointY = val.mouseY;       
             }
         });
-
- /*       var tmp;
-
-        for (var i = 0; i < boardActionArray.length; i++) {
-            tmp = boardActionArray[i];
-            console.log(tmp);
-
-            if (tmp.mode === "draw") {
-                //zeichne mit pinsel
-                context.lineWidth = tmp.size;
-                context.strokeStyle = tmp.color;
-                context.lineJoin = opts.lineJoin;
-                if (tmp.action === "begin"){
-                    pointX = tmp.mouseX;
-                    pointY = tmp.mouseY;
-                }
-                context.beginPath();
-                context.moveTo(pointX, pointY);
-                context.lineTo(tmp.mouseX, tmp.mouseY);
-                pointX = tmp.mouseX;
-                pointY = tmp.mouseY;
-                context.closePath();
-                context.stroke();
-            }
-            else {
-                //zeichne mit brush image
-                if (tmp.action === "begin"){
-                    pointX = tmp.mouseX;
-                    pointY = tmp.mouseY;
-                }
-                var distance = distanceBetween({x: pointX, y: pointY}, {x: tmp.mouseX, y: tmp.mouseY});
-                var angle = angleBetween({x: pointX, y: pointY}, {x: tmp.mouseX, y: tmp.mouseY});
-                for (var i = 0; i < distance; i++) {
-                    x = pointX + (Math.sin(angle) * i) - 12;
-                    y = pointY + (Math.cos(angle) * i) - 12;
-                    context.drawImage(tmp.brushImg, x, y);
-                }
-
-                pointX = tmp.mouseX;
-                pointY = tmp.mouseY;
-            }
-        }*/
     }
 
 
@@ -310,6 +268,10 @@
         }
 
         redraw();
+    }
+
+    $.fn.whiteboard.drawStraight = function(val) {
+        opts.drawStraight = val;
     }
 
 

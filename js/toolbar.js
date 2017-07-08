@@ -104,6 +104,18 @@ function parseUrl() {
     return result;
 }
 
+function toggleStraight() {
+    var el = $("#straight");
+    if (el.data("active") == 0){;
+        el.data("active", 1);
+        $.fn.whiteboard.drawStraight(true);
+    }
+    else {
+        el.data("active", 0);
+        $.fn.whiteboard.drawStraight(false);
+    }
+}
+
 // Farbe wählen
 
 $(function(){
