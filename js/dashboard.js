@@ -119,7 +119,7 @@ $(function(){
       $('#last').val(new Date(result.my.last_change));
       $('#createDate').val(new Date(result.my.created_date));
       if (result.sh.length >= 1) {
-        $('#sharedTo').html('Dieses Board wurde folgenden Usern geteilt.<br>');
+        $('#sharedTo').html('<b>Dieses Board wurde folgenden Usern geteilt.</b><br>');
       }
       for (var i = 0; i < result.sh.length; i++) {
         $('#sharedTo').append(result.sh[i].username + '<br>');

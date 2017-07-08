@@ -52,6 +52,9 @@
                         if (result.length > 5) {
                             $('#showMore').show();
                         }
+                        else {
+                            $('#myBoards').css('height', 'auto');
+                        }
                     }
                 });
 
@@ -102,9 +105,9 @@
         <span class="material-icons">info</span>
         <span class="material-icons" id="close">close</span><br>
         <div class="infoContent">
-            Titel:<input type="text" id="title" readonly /><br>
-            Letzte Änderung:<input type="text" id="last" readonly /><br>
-            Erstellt am:<input type="text" id="createDate" readonly />
+            <b>Titel:</b><input type="text" id="title" readonly /><br>
+            <b>Letzte Änderung:</b><input type="text" id="last" readonly /><br>
+            <b>Erstellt am:</b><input type="text" id="createDate" readonly />
         </div>
         <div class="infoContent" id="sharedTo"></div>
     </div>
