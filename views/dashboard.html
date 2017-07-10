@@ -47,7 +47,7 @@
                         else {
                             kachel += 'white" /></a>';
                         }
-                        kachel += '<input type="text" name="boardtitle" maxlength="25" value="' + result[i].title + '"/></div>';
+                        kachel += '<input type="text" name="boardtitle" maxlength="25" value="' + result[i].title + '" readonly /></div>';
                         $('#myBoards').append(kachel);
                         if (result.length > 5) {
                             $('#showMore').show();
@@ -70,7 +70,7 @@
                         else {
                             kachel += 'white" /></a>';
                         }
-                        kachel += '<input type="text" name="boardtitle" maxlength="25" value="' + result[i].title + '"/></div>';
+                        kachel += '<input type="text" name="boardtitle" maxlength="25" value="' + result[i].title + '" readonly /></div>';
                         $('#sharedBoards').append(kachel);
                     }
                 });

@@ -28,7 +28,7 @@
             <input title="E-Mail" name="email" required checked autofocus autocomplete="additional-name" maxlength="40" type="email" placeholder="mail@example.com"/>
             <label>Password<span class="validation"></span></label>
             <input title="Password" name="password" required checked min="4" maxlength="20" type="password" placeholder="1234 is a good idea"/>
-            <label>Password wiederholen<span class="validation"></span></label>
+            <label>Password wiederholen<br><span class="validation"></span></label>
             <input title="Password wiederholen" required checked maxlength="20" type="password" placeholder="1234 is a good idea"/>
             <input type="submit" value="Registrieren"/>
         </form>
@@ -61,17 +61,17 @@
                 var valid = true;
 
                 if ($(pwFields[0]).val().length < 4) {
-                    $(pwFields[0]).css("border", "1px solid red");
-                    validationErrors.push({field: $(pwFields[0]), msg: "Passwort muss mindestens 4 Zeichen lang sein!"});
+                    $(pwFields[0]).css("border-color", "red");
+                    validationErrors.push({field: $(pwFields[0]), msg: "Das Passwort muss mindestens 4 Zeichen lang sein!"});
                     valid = false;
                 }
                 if ($(pwFields[0]).val() !== $(pwFields[1]).val()){
-                    $(pwFields[1]).css("border", "1px solid red");
-                    validationErrors.push({field: $(pwFields[1]), msg: "Passwörter stimmen nicht überein."});
+                    $(pwFields[1]).css("border-color", "red");
+                    validationErrors.push({field: $(pwFields[1]), msg: "Die Passwörter stimmen nicht überein."});
                     valid = false;
                 }
                 if (!$("input[name='username']").val().match(/^[\w]{1}[\w.]{4,}/)){
-                    validationErrors.push({field: $("input[name='username']"), msg: "Username ist zu kurz"});
+                    validationErrors.push({field: $("input[name='username']"), msg: "Der Username ist zu kurz."});
                     valid = false;
                 }
 

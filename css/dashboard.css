@@ -151,11 +151,11 @@
 }
 
 #infoModal {
-	width: 30%;
-	top: 8em;
-	left: 35%;
+	width: 37%;
+	top: 100%;
+	left: 31.5%;
 	background-color: white;
-	position: absolute;
+	position: fixed;
 	padding: 1em;
 	border-radius: 4px;
 	border: solid #ddd 2px;

@@ -113,21 +113,28 @@ $(function(){
     $('#last').val('');
     $('#createDate').val('');
     $('#infoModal').show();
+    $('#infoModal').animate({
+      top: '8em'
+    }, 250);
     var boardId = $(this).parent().closest("div").data("id");
     $.get('/info', {boardId: boardId}).done(function(result) {
       $('#title').val(result.my.title);
       $('#last').val(new Date(result.my.last_change));
       $('#createDate').val(new Date(result.my.created_date));
       if (result.sh.length >= 1) {
-        $('#sharedTo').html('<b>Dieses Board wurde folgenden Usern geteilt.</b><br>');
+        $('#sharedTo').html('<b>Dieses Board ist mit folgenden Usern geteilt:</b><br>');
       }
       for (var i = 0; i < result.sh.length; i++) {
-        $('#sharedTo').append(result.sh[i].username + '<br>');
+        $('#sharedTo').append('- ' + result.sh[i].username + '<br>');
       }
     });
    });
 
    $('#close').click(function() {
-    $('#infoModal').hide();
+    $('#infoModal').animate({
+      top: '100%'
+    }, 250, function() {
+      $('#infoModal').hide();
+    });
    })
 });
