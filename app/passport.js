@@ -10,7 +10,7 @@ connection.query('USE ' + dbConfig.database);
 
 module.exports = function(passport) {
 
-	//Session Funktionen für Serialisierung in einem Cookie und Deserialisierung aus einem Cookie
+	//Session Funktionen für Serialisierung in einem Session Cookie und Deserialisierung aus einem Session Cookie
 
 	passport.serializeUser(function(user, done) {
 		done(null, user.id);
