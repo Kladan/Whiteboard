@@ -70,28 +70,19 @@
                 setBgBoard(result.bg_white);
 
                 var context = document.getElementById("whiteboard").getContext("2d");
+
                 var tmpImg = new Image();
                 tmpImg.src = result.imageUrl;
                 tmpImg.onload = function() {
                     context.drawImage(this, 0, 0);
                 };
-
                 delete tmpImg;
+
             }).fail(function(error){
                 alertMessage("failure", error.responseJSON.message);
             });
         }
         $(document).ready(function(){
-
-            //Url hat id query
-            //server abfrage
-            //bild laden + anzeigen
-
-            var res = parseUrl();
-            
-            if (res != null){
-                getBoard(res[2]);
-            }
 
             // Dynamisches Aufklappen des Boards
 
@@ -103,6 +94,24 @@
             $("#whiteboard").whiteboard({
                 color: "black"
             });
+            
+            //Url hat id query
+            //server abfrage
+            //bild laden + anzeigen
+
+            var res = parseUrl();
+            
+            if (res != null){
+                getBoard(res[2]);
+                //Geladenes Bild zwischenspeichern für die Undo Funktion
+                setTimeout(function(){
+                    var context = document.getElementById("whiteboard").getContext("2d");
+                    var data = context.getImageData(0,0, $("#whiteboard").width(), $("#whiteboard").height());
+                    $.fn.whiteboard.cacheLoadedImage(data);
+                },300);
+            }
+
+
         });
     </script>
 </body>

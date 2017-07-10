@@ -73,7 +73,8 @@
         lineJoin: "round",
         useBrush: false,
         drawStraight: false,
-        brushImage: new Image()
+        brushImage: new Image(),
+        loadedImageCache: null
     }
 
     //Setzt die letzte Position
@@ -151,6 +152,10 @@
     function redraw() {
 
         $.fn.whiteboard.clearArea();
+
+        if (opts.loadedImageCache != null) {
+            context.putImageData(opts.loadedImageCache, 0, 0);
+        }
 
         var pointX, pointY;
 
@@ -256,7 +261,6 @@
     //Löscht eine im einen Schritt gezeichnete Linie
     //und ruft die "redraw" Methode auf.
     $.fn.whiteboard.undo = function() {
-
         for (var i = boardActionArray.length - 1; i > 0; i--) {
 
             if (boardActionArray[i].action === "begin") {
@@ -272,6 +276,10 @@
 
     $.fn.whiteboard.drawStraight = function(val) {
         opts.drawStraight = val;
+    }
+
+    $.fn.whiteboard.cacheLoadedImage = function(imageData) {
+        opts.loadedImageCache = imageData;
     }
 
 
