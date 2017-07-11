@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-var port = process.env.PORT || 8080; //Umgebungsvariable PORT bzw. 8080
+var port = process.env.PORT || 42000; //Umgebungsvariable PORT bzw. 8080
 var app = express();
 
 require('./app/passport')(passport); //passport konfigurieren
