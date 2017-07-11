@@ -108,7 +108,7 @@ footer a:hover {
 }
 
 #dialogDelete {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 16em;
     color: white;
@@ -123,11 +123,17 @@ footer a:hover {
     border-radius: 0;
     border-color: white;
     color: white;
+    transition: background-color 0.2s;
 }
 
 #dialogDelete button:hover {
     border-color: white;
     background-color: rgba(255,165,0,0.25);
+    border-color: rgba(0,0,0,0.75);
+}
+
+#dialogDelete button:active {
+    background-color: rgba(0,0,0,0.75);
 }
 
 .alert {

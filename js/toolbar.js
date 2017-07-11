@@ -116,6 +116,14 @@ function toggleStraight() {
     }
 }
 
+function showDel(id, top) {
+    $(id).css('top', '100%');
+    $(id).show();
+    $(id).animate({
+        top: top
+    }, 200);
+}
+
 // Farbe wählen
 
 $(function(){
@@ -196,7 +204,7 @@ $(document).keydown(function (e) {
     }
     if (keys[16] && keys[68]) { // Shift + d
         //Inhalt löschen
-        $('#dialogDelete').show();
+        showDel('#dialogDelete', '16em');
     }
     if (keys[89]) { // y
         // Tafel wechseln

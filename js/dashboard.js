@@ -91,7 +91,11 @@ $(function(){
    $("body").on("click", ".deleteIcon", function() {
       selectedBoard = getBoardId(this);
       board = $(this).parent().closest("div");
-      $("#dialogDelete").show();
+      $('#dialogDelete').css('top', '100%');
+      $('#dialogDelete').show();
+      $('#dialogDelete').animate({
+          top: '16em'
+      }, 200);
    });
 
    var moreShown = false;
