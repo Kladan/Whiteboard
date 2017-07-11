@@ -119,7 +119,7 @@ $(function(){
     $('#infoModal').show();
     $('#infoModal').animate({
       top: '8em'
-    }, 250);
+    }, 200);
     var boardId = $(this).parent().closest("div").data("id");
     $.get('/info', {boardId: boardId}).done(function(result) {
       $('#title').val(result.my.title);
@@ -137,7 +137,7 @@ $(function(){
    $('#close').click(function() {
     $('#infoModal').animate({
       top: '100%'
-    }, 250, function() {
+    }, 200, function() {
       $('#infoModal').hide();
     });
    })

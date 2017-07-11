@@ -127,6 +127,9 @@ function showDel(id, top) {
 // Farbe wählen
 
 $(function(){
+    $('#switchBg').click(function() {
+        bgboard();
+    });
     $('#marker').css('border-color','black');
     $('#pinsel').click(function() {
         colorPic('brush');
@@ -168,10 +171,7 @@ $(function(){
     });
     $("#deleteYes").click(function() {
         $.fn.whiteboard.clearArea(true);
-    })
-    $("#straight").click(function() {
-        toggleStraight();
-    })
+    });
     $("#lineWidthRange").on("input change", function(){
         $.fn.whiteboard.setLineWidth($(this).val());
     });
@@ -180,6 +180,9 @@ $(function(){
     });
     $("#save").click(function(){
         save();
+    });
+    $('#clearBoard').click(function() {
+        showDel('#dialogDelete', '16em');
     });
 });
 

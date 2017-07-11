@@ -28,7 +28,7 @@
     <input type="title" placeholder="Hier Titel eingeben" maxlength="25" id="boardtitle"/>
     
     <div id="tools">
-        <span class="material-icons toolbtn" onclick="bgboard()" title="Whiteboard / Tafel (Y)">format_paint</span>
+        <span class="material-icons toolbtn" id="switchBg" title="Whiteboard / Tafel (Y)">format_paint</span>
         <!--<span class="material-icons toolbtn" title="Gerade zeichnen (X)" id="straight" data-active="0">timeline</span>-->
         <span class="material-icons toolbtn" title="Pinsel (C)" id="pinsel">brush</span>
         <span class="material-icons toolbtn" title="Marker (V)" id="marker">edit</span>
@@ -40,9 +40,7 @@
         <span class="material-icons toolbtn colors" title="Schwarz" style="color: black" data-color="black"></span>
         <input id="lineWidthRange" class="toolbtn range" type="range" value="5" max="12" min="1" step="1" title="Stiftdicke" />
         <span class="material-icons toolbtn right" id="save" title="Speichern (Shift + S)">cloud_upload</span>
-        <span class="material-icons toolbtn right" title="Alles löschen (Shift + D)" onclick="showDel('#dialogDelete', '16em')">delete</span>
-        <!--<span class="material-icons toolbtn right" title="Neu laden">refresh</span>-->
-        <!--<span class="material-icons toolbtn right" title="Find ich gut">thumb_up</span>-->
+        <span class="material-icons toolbtn right" title="Alles löschen (Shift + D)" id="clearBoard">delete</span>
         <span id="undo" class="material-icons toolbtn right" title="Rückgängig (Shift + Z)">undo</span>
     </div>
 
