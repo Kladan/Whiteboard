@@ -3,7 +3,7 @@
 }
 
 #myBoards {
-	height: 30em;
+	height: auto;
 	overflow: hidden;
 	transition: height 0.5s;
 }

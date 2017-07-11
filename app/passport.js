@@ -6,6 +6,13 @@ var dbConfig = require('../db_config/database');
 
 var connection = mysql.createConnection(dbConfig.connection);
 
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err);
+    return;
+  }
+});
+
 connection.query('USE ' + dbConfig.database);
 
 module.exports = function(passport) {

@@ -50,7 +50,7 @@
 
 			if (err) { return next(err); }
 
-			if (!user) { errorMsg = "Der Username existiert bereits!"; return res.redirect("/registration");}
+			if (!user) { errorMsg = "Der Username oder die E-Mail existiert bereits!"; return res.redirect("/registration");}
 
 			req.logIn(user, function(err) {
 

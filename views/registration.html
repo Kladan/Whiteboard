@@ -28,7 +28,7 @@
             <input title="E-Mail" name="email" required checked autofocus autocomplete="additional-name" maxlength="40" type="email" placeholder="mail@example.com"/>
             <label>Password<span class="validation"></span></label>
             <input title="Password" name="password" required checked min="4" maxlength="20" type="password" placeholder="1234 is a good idea"/>
-            <label>Password wiederholen<br><span class="validation"></span></label>
+            <label>Password wiederholen<span class="validation"></span></label>
             <input title="Password wiederholen" required checked maxlength="20" type="password" placeholder="1234 is a good idea"/>
             <input type="submit" value="Registrieren"/>
         </form>
@@ -62,16 +62,17 @@
 
                 if ($(pwFields[0]).val().length < 4) {
                     $(pwFields[0]).css("border-color", "red");
-                    validationErrors.push({field: $(pwFields[0]), msg: "Das Passwort muss mindestens 4 Zeichen lang sein!"});
+                    validationErrors.push({field: $(pwFields[0]), msg: "<br>Das Passwort muss mindestens 4 Zeichen lang sein!"});
                     valid = false;
                 }
                 if ($(pwFields[0]).val() !== $(pwFields[1]).val()){
                     $(pwFields[1]).css("border-color", "red");
-                    validationErrors.push({field: $(pwFields[1]), msg: "Die Passwörter stimmen nicht überein."});
+                    validationErrors.push({field: $(pwFields[1]), msg: "<br>Die Passwörter stimmen nicht überein."});
                     valid = false;
                 }
                 if (!$("input[name='username']").val().match(/^[\w]{1}[\w.]{4,}/)){
-                    validationErrors.push({field: $("input[name='username']"), msg: "Der Username ist zu kurz."});
+                    validationErrors.push({field: $("input[name='username']"), msg: "<br>Der Username muss mind. 5 Zeichen lang sein und mit einem Charakter beginnen."});
+                    $("input[name='username']").css("border-color", "red");
                     valid = false;
                 }
 
@@ -85,7 +86,7 @@
                 else {
                     e.preventDefault();
                     $.each(validationErrors, function(i, v){
-                        $(v.field).prev().find(".validation").text(v.msg);
+                        $(v.field).prev().find(".validation").html(v.msg);
                     });
                 }
             });
