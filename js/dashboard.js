@@ -20,12 +20,18 @@ $(function(){
   }
 
   $("body").on("click", ".shareIcon", function(){
-    $("#usersearchModal").show();
+    $("#usersearchModal").fadeIn(200);
     selectedBoard = getBoardId(this);
   });
 
    $(".closeModalIcon").click(function() {
-   		$("#usersearchModal").hide();
+   		//$("#usersearchModal").fadeOut(200);
+      var modal = '<span class="material-icons closeModalIcon">close</span><div id="modalContent"><h4>Username eingeben und mit Enter bestätigen</h4><input id="usersearchBox" type="text" /><input id="btnShare" type="button" value="Teilen" /><br></div><ul></ul>';
+      $('#usersearchBox').val('');
+      $("#modalContent div").remove();
+      $('#usersearchModal ul').hide();
+      $('#usersearchModal ul').empty();
+      $("#usersearchModal").fadeOut(200);
    });
 
    $("#usersearchBox").keypress(function(e) {
