@@ -39,21 +39,15 @@ function colorPic(stift) {
 
 function alertMessage(messageClass, message) {
 
-    if (messageClass === "success"){
-        $("#alertMsg").removeClass("failureAlert");
-        $("#alertMsg").addClass("successAlert");
-    }
-    else if (messageClass === "failure") {
-        $("#alertMsg").removeClass("successAlert");
-        $("#alertMsg").addClass("failureAlert");
-    }
-
-    $("#alertMsg").html(message);
-
-    $("#alertMsg").fadeIn().animate({
+    var msg = "<div class='alertMsg " + messageClass + "'></div>";
+    $(msg).appendTo("body")
+        .html(message)
+        .fadeIn().animate({
             top: "-=50"
         }, 2000).fadeOut();
 }
+
+var boardId = 0;
 
 function save() {
     var canvas = document.getElementById("whiteboard");
@@ -61,7 +55,7 @@ function save() {
     var sketch;
 
     //Update
-    if (queryString != null) {
+    if (queryString || boardId) {
         sketch = {
             id: queryString[2],
             title: $("#boardtitle").val(),
@@ -70,7 +64,7 @@ function save() {
         };
 
         $.post('/updateBoard', {sketch}).done(function(result) {
-            alertMessage("sucess", "Board wurde aktualisiert!");
+            alertMessage("successAlert", "Board wurde aktualisiert!");
         });
     }
     else {
@@ -82,8 +76,9 @@ function save() {
         };
         $.post('/saveBoard', {sketch}).done(function(result){
         
+        boardId = result.Id;
         //Nachricht anzeigen, dass Board gespeichert wurde
-        alertMessage("success", "Board wurde gespeichert!");
+        alertMessage("successAlert", "Board wurde gespeichert!");
 
         var url = window.location.href;
         url += "?id=" + result.id;

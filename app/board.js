@@ -106,8 +106,9 @@ share: function(details, callback) {
 },
 
 info: function(boardId, callback) {
-	var infoQuery = "SELECT title, created_date, last_change FROM whiteboard WHERE boardId = " + boardId + ";" + 
-	"SELECT username FROM shared sh INNER JOIN user u ON sh.userId = u.userId WHERE boardId = " + boardId + ";";
+	var infoQuery = "SELECT title, created_date, last_change, username as creator FROM whiteboard w INNER JOIN user u ON w.created_by = u.userId " + 
+		"WHERE w.boardId = " + boardId + ";" + 
+		"SELECT username FROM shared sh INNER JOIN user u ON sh.userId = u.userId WHERE boardId = " + boardId + ";";
 
 	connection.query(infoQuery, function(err, rows) {
 		callback(err, rows);

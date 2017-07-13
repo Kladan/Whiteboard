@@ -89,8 +89,8 @@ $(function(){
       $.post('/deleteBoard', {boardId: selectedBoard}).done(function(success){
         $(board).remove();
         var sketches = $("#mySk").text();
-        var number = sketches.match(/\d/);
-        $("#mySk").text(sketches.replace(/\d/, --number));
+        var number = sketches.match(/\d+/);
+        $("#mySk").text(sketches.replace(/\d+/, --number));
       });
    });
 
