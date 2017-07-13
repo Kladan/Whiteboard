@@ -42,16 +42,17 @@ $(function(){
             return true;
         }
         e.preventDefault();
-            return false;
-        });
-   $("#usersearchBox").on('input', function(){
+        return false;
+   });
+   $("#usersearchBox").on('input', function(e){
+        e.preventDefault();
         var searchStr = $(this).val();
-        $("#modalContent div").remove();
+        $("#searchResults div").remove();
         if (!searchStr == "") {
         	$.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
             $.each(result, function(i, v){
                 var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
-                    $("#modalContent").append(tmp);
+                    $("#searchResults").append(tmp);
             });
         });
         }
