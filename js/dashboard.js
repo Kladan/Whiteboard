@@ -20,7 +20,8 @@ $(function(){
   }
 
   $("body").on("click", ".shareIcon", function(){
-    $("#usersearchModal").fadeIn(200);
+    $("#usersearchModal").fadeIn(300);
+    $('#usersearchBox').focus();
     selectedBoard = getBoardId(this);
   });
 
@@ -31,13 +32,13 @@ $(function(){
       $("#modalContent div").remove();
       $('#usersearchModal ul').hide();
       $('#usersearchModal ul').empty();
-      $("#usersearchModal").fadeOut(200);
+      $("#usersearchModal").fadeOut(300);
    });
 
    $("#usersearchBox").keypress(function(e) {
         var regex = new RegExp("^[a-zA-Z0-9]+$");
         var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-        if (regex.test(str)) {
+        if (regex.test(str) || e.which == 8) {
             return true;
         }
         e.preventDefault();
