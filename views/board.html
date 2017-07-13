@@ -44,7 +44,7 @@
         <span id="undo" class="material-icons toolbtn right" title="Rückgängig (Shift + Z)">undo</span>
     </div>
 
-    <div id="alertMsg" class="successAlert"></div>
+    <!--<div id="alertMsg" class="successAlert"></div>-->
 
     <div id="board">
             <canvas id="whiteboard"></canvas>
@@ -77,7 +77,7 @@
                 delete tmpImg;
 
             }).fail(function(error){
-                alertMessage("failure", error.responseJSON.message);
+                alertMessage("failureAlert", error.responseJSON.message);
             });
         }
         $(document).ready(function(){
