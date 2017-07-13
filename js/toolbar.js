@@ -203,6 +203,7 @@ $(document).keydown(function (e) {
     if (keys[16] && keys[68]) { // Shift + d
         //Inhalt löschen
         showDel('#dialogDelete', '16em');
+        $('#deleteNo').focus();
     }
     if (keys[89]) { // y
         // Tafel wechseln

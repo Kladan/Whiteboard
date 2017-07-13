@@ -103,6 +103,7 @@ $(function(){
       $('#dialogDelete').animate({
           top: '16em'
       }, 200);
+      $('#deleteNo').focus();
    });
 
    var moreShown = false;
@@ -133,7 +134,7 @@ $(function(){
       $('#last').val(new Date(result.my.last_change));
       $('#createDate').val(new Date(result.my.created_date));
       if (result.sh.length >= 1) {
-        $('#sharedTo').html('<b>Dieses Board ist mit folgenden Usern geteilt:</b><br>');
+        $('#sharedTo').html('<b>' + result.my.creator + ' hat dieses Board mit folgenden Nutzern geteilt:</b><br>');
       }
       for (var i = 0; i < result.sh.length; i++) {
         $('#sharedTo').append('- ' + result.sh[i].username + '<br>');
