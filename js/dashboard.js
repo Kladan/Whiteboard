@@ -45,11 +45,10 @@ $(function(){
         return false;
    });
    $("#usersearchBox").on('input', function(e){
-        e.preventDefault();
         var searchStr = $(this).val();
         $("#searchResults div").remove();
-        if (!searchStr == "") {
-        	$.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
+        if (searchStr) {
+          $.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
             $.each(result, function(i, v){
                 var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
                     $("#searchResults").append(tmp);
@@ -60,11 +59,14 @@ $(function(){
 
    $("body").on("click", "div[name='user']", function(){
    		var selectedUser = $(this);
+      var selectedUserId = selectedUser.find("input").val();
       var li = "<li>" + selectedUser.text() + "</li>";
       $('#usersearchModal ul').show();
-      $('#usersearchModal ul').append(li);
-      usersToShare.push(selectedUser.find("input").val());
-      selectedUser.remove();
+      if ($.inArray(selectedUserId, usersToShare) == -1){
+        $('#usersearchModal ul').append(li);
+        usersToShare.push(selectedUserId);
+        selectedUser.remove();
+      }
     });
 
    $("#btnShare").click(function() {

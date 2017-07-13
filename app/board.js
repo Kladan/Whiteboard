@@ -71,7 +71,8 @@ update: function(boardData, callback) {
 	", bg_white = " + parseInt(boardData.bg);
 
 	if (boardData.hasOwnProperty('title')){
-		updateQuery += ", title = " + mysql.escape(boardData.title);
+		if (boardData.title != "")
+			updateQuery += ", title = " + mysql.escape(boardData.title);
 	}
 
 	updateQuery += " WHERE boardId = " + boardData.id;
@@ -93,7 +94,7 @@ delete: function(sketch, callback) {
 share: function(details, callback) {
 
 	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES ",
-		userIds = details.users;
+		userIds = details.users.filter(uniqueValues);
 
 	for (var user in userIds) {
 		insertQuery += "(" + parseInt(userIds[user]) + "," + parseInt(details.boardId) + "),"
@@ -116,5 +117,9 @@ info: function(boardId, callback) {
 }
 
 };
+
+function uniqueValues(value, index, self) {
+	return self.indexOf(value) === index;
+}
 
 module.exports = new Board();
