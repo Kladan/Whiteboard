@@ -63,7 +63,7 @@
         });
 
         $(this).mouseleave(function (e) {
-           mousePressed = false;
+           //mousePressed = false;
         });
     }
 

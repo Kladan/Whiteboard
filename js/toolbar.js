@@ -48,6 +48,7 @@ function alertMessage(messageClass, message) {
 }
 
 var boardId = 0;
+var creating = false; //Verhindert doppeltes speichern
 
 function save() {
     var canvas = document.getElementById("whiteboard");
@@ -69,7 +70,9 @@ function save() {
     }
     else {
 
-        sketch = {
+        if (!creating){
+            creating = true;
+            sketch = {
             title: $("#boardtitle").val(),
             imageUrl: canvas.toDataURL(),
             bg: bgGreen === true ? 0 : 1//0 - Weiß, 1 - Grün
@@ -87,6 +90,7 @@ function save() {
         }).fail(function(result){
             console.log(result);
         });
+        }
     }
 }
 

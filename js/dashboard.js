@@ -1,14 +1,6 @@
 $(function(){
-	var morehidden = true;
 	$("body").on("click", ".points", function() {
-		if (morehidden) {
-			$(this).parent().children().show();
-			morehidden = false;
-		}
-		else {
-			$(".more").hide();
-			morehidden = true;
-		}
+    $(this).parent().find(".more").toggle();
   });
 
   var usersToShare = [];
