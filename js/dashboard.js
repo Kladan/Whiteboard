@@ -36,16 +36,18 @@ $(function(){
         e.preventDefault();
         return false;
    });
-   $("#usersearchBox").on('input', function(e){
-        var searchStr = $(this).val();
-        $("#searchResults div").remove();
-        if (searchStr) {
-          $.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
-            $.each(result, function(i, v){
+   $("#usersearchBox").on('keydown', function(e){
+        if (e.which == 13) {
+          var searchStr = $(this).val();
+          $("#searchResults div").remove();
+          if (searchStr) {
+            $.post("/usersearch", {searchString: searchStr, boardId: selectedBoard}).done(function(result) {
+              $.each(result, function(i, v){
                 var tmp = "<div name='user' class='modalTextField'><input type='hidden' value='" + v.userId + "'/>" + v.username + "</div>";
-                    $("#searchResults").append(tmp);
+                $("#searchResults").append(tmp);
+              });
             });
-        });
+          }
         }
     });
 
