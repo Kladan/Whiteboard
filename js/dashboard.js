@@ -18,13 +18,11 @@ $(function(){
   });
 
    $(".closeModalIcon").click(function() {
-   		//$("#usersearchModal").fadeOut(200);
-      var modal = '<span class="material-icons closeModalIcon">close</span><div id="modalContent"><h4>Username eingeben und mit Enter bestätigen</h4><input id="usersearchBox" type="text" /><input id="btnShare" type="button" value="Teilen" /><br></div><ul></ul>';
       $('#usersearchBox').val('');
-      $("#modalContent div").remove();
       $('#usersearchModal ul').hide();
       $('#usersearchModal ul').empty();
       $("#usersearchModal").fadeOut(300);
+      usersToShare = [];
    });
 
    $("#usersearchBox").keypress(function(e) {
