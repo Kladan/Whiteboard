@@ -145,5 +145,17 @@ $(function(){
     }, 200, function() {
       $('#infoModal').hide();
     });
-   })
+   });
+
+   $(document).keydown(function (e) {
+    if (e.keyCode == 27) {
+      $('#infoModal').animate({
+        top: '100%'
+      }, 200, function() {
+        $('#infoModal').hide();
+      });
+      $('#dialogDelete').fadeOut(100);
+      $('#usersearchModal').fadeOut(100);
+    }
+  });
 });
