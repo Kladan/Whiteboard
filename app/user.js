@@ -9,7 +9,9 @@ function User() {
 }
 
 User.prototype.Service = {
-
+	//Für die Share Funktionalität
+	//Gibt alle User zurück, außer sich selbst, die mit dem "username" anfangen.
+	//Ergebnisse sind auf 5 limitiert.
 	getUser: function(userId, username, boardId, callback) {
 
 		var userQuery = "SELECT userId, username FROM user WHERE userId != " + userId + " AND userId NOT IN (SELECT userId FROM shared " +

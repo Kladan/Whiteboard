@@ -37,6 +37,7 @@ function colorPic(stift) {
     }
 }
 
+//Erstellt eine Nachricht und zeigt diese an
 function alertMessage(messageClass, message) {
 
     var msg = "<div class='alertMsg " + messageClass + "'></div>";
@@ -48,7 +49,7 @@ function alertMessage(messageClass, message) {
 }
 
 var boardId = 0;
-var creating = false; //Verhindert doppeltes speichern
+var creating = false; //Verhindert doppeltes speichern (Firefox)
 
 function save() {
     var canvas = document.getElementById("whiteboard");
@@ -107,11 +108,11 @@ function toggleStraight() {
     var el = $("#straight");
     if (el.data("active") == 0){;
         el.data("active", 1);
-        $.fn.whiteboard.drawStraight(true);
+        //$.fn.whiteboard.drawStraight(true);
     }
     else {
         el.data("active", 0);
-        $.fn.whiteboard.drawStraight(false);
+        //$.fn.whiteboard.drawStraight(false);
     }
 }
 
@@ -199,10 +200,6 @@ $(document).keydown(function (e) {
     if (keys[16] && keys[83]) { // Shift + s
         // Speichern
         save();
-        // setTimeout(function(){
-        //     context.putImageData(imageData, 0, 0);
-        // },5000);
-
     }
     if (keys[16] && keys[68]) { // Shift + d
         //Inhalt löschen

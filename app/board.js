@@ -1,8 +1,3 @@
-//Module laden
-//require mysql, database config
-//mysql connection erstellen
-//use sketchbookdb
-
 var mysql = require('mysql');
 var dbConfig = require('../db_config/database');
 var connection;
@@ -15,7 +10,7 @@ function Board() {
 
 Board.prototype.Service = {
 
-//Bild in Db erstellen
+//Bild in DB speichern
 create: function(sketch, callback) {
 
 	var insertSketch = "INSERT INTO whiteboard (created_date, last_change, created_by, drawing_data, title, bg_white) VALUES (";
@@ -34,7 +29,7 @@ create: function(sketch, callback) {
 	});
 },
 
-//Alle Whiteboards abfragen und als json zurückgeben
+//Alle Whiteboards eines Users abfragen
 getAll: function(userId, callback) {
 	var getBoards = "SELECT boardId, title, bg_white, CONVERT(drawing_data USING utf8) AS imgData FROM whiteboard WHERE created_by = " + userId + " ORDER BY `last_change` DESC ;";
 
@@ -56,6 +51,7 @@ getById: function(userId, boardId, callback) {
 	});
 },
 
+//Alle geteilten Boards abfragem
 getShared: function(userId, callback) {
 	var sharedQuery = "SELECT boardId, title, bg_white, CONVERT(drawing_data USING utf8) AS imgData FROM whiteboard " + 
 			"WHERE boardId IN (SELECT boardId FROM shared WHERE userId = " + userId + ") ORDER BY `last_change` DESC;";
@@ -65,6 +61,7 @@ getShared: function(userId, callback) {
 	});
 },
 
+//Bild aktualisieren
 update: function(boardData, callback) {
 
 	var updateQuery = "UPDATE whiteboard SET drawing_data = " + mysql.escape(boardData.imageUrl) + ", last_change = " + mysql.escape(new Date()) + 
@@ -82,6 +79,7 @@ update: function(boardData, callback) {
 	});
 },
 
+//Bild löschen
 delete: function(sketch, callback) {
 
 	var deleteQuery = "DELETE FROM shared WHERE boardId = ?; DELETE FROM whiteboard WHERE boardId = ?;";
@@ -91,6 +89,7 @@ delete: function(sketch, callback) {
 	});
 },
 
+//Board teilen
 share: function(details, callback) {
 
 	var insertQuery = "INSERT INTO shared (userId, boardId) VALUES ",
@@ -106,6 +105,7 @@ share: function(details, callback) {
 	});
 },
 
+//Informationen eines Boards zurückgeben
 info: function(boardId, callback) {
 	var infoQuery = "SELECT title, created_date, last_change, username as creator FROM whiteboard w INNER JOIN user u ON w.created_by = u.userId " + 
 		"WHERE w.boardId = " + boardId + ";" + 
@@ -118,8 +118,10 @@ info: function(boardId, callback) {
 
 };
 
+//Hilfsmethode um Duplikate zu entfernen
 function uniqueValues(value, index, self) {
 	return self.indexOf(value) === index;
 }
 
+//Boards "exportieren" für andere Module
 module.exports = new Board();

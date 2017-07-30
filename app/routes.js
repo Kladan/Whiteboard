@@ -45,6 +45,11 @@
 		res.sendFile(path + "/views/header.html");
 	});
 
+	/*
+	------------------------------------------------------------------------------------------------------------------
+											Registrierung und Login
+	*/
+
 	app.post('/registration', function(req, res, next) {
 		passport.authenticate('registration', function(err, user, info) {
 
@@ -77,6 +82,12 @@
 		})(req, res, next);
 	});
 
+	//----------------------------------------------------------------------------------------------------------------------
+
+
+	/*
+	----------------------------------------------Schnittstelle--------------------------------------------------------------
+	*/
 	app.get('/userdata', isAuthenticated, function(req, res) {
 		var user = req.user; //req.user gibt den aktuellen User zurück
 		res.json(user);
@@ -92,8 +103,6 @@
 		res.json(error);
 	});
 	
-
-	//Whiteboard API
 	app.post('/saveBoard', isAuthenticated, function(req, res) {
 
 		var sketch = req.body.sketch;
@@ -202,6 +211,7 @@
 	});
 };
 
+//Hilfsmethode zur Überprüfung ob jemand eingeloggt ist.
 function isAuthenticated(req, res, next) {
 
 	if (req.isAuthenticated()) {
@@ -211,4 +221,5 @@ function isAuthenticated(req, res, next) {
 	res.redirect("/login")
 }
 
+//Speichert die aktuelle Fehlermeldung
 var errorMsg = "";

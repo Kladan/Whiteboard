@@ -2,6 +2,7 @@
     var mousePressed = false;
     var lastX, lastY, context, opts;
 
+    //Farbe / Bild Zuordnung
     var brushImageArray = [["black", "brushBlack"], ["white", "brushWhite"], ["#EB401C", "brushRed"], ["#0AEC08", "brushGreen"], 
     ["#1937D6", "brushBlue"], ["#E4FC5B", "brushYellow"]];
 
@@ -14,8 +15,6 @@
         context.canvas.style.height = context.canvas.style.width * 16 / 9;
         context.canvas.width = context.canvas.offsetWidth;
         context.canvas.height = context.canvas.offsetHeight + 8;
-
-        // Zeichnen
 
         $(this).mousedown(function(e){
             mousePressed = true;
@@ -74,7 +73,7 @@
         useBrush: false,
         drawStraight: false,
         brushImage: new Image(),
-        loadedImageCache: null
+        loadedImageCache: null //Zwischenspeicher für die Undo Funktion
     }
 
     //Setzt die letzte Position
@@ -124,7 +123,6 @@
 
     /*Brush Hilfefunktionen*/
 
-    //Satz des Pythagoras
     function distanceBetween(point1, point2) {
         return Math.sqrt(Math.pow(point2.x - point1.x, 2) + 
             Math.pow(point2.y - point1.y, 2));
@@ -253,12 +251,14 @@
         return color;
     }
 
+    //Setzt die Liniendicke
+
     $.fn.whiteboard.setLineWidth = function(width) {
         opts.lineWidth = width;
     }
 
 
-    //Löscht eine im einen Schritt gezeichnete Linie
+    //Löscht eine in einem Schritt gezeichnete Linie
     //und ruft die "redraw" Methode auf.
     $.fn.whiteboard.undo = function() {
         for (var i = boardActionArray.length - 1; i > 0; i--) {
@@ -274,10 +274,13 @@
         redraw();
     }
 
-    $.fn.whiteboard.drawStraight = function(val) {
+/*    $.fn.whiteboard.drawStraight = function(val) {
         opts.drawStraight = val;
     }
 
+    */
+
+    //Gezeichnetes Bild zwischenspeichern
     $.fn.whiteboard.cacheLoadedImage = function(imageData) {
         opts.loadedImageCache = imageData;
     }

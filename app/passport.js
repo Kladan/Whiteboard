@@ -54,7 +54,7 @@ module.exports = function(passport) {
 						password: ""
 					};
 
-					bcrypt.hash(password, 8, function(err, hash) { //.hash(password, salt, callback)
+					bcrypt.hash(password, 8, function(err, hash) { 
 
 						var query = "insert into user (username, email, password) values (?,?,?);";
 
@@ -75,6 +75,8 @@ module.exports = function(passport) {
 		})
 	);
 
+	//Login
+	
 	passport.use('login', new PassportLocal({
 		usernameField: 'username',
 		passwordField: 'password',
