@@ -1,4 +1,6 @@
 $(function(){
+
+  //Blendet zusätzliche Funktionen ein
 	$("body").on("click", ".points", function() {
     $(this).parent().find(".more").toggle();
   });
@@ -11,6 +13,7 @@ $(function(){
     return $(self).parent().closest("div").data("id");
   }
 
+  //Zeigt Dialog zum Teilen
   $("body").on("click", ".shareIcon", function(){
     $("#usersearchModal").fadeIn(300);
     $('#usersearchBox').focus();
@@ -34,6 +37,8 @@ $(function(){
         e.preventDefault();
         return false;
    });
+
+   //Enter zeigt gefundene User
    $("#usersearchBox").on('keydown', function(e){
         if (e.which == 13) {
           var searchStr = $(this).val();
@@ -49,7 +54,8 @@ $(function(){
         }
     });
 
-   $("body").on("click", "div[name='user']", function(){
+    //Fügt User der Teil-Liste hinzu
+    $("body").on("click", "div[name='user']", function(){
    		var selectedUser = $(this);
       var selectedUserId = selectedUser.find("input").val();
       var li = "<li>" + selectedUser.text() + "</li>";
@@ -61,7 +67,8 @@ $(function(){
       }
     });
 
-   $("#btnShare").click(function() {
+    //Teilt das Board den ausgwählten Usern
+    $("#btnShare").click(function() {
       var data = {
         users: usersToShare,
         boardId: selectedBoard
@@ -73,24 +80,26 @@ $(function(){
         $("#usersearchModal ul li").remove();
         $("#usersearchBox").val('');
       });
-   });
+    });
 
-   var board;
+    var board;
 
-   $("#dialogDelete button").click(function() {
+    $("#dialogDelete button").click(function() {
       $("#dialogDelete").hide();
     });
 
-   $("#deleteYes").click(function() {
+    //Lösch-Funktion (Dialog)
+    $("#deleteYes").click(function() {
       $.post('/deleteBoard', {boardId: selectedBoard}).done(function(success){
         $(board).remove();
         var sketches = $("#mySk").text();
         var number = sketches.match(/\d+/);
         $("#mySk").text(sketches.replace(/\d+/, --number));
       });
-   });
+    });
 
-   $("body").on("click", ".deleteIcon", function() {
+    //Zeigt Lösch-Dialog
+    $("body").on("click", ".deleteIcon", function() {
       selectedBoard = getBoardId(this);
       board = $(this).parent().closest("div");
       $('#dialogDelete').css('top', '100%');
@@ -99,45 +108,47 @@ $(function(){
           top: '16em'
       }, 200);
       $('#deleteNo').focus();
-   });
-
-   var moreShown = false;
-   $('#showMore').click(function() {
-    if (moreShown == false) {
-      $('#myBoards').css('height', 'auto');
-      $('#showMore span').text('arrow_drop_up');
-      moreShown = true;
-    }
-    else {
-      $('#myBoards').css('height', '30em');
-      $('#showMore span').text('arrow_drop_down');
-      moreShown = false;
-    }
-   });
-
-   $('body').on('click', '.infoIcon', function() {
-    $('#title').val('');
-    $('#last').val('');
-    $('#createDate').val('');
-    $('#infoModal').show();
-    $('#infoModal').animate({
-      top: '8em'
-    }, 200);
-    var boardId = $(this).parent().closest("div").data("id");
-    $.get('/info', {boardId: boardId}).done(function(result) {
-      $('#title').val(result.my.title);
-      $('#last').val(new Date(result.my.last_change));
-      $('#createDate').val(new Date(result.my.created_date));
-      $('#sharedTo').empty();
-      if (result.sh.length >= 1) {
-        $('#sharedTo').html('<b>' + result.my.creator + ' hat dieses Board mit folgenden Nutzern geteilt:</b><br>');
-      }
-      for (var i = 0; i < result.sh.length; i++) {
-        $('#sharedTo').append('- ' + result.sh[i].username + '<br>');
-      }
-      console.log('---');
     });
-   });
+
+    //Button zur Anzeige von mehr als 5 eigenen Boards
+    var moreShown = false;
+    $('#showMore').click(function() {
+      if (moreShown == false) {
+        $('#myBoards').css('height', 'auto');
+        $('#showMore span').text('arrow_drop_up');
+        moreShown = true;
+      }
+      else {
+        $('#myBoards').css('height', '30em');
+        $('#showMore span').text('arrow_drop_down');
+        moreShown = false;
+      }
+    });
+
+    //Zeigt Info-Fenster
+    $('body').on('click', '.infoIcon', function() {
+      $('#title').val('');
+      $('#last').val('');
+      $('#createDate').val('');
+      $('#infoModal').show();
+      $('#infoModal').animate({
+        top: '8em'
+      }, 200);
+      var boardId = $(this).parent().closest("div").data("id");
+      $.get('/info', {boardId: boardId}).done(function(result) {
+        $('#title').val(result.my.title);
+        $('#last').val(new Date(result.my.last_change));
+        $('#createDate').val(new Date(result.my.created_date));
+        $('#sharedTo').empty();
+        if (result.sh.length >= 1) {
+          $('#sharedTo').html('<b>' + result.my.creator + ' hat dieses Board mit folgenden Nutzern geteilt:</b><br>');
+        }
+        for (var i = 0; i < result.sh.length; i++) {
+          $('#sharedTo').append('- ' + result.sh[i].username + '<br>');
+        }
+        console.log('---');
+      });
+    });
 
    $('#close').click(function() {
     $('#infoModal').animate({
@@ -147,6 +158,7 @@ $(function(){
     });
    });
 
+   //ESC schließt alle Dialoge
    $(document).keydown(function (e) {
     if (e.keyCode == 27) {
       $('#infoModal').animate({
