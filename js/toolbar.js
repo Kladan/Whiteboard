@@ -125,6 +125,7 @@ function showDel(id, top) {
 }
 
 // Farbe wählen
+var currentColor = "black";
 
 $(function(){
     $('#switchBg').click(function() {
@@ -163,7 +164,7 @@ $(function(){
             $(this).css('background-color', 'rgba(255,255,255,0.2)');
             $('#pinsel').css('border-color','transparent');
             $('#marker').css('border-color',colorData);
-
+            currentColor = colorData;
         }
     });
     $("#dialogDelete button").click(function() {
@@ -221,10 +222,10 @@ $(document).keydown(function (e) {
 
     }
     if (keys[86]) { // v
-        var color = $.fn.whiteboard.getColorFromImage();
-        $.fn.whiteboard.setColor(color);
+        //var color = $.fn.whiteboard.getColorFromImage();
+        $.fn.whiteboard.setColor(currentColor);
         $('#pinsel').css('border-color','transparent');
-        $('#marker').css('border-color',color);
+        $('#marker').css('border-color',currentColor);
 
     }
     }

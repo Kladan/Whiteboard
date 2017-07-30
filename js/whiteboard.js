@@ -217,6 +217,7 @@
     $.fn.whiteboard.setColor = function(color) {
         opts.color = color;
         opts.useBrush = false;
+        opts.brushImage = null;
     }
 
     // Gibt die aktuelle Farbe zurück
@@ -237,16 +238,19 @@
     //Gibt die Farbe des "Brushes" zurück
 
     $.fn.whiteboard.getColorFromImage = function() {
-        var str = opts.brushImage.src;
-        var start = str.lastIndexOf("/") + 1;
-        var color = "";
-        str = str.split(".")[0].substr(start);
+        
+        if (opts.brushImage != null) {
+            var str = opts.brushImage.src;
+            var start = str.lastIndexOf("/") + 1;
+            var color = "";
+            str = str.split(".")[0].substr(start);
 
-        $.each(brushImageArray, function(index, val){
-            if (val[1] == str){
-                color = val[0];
-            }
-        })
+            $.each(brushImageArray, function(index, val){
+                if (val[1] == str){
+                    color = val[0];
+                }
+            });
+        }
 
         return color;
     }
